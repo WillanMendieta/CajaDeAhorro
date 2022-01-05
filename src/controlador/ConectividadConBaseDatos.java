@@ -9,8 +9,8 @@ public class ConectividadConBaseDatos {
 
 		Connection conexion = null;
 		try {
-			conexion = DriverManager.getConnection("jdbc:postgresql://localhost:5432/CajaDeAhorro", "mendietaP",
-					"mendietaP");
+			conexion = DriverManager.getConnection("jdbc:postgresql://localhost:5432/CajaDeAhorro", "proyecto",
+					"proyecto");
 
 			if (conexion != null) {
 				System.out.print("Conexion establecida...");
@@ -27,6 +27,4 @@ public class ConectividadConBaseDatos {
 	}
 
 }
-
-
 
