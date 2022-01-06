@@ -1,4 +1,4 @@
-package ec.edu.ups.est.view;
+package ec.edu.ups.est.ProyectoFinal.view;
 
 import java.awt.Container;
 import java.awt.GridBagConstraints;
@@ -6,15 +6,19 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Date;
 
+import javax.inject.Inject;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
+import ec.edu.ups.est.ProyectoFinal.business.MovimientoONLocal;
+import ec.edu.ups.est.ProyectoFinal.model.Movimiento;
 
-import ups.edu.ec.controlador.ConectividadConBaseDatos;
-import ups.edu.ec.controlador.ControladorDepositos;
-import ups.edu.ec.modelo.Depositos;
+
+
+
+
 
 public class VntDeposito extends JFrame implements ActionListener {
 
@@ -29,9 +33,9 @@ public class VntDeposito extends JFrame implements ActionListener {
 	 
 
 	    public static void main(String[] args) {
-	    	VntDeposito v = new VntDeposito();
-	    	v.componentes();
-	    	v.setVisible(true);
+	    	//VntDeposito v = new VntDeposito();
+	    	//v.componentes();
+	    	//v.setVisible(true);
 	    }
 
 	    public void componentes() {
@@ -91,11 +95,11 @@ public class VntDeposito extends JFrame implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
 			
 			
-			String comando = e.getActionCommand();
-			ControladorDepositos ven2 = new ControladorDepositos() ;
+			String comando = e.getActionCommand();	
+			Movimiento deposito = new Movimiento();
 			
-			Depositos deposito = new Depositos();
 			
+			//private MovimientoONLocal ;
 			
 			
 			  id= Integer.parseInt(idText.getText());
@@ -103,9 +107,8 @@ public class VntDeposito extends JFrame implements ActionListener {
 	        monto= Double.parseDouble(montoText.getText());
 			 
 			
-			deposito.setIdDeposito(id);
+	
 			deposito.setCuenta(cuenta);
-			
 			deposito.setFecha(new Date());
 			deposito.setMonto(monto);
 
@@ -117,7 +120,7 @@ public class VntDeposito extends JFrame implements ActionListener {
 			}
 	        switch(comando){
 	           case"nuevoCliente":
-	                ven2.guardarDeposito(deposito);
+	            //    ven2.guardarDeposito(deposito);
 	                break;
 	            default:
 	                break;
