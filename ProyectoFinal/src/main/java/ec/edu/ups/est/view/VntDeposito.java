@@ -1,4 +1,4 @@
-package ups.edu.ec.vista;
+package ec.edu.ups.est.view;
 
 import java.awt.Container;
 import java.awt.GridBagConstraints;

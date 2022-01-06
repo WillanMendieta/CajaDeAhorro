@@ -1,4 +1,4 @@
-package ups.edu.ec.controlador;
+package ec.edu.ups.est.business;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
