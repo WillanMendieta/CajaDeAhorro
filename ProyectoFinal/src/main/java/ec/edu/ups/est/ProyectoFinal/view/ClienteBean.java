@@ -2,6 +2,7 @@ package ec.edu.ups.est.ProyectoFinal.view;
 
 import java.util.List;
 
+import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -29,8 +30,21 @@ public class ClienteBean {
 	
 	@PostConstruct
 	public void init() {
-		usuarios = usuarioON.get
+		usuarios = usuarioON.getUsuarios();
+		
 	}
+	
+	public String guardarProducto() {
+		try {
+			usuarioON.insertarUsuario(newusuario);
+		}
+		catch(Exception e){
+			e.printStackTrace();
+		}
+		
+		return "lista-usuarios?faces-redirect=true";
+	}
+	
 
 	
 }
