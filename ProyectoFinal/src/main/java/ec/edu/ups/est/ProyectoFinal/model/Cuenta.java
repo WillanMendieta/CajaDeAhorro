@@ -5,6 +5,7 @@ import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -22,14 +23,16 @@ public class Cuenta implements Serializable {
 	@Column(name = "cue_tipo")
 	private String tipo_cuenta;
 	
+	@OneToOne
 	@Column(name = "cue_ced")
-	private String cedula;
+	private Usuario usuario ;
 
-	public String getCedula() {
-		return cedula;
+	
+	public Usuario getUsuario() {
+		return usuario;
 	}
-	public void setCedula(String cedula) {
-		this.cedula = cedula;
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
 	}
 	public int getNumero_cuenta() {
 		return numero_cuenta;

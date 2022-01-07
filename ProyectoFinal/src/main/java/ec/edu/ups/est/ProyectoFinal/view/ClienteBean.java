@@ -17,11 +17,11 @@ public class ClienteBean {
 	private Usuario newusuario = new Usuario();
 	private List<Usuario> usuarios;
 	
-	public Usuario geUsuario() {
+	public Usuario getNewUsuario() {
 		return newusuario;
 	}
 	
-	public void setNewUsuario(Usuario usuario) {
+	public void setNewUsuario(Usuario newusuario) {
 		this.newusuario = newusuario;
 	}
 	
@@ -34,7 +34,7 @@ public class ClienteBean {
 		
 	}
 	
-	public String guardarProducto() {
+	public String guardarCliente() {
 		try {
 			usuarioON.insertarUsuario(newusuario);
 		}

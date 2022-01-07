@@ -1,10 +1,13 @@
 package ec.edu.ups.est.ProyectoFinal.model;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -16,26 +19,29 @@ public class Usuario implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 	@Id
-	@Column(name = "usu_ced") 
+	@Column(name = "usu_ced")
 	private String cedula;
-	
-	@Column(name = "usu_nombre") 
+
+	@Column(name = "usu_nombre")
 	private String nombre;
-	
-	@Column(name = "usu_apellido") 
+
+	@Column(name = "usu_apellido")
 	private String apellido;
-	
-	@Column(name = "usu_direccion") 
+
+	@Column(name = "usu_direccion")
 	private String direccion;
-	
-	@Column(name = "usu_telefono") 
+
+	@Column(name = "usu_telefono")
 	private String telefono;
-	
-	@Column(name = "usu_correo") 
+
+	@Column(name = "usu_correo")
 	private String correo;
-	
-	@Column(name = "usu_contra") 
+
+	@Column(name = "usu_contra")
 	private String contra;
+
+	@OneToMany(fetch = FetchType.EAGER)
+	private List<Cuenta> cuenta;
 
 	public String getCedula() {
 		return cedula;
@@ -96,8 +102,13 @@ public class Usuario implements Serializable {
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
-	
-	
-	
-	
+
+	public List<Cuenta> getCuenta() {
+		return cuenta;
+	}
+
+	public void setCuenta(List<Cuenta> cuenta) {
+		this.cuenta = cuenta;
+	}
+
 }

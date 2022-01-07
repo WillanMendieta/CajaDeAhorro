@@ -1,13 +1,13 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
 <html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:h="http://java.sun.com/jsf/html">
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"> 
 
-<h:head></h:head>
-<body>
+<h:head></h:head> 
+<body> 
 
-	<h:form>
+<h:form>
 	
 		Cédula: <h:inputText value="#{clienteBean.newUsuario.cedula}" />
 		Nombre: <h:inputText value="#{clienteBean.newUsuario.nombre}" />
@@ -16,13 +16,10 @@
 		Teléfono: <h:inputText value="#{clienteBean.newUsuario.telefono}" />
 		Correo: <h:inputText value="#{clienteBean.newUsuario.correo}" />
 		Contraseña: <h:inputText value="#{clienteBean.newUsuario.contra}" />
-		N° Cuenta: <h:inputText value="#{cuentaBean.newCuenta.numero_cuenta}" />
-		Tipo De Cuenta: <h:inputText value="#{cuentaBean.newCuenta.tipo_cuenta}" />
 
-		<h:commandButton action="#{clienteBean.guardarCliente()}"
-			value="GUARDAR" />
-
+		<h:commandButton action="#{clienteBean.guardarCliente()}" value="GUARDAR" />
+		
 	</h:form>
 
-</body>
+</body> 
 </html>

@@ -20,6 +20,21 @@ public class UsuarioDAO {
 		em.persist(op);
 	}
 	
+
+	public void upgrade(Usuario op) {
+
+		em.merge(op);
+
+	}
+	
+	public Usuario read(String cedula) {
+
+		Usuario op = em.find(Usuario.class, cedula);
+		return op;
+
+	}
+
+	
 	
 	
 	public List<Usuario> getList(){
