@@ -11,15 +11,28 @@
 	
 		Cédula: <h:inputText value="#{cuentaBean.newCuenta.usuario.cedula}" />
 		Nombre: <h:inputText value="#{cuentaBean.newCuenta.usuario.nombre}" />
-		Apellido: <h:inputText value="#{cuentaBean.newCuenta.usuario.apellido}" />
-		Direccion: <h:inputText value="#{cuentaBean.newCuenta.usuario.direccion}" />
-		Teléfono: <h:inputText value="#{cuentaBean.newCuenta.usuario.telefono}" />
+		Apellido: <h:inputText
+			value="#{cuentaBean.newCuenta.usuario.apellido}" />
+		Direccion: <h:inputText
+			value="#{cuentaBean.newCuenta.usuario.direccion}" />
+		Teléfono: <h:inputText
+			value="#{cuentaBean.newCuenta.usuario.telefono}" />
 		Correo: <h:inputText value="#{cuentaBean.newCuenta.usuario.correo}" />
-		Contraseña: <h:inputText value="#{cuentaBean.newCuenta.usuario.contra}" />
-		N° Cuenta: <h:inputText value="#{cuentaBean.newCuenta.numero_cuenta}" />
-		Tipo De Cuenta: <h:inputText value="#{cuentaBean.newCuenta.tipo_cuenta}" />
+		Contraseña: <h:inputText
+			value="#{cuentaBean.newCuenta.usuario.contra}" />
+		N° Cuenta:<h:inputText value="#{cuentaBean.newCuenta.numero_cuenta}" />
+		<h:commandButton action="#{cuentaBean.generarNumCuenta()}"
+			value="Generar" />
+		
 
-		<h:commandButton action="#{cuentaBean.guardarCuenta()}" value="GUARDAR" />
+		Tipo Cuenta:
+		<h:selectOneMenu value="#{cuentaBean.newCuenta.tipo_cuenta}">
+			<f:selectItem itemValue="Ahorros" itemLabel="Ahorros" />
+			<f:selectItem itemValue="Corriente" itemLabel="Corriente" />
+		</h:selectOneMenu>
+
+		<h:commandButton action="#{cuentaBean.guardarCuenta()}"
+			value="GUARDAR" />
 
 	</h:form>
 
