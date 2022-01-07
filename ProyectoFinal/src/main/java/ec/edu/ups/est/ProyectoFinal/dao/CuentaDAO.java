@@ -12,6 +12,7 @@ import ec.edu.ups.est.ProyectoFinal.model.Cuenta;
 
 @Stateless
 public class CuentaDAO {
+	
 	@PersistenceContext
 	private EntityManager em;
 

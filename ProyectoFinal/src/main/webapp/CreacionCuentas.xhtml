@@ -8,24 +8,45 @@
 <body>
 
 	<h:form>
-	
-		Cédula: <h:inputText value="#{cuentaBean.newCuenta.usuario.cedula}" />
-		Nombre: <h:inputText value="#{cuentaBean.newCuenta.usuario.nombre}" />
-		Apellido: <h:inputText
+
+		<h:outputLabel for="cedula"> Cédula: </h:outputLabel>
+		<h:inputText id="cedula"
+			value="#{cuentaBean.newCuenta.usuario.cedula}">
+			<f:ajax execute="@this" listener="#{cuentaBean.cargarUsuario()}"
+				render="nombre apellido direccion telefono correo contra"
+				event="blur" />
+		</h:inputText>
+
+		<h:outputLabel for="nombre">Nombre:</h:outputLabel>
+		<h:inputText id="nombre"
+			value="#{cuentaBean.newCuenta.usuario.nombre}" />
+
+		<h:outputLabel for="apellido">Apellido:</h:outputLabel>
+		<h:inputText id="apellido"
 			value="#{cuentaBean.newCuenta.usuario.apellido}" />
-		Direccion: <h:inputText
+
+		<h:outputLabel for="direccion"> Dirección:</h:outputLabel>
+		<h:inputText id="direccion"
 			value="#{cuentaBean.newCuenta.usuario.direccion}" />
-		Teléfono: <h:inputText
+
+		<h:outputLabel for="telefono">Teléfono:</h:outputLabel>
+		<h:inputText id="telefono"
 			value="#{cuentaBean.newCuenta.usuario.telefono}" />
-		Correo: <h:inputText value="#{cuentaBean.newCuenta.usuario.correo}" />
-		Contraseña: <h:inputText
+
+		<h:outputLabel for="correo">Correo: </h:outputLabel>
+		<h:inputText id="correo"
+			value="#{cuentaBean.newCuenta.usuario.correo}" />
+
+		<h:outputLabel for="contra"> Contraseña:</h:outputLabel>
+		<h:inputText id="contra"
 			value="#{cuentaBean.newCuenta.usuario.contra}" />
-		N° Cuenta:<h:inputText value="#{cuentaBean.newCuenta.numero_cuenta}" />
+
+		<h:outputLabel>N° Cuenta:</h:outputLabel>
+		<h:inputText value="#{cuentaBean.newCuenta.numero_cuenta}" />
 		<h:commandButton action="#{cuentaBean.generarNumCuenta()}"
 			value="Generar" />
-		
 
-		Tipo Cuenta:
+		<h:outputLabel>Tipo Cuenta:</h:outputLabel>
 		<h:selectOneMenu value="#{cuentaBean.newCuenta.tipo_cuenta}">
 			<f:selectItem itemValue="Ahorros" itemLabel="Ahorros" />
 			<f:selectItem itemValue="Corriente" itemLabel="Corriente" />

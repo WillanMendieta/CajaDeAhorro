@@ -7,6 +7,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -19,25 +20,25 @@ public class Usuario implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 	@Id
-	@Column(name = "usu_ced")
+	@JoinColumn(name = "usu_ced")
 	private String cedula;
 
-	@Column(name = "usu_nombre")
+	@JoinColumn(name = "usu_nombre")
 	private String nombre;
 
-	@Column(name = "usu_apellido")
+	@JoinColumn(name = "usu_apellido")
 	private String apellido;
 
-	@Column(name = "usu_direccion")
+	@JoinColumn(name = "usu_direccion")
 	private String direccion;
 
-	@Column(name = "usu_telefono")
+	@JoinColumn(name = "usu_telefono")
 	private String telefono;
 
-	@Column(name = "usu_correo")
+	@JoinColumn(name = "usu_correo")
 	private String correo;
 
-	@Column(name = "usu_contra")
+	@JoinColumn(name = "usu_contra")
 	private String contra;
 
 	@OneToMany(fetch = FetchType.EAGER)

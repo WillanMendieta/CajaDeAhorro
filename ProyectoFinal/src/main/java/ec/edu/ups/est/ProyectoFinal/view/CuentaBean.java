@@ -43,8 +43,15 @@ public class CuentaBean implements Serializable {
 	}
 	
 	public String generarNumCuenta() {
-		/*Random rnd = new Random();
-        System.out.print("Número aleatorio real entre [0,1[ : "+rnd.nextDouble());*/
+		for(int i = 1; i<=10; i++)
+		     System.out.println((int)(Math.random()*(9-1+1)+1));
+		return null;
+	}
+	
+	public String cargarUsuario() {
+		String cedula = newcuenta.getUsuario().getCedula();
+		Usuario u = cuentaON.getUsuario(cedula);
+		newcuenta.setUsuario(u);
 		return null;
 	}
 }

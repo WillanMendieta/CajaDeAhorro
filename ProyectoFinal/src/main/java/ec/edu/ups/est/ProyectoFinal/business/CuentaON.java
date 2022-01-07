@@ -1,5 +1,7 @@
 package ec.edu.ups.est.ProyectoFinal.business;
 
+import java.util.List;
+
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 
@@ -17,7 +19,7 @@ public class CuentaON {
 	@Inject
 	private UsuarioDAO usuarioDAO;
 
-	public void insertarCuenta(Cuenta c){
+	public void insertarCuenta(Cuenta c) {
 		Usuario usu = usuarioDAO.read(c.getUsuario().getCedula());
 		if (usu == null) {
 			usuarioDAO.insert(c.getUsuario());
@@ -28,6 +30,15 @@ public class CuentaON {
 
 		cuentaDAO.insert(c);
 
+	}
+
+	public Usuario getUsuario(String cedula) {
+		Usuario u = usuarioDAO.read(cedula);
+		return u;
+	}
+
+	public List<Cuenta> getCuenta() {
+		return cuentaDAO.getList();
 	}
 
 }
