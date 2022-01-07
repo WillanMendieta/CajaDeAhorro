@@ -12,9 +12,6 @@
 		<h:outputLabel for="cedula"> Cédula: </h:outputLabel>
 		<h:inputText id="cedula"
 			value="#{cuentaBean.newCuenta.usuario.cedula}">
-			<f:ajax execute="@this" listener="#{cuentaBean.cargarUsuario()}"
-				render="nombre apellido direccion telefono correo contra"
-				event="blur" />
 		</h:inputText>
 
 		<h:outputLabel for="nombre">Nombre:</h:outputLabel>

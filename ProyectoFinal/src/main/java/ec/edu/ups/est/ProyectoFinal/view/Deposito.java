@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import ec.edu.ups.est.ProyectoFinal.business.MovimientoONLocal;
+import ec.edu.ups.est.ProyectoFinal.business.MovimientoON;
 
 
 /**
@@ -22,7 +22,7 @@ public class Deposito extends HttpServlet {
     
 	
 	@Inject
-	private MovimientoONLocal movimientoONLocal;
+	private MovimientoON movimientoON;
 	
     /**
      * @see HttpServlet#HttpServlet()
@@ -39,14 +39,7 @@ public class Deposito extends HttpServlet {
 		// TODO Auto-generated method stub
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 	
-				movimientoONLocal.insertarMovimientos(1,"555",15,225.3);
-			
-	
-				
-				
-				
-	
-	
+				movimientoON.insertarMovimientos(1,"555",225.3);
 	}
 
 	/**
