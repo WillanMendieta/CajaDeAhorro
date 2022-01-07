@@ -13,7 +13,7 @@ import ec.edu.ups.est.ProyectoFinal.model.Usuario;
 
 @Named
 @ViewScoped
-public class CuentaBean implements Serializable{
+public class CuentaBean implements Serializable {
 
 	private Cuenta newcuenta = new Cuenta();
 
@@ -24,6 +24,7 @@ public class CuentaBean implements Serializable{
 	private void init() {
 		newcuenta = new Cuenta();
 		newcuenta.setUsuario(new Usuario());
+
 	}
 
 	public Cuenta getNewCuenta() {
@@ -35,12 +36,7 @@ public class CuentaBean implements Serializable{
 	}
 
 	public String guardarCuenta() {
-		try {
-			cuentaON.insertarCuenta(newcuenta);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		cuentaON.insertarCuenta(newcuenta);
 
 		return null;
 	}

@@ -5,6 +5,7 @@ import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -24,7 +25,7 @@ public class Cuenta implements Serializable {
 	private String tipo_cuenta;
 	
 	@OneToOne
-	@Column(name = "cue_ced")
+	@JoinColumn(name = "cue_ced")
 	private Usuario usuario ;
 
 	

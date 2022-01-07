@@ -17,7 +17,7 @@ public class CuentaON {
 	@Inject
 	private UsuarioDAO usuarioDAO;
 
-	public void insertarCuenta(Cuenta c) throws Exception {
+	public void insertarCuenta(Cuenta c){
 		Usuario usu = usuarioDAO.read(c.getUsuario().getCedula());
 		if (usu == null) {
 			usuarioDAO.insert(c.getUsuario());

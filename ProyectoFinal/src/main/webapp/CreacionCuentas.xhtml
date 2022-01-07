@@ -9,18 +9,17 @@
 
 	<h:form>
 	
-		Cédula: <h:inputText value="#{clienteBean.newUsuario.cedula}" />
-		Nombre: <h:inputText value="#{clienteBean.newUsuario.nombre}" />
-		Apellido: <h:inputText value="#{clienteBean.newUsuario.apellido}" />
-		Direccion: <h:inputText value="#{clienteBean.newUsuario.direccion}" />
-		Teléfono: <h:inputText value="#{clienteBean.newUsuario.telefono}" />
-		Correo: <h:inputText value="#{clienteBean.newUsuario.correo}" />
-		Contraseña: <h:inputText value="#{clienteBean.newUsuario.contra}" />
+		Cédula: <h:inputText value="#{cuentaBean.newCuenta.usuario.cedula}" />
+		Nombre: <h:inputText value="#{cuentaBean.newCuenta.usuario.nombre}" />
+		Apellido: <h:inputText value="#{cuentaBean.newCuenta.usuario.apellido}" />
+		Direccion: <h:inputText value="#{cuentaBean.newCuenta.usuario.direccion}" />
+		Teléfono: <h:inputText value="#{cuentaBean.newCuenta.usuario.telefono}" />
+		Correo: <h:inputText value="#{cuentaBean.newCuenta.usuario.correo}" />
+		Contraseña: <h:inputText value="#{cuentaBean.newCuenta.usuario.contra}" />
 		N° Cuenta: <h:inputText value="#{cuentaBean.newCuenta.numero_cuenta}" />
 		Tipo De Cuenta: <h:inputText value="#{cuentaBean.newCuenta.tipo_cuenta}" />
 
-		<h:commandButton action="#{clienteBean.guardarCliente()}"
-			value="GUARDAR" />
+		<h:commandButton action="#{cuentaBean.guardarCuenta()}" value="GUARDAR" />
 
 	</h:form>
 
