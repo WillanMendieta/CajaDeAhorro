@@ -1,6 +1,6 @@
 package ec.edu.ups.est.ProyectoFinal.business;
 
-import java.util.Date;
+
 
 import javax.ejb.Stateless;
 import javax.inject.Inject;
@@ -13,19 +13,12 @@ public class MovimientoON{
 	
 	
 	@Inject
-	private MovimientoDAO movi;
+	private MovimientoDAO daoMovimiento;
+
 	
-	
-	public void insertarMovimientos(Integer d,String a, Double c) {
-		Movimiento m = new Movimiento();
-		m.setIdMovimiento(d);
-		m.setCuenta(a);
-		m.setFecha(new Date());
-		m.setMonto(c);
+	public void insertarMovimientos(Movimiento m) {
 		
-		System.out.println(m);
-		
-		movi.insert(m);
+		daoMovimiento.insert(m);
 		
 	}
 	
