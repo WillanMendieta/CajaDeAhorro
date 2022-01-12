@@ -1,5 +1,6 @@
 package ec.edu.ups.est.ProyectoFinal.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -10,16 +11,15 @@ import javax.persistence.Table;
 @Table(name = "TBL_Cuentas")
 public class Cuenta {
 
-	/**
-	 * 
-	 */
-
 	@Id
-	@JoinColumn(name = "cue_num")
+	@Column(name = "cue_num")
 	private int numero_cuenta;
 
-	@JoinColumn(name = "cue_tipo")
+	@Column(name = "cue_tipo")
 	private String tipo_cuenta;
+	
+	@Column(name = "cue_saldo")
+	private Double saldo;
 
 	@OneToOne
 	@JoinColumn(name = "cue_ced")
