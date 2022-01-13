@@ -20,6 +20,17 @@ public class CuentaDAO {
 
 		em.persist(op);
 	}
+	
+	public Cuenta read(String numero) {
+
+		Cuenta op = em.find(Cuenta.class, numero);
+		return op;
+
+	}
+	
+	public void upgrade(Cuenta op) {
+		em.merge(op);
+	}
 
 	public List<Cuenta> getList() {
 

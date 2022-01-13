@@ -20,24 +20,30 @@ public class CuentaON {
 	private UsuarioDAO usuarioDAO;
 
 	public void insertarCuenta(Cuenta c) {
-		Usuario usu = usuarioDAO.read(c.getUsuario().getCedula());
-		if (usu == null) {
-			usuarioDAO.insert(c.getUsuario());
-
-		} else {
-			usuarioDAO.upgrade(c.getUsuario());
+		Cuenta cuenta = cuentaDAO.read(c.getNumeroCuenta());
+		if (cuenta == null) {
+			Usuario usu = usuarioDAO.read(c.getUsuario().getCedula());
+			if (usu == null) {
+				usuarioDAO.insert(c.getUsuario());
+				
+			} else {
+				usuarioDAO.upgrade(c.getUsuario());
+			}
+			
+			cuentaDAO.insert(c);
 		}
-
-		cuentaDAO.insert(c);
-
 	}
 
 	public Usuario getUsuario(String cedula) {
 		Usuario u = usuarioDAO.read(cedula);
 		return u;
 	}
+	
+	public Cuenta getCuenta(String numero) {
+		return cuentaDAO.read(numero);
+	}
 
-	public List<Cuenta> getCuenta() {
+	public List<Cuenta> getCuentas() {
 		return cuentaDAO.getList();
 	}
 

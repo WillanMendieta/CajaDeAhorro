@@ -2,12 +2,15 @@ package ec.edu.ups.est.ProyectoFinal.model;
 
 import java.io.Serializable;
 import java.util.Date;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -19,8 +22,8 @@ public class Movimiento implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "mov_id")
 	private int idMovimiento;
 
@@ -34,7 +37,7 @@ public class Movimiento implements Serializable {
 	@JoinColumn(name = "cue_num")
 	private Cuenta cuenta;
 	
-	@OneToOne()
+	@OneToOne(cascade = CascadeType.MERGE)
 	@JoinColumn(name = "tip_mov_id")
 	private TipoMovimiento tipoMovimiento;
 
