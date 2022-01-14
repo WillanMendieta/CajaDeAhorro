@@ -1,21 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:h="http://java.sun.com/jsf/html"> 
-
-<h:head></h:head> 
-<body> 
-
-<h:form>
-	<h:outputLabel value="Número de cuenta:" />
-	<h:inputText value="#{retirosBean.numeroCuenta}" />
-	
-	<h:outputLabel value="Cantidad retirada:" />
-	<h:inputText value="#{retirosBean.cantidadRetirada}" />
-	
-	<h:commandButton action="#{retirosBean.retirarFondos()}" value="Guardar" />
-</h:form>
-
-</body>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html">
+ 
+<ui:composition template="template/plantilla.xhtml">
+    <ui:define name="title">
+        Retiro
+    </ui:define>
+	    <ui:define name="content">
+			<div class="col-lg-6">
+						<div class="card">
+							<div class="card-body">
+								<div class="card-title">Retiro Cuenta</div>
+			
+								<h:form>
+									<div class="form-group">
+										<label for="input-1">Cuenta</label>
+										<h:inputText value="#{movimientoBean.numeroCuenta}"
+											class="form-control" id="input-1"
+											placeholder="Ingrese la Cuenta" />
+									</div>
+			
+									<div class="form-group">
+										<label for="input-2">Monto</label>
+										<h:inputText value="#{movimientoBean.cantidadRetirada}"
+											class="form-control" id="input-2"
+											placeholder="Ingrese la cantidad a retirar" />
+									</div>
+			
+									<div class="form-group">
+			
+										<h:commandButton action="#{movimientoBean.retirarFondos()}"
+											value="Guardar" class="btn btn-light px-5" />
+										<i class="icon-lock" />
+									</div>
+			
+								</h:form>
+			
+							</div>
+						</div>
+				</div>
+		</ui:define>
+ 
+</ui:composition>
 </html>
+

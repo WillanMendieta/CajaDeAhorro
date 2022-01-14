@@ -1,13 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:h="http://java.sun.com/jsf/html"> 
-
-<h:head></h:head> 
-<body> 
-
-<h:form>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html">
+ 
+<ui:composition template="template/plantilla.xhtml">
+    <ui:define name="title">
+        Retiro
+    </ui:define>
+	    <ui:define name="content">
+		<h:form>
 	
 		Cédula: <h:inputText value="#{clienteBean.newUsuario.cedula}" />
 		Nombre: <h:inputText value="#{clienteBean.newUsuario.nombre}" />
@@ -17,9 +18,13 @@
 		Correo: <h:inputText value="#{clienteBean.newUsuario.correo}" />
 		Contraseña: <h:inputText value="#{clienteBean.newUsuario.contra}" />
 
-		<h:commandButton action="#{clienteBean.guardarCliente()}" value="GUARDAR" />
-		
-	</h:form>
+			<h:commandButton action="#{clienteBean.guardarCliente()}"
+				value="GUARDAR" />
 
-</body> 
+		</h:form>
+
+
+	</ui:define>
+ 
+</ui:composition>
 </html>

@@ -10,7 +10,7 @@ import ec.edu.ups.est.ProyectoFinal.model.Movimiento;
 import ec.edu.ups.est.ProyectoFinal.model.TipoMovimiento;
 
 @Stateless
-public class TipoMovimientoON {
+public class TipoMovimientoON implements TipoMovimientoONLocal {
 	@Inject
 	private TipoMovimientoDAO tipoMovimientoDAO;
 	
