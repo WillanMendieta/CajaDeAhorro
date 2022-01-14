@@ -2,11 +2,16 @@ package ec.edu.ups.est.ProyectoFinal.model;
 
 import java.io.Serializable;
 import java.util.Date;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -17,8 +22,8 @@ public class Movimiento implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "mov_id")
 	private int idMovimiento;
 
@@ -28,8 +33,13 @@ public class Movimiento implements Serializable {
 	@Column(name = "mov_fecha")
 	private Date fecha;
 
-	@Column(name = "mov_cuenta")
-	private String cuenta;
+	@OneToOne()
+	@JoinColumn(name = "cue_num")
+	private Cuenta cuenta;
+	
+	@OneToOne(cascade = CascadeType.MERGE)
+	@JoinColumn(name = "tip_mov_id")
+	private TipoMovimiento tipoMovimiento;
 
 	public int getIdMovimiento() {
 		return idMovimiento;
@@ -56,12 +66,20 @@ public class Movimiento implements Serializable {
 		this.fecha = fecha;
 	}
 
-	public String getCuenta() {
+	public Cuenta getCuenta() {
 		return cuenta;
 	}
 
-	public void setCuenta(String cuenta) {
+	public void setCuenta(Cuenta cuenta) {
 		this.cuenta = cuenta;
+	}
+
+	public TipoMovimiento getTipoMovimiento() {
+		return tipoMovimiento;
+	}
+
+	public void setTipoMovimiento(TipoMovimiento tipoMovimiento) {
+		this.tipoMovimiento = tipoMovimiento;
 	}
 
 }

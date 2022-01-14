@@ -1,5 +1,8 @@
 package ec.edu.ups.est.ProyectoFinal.model;
 
+import java.io.Serializable;
+
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -8,18 +11,18 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "TBL_Cuentas")
-public class Cuenta {
+public class Cuenta implements Serializable {
 
-	/**
-	 * 
-	 */
-
+	private static final long serialVersionUID = 1L;
 	@Id
-	@JoinColumn(name = "cue_num")
-	private int numero_cuenta;
+	@Column(name = "cue_num")
+	private String numeroCuenta;
 
-	@JoinColumn(name = "cue_tipo")
-	private String tipo_cuenta;
+	@Column(name = "cue_tipo")
+	private String tipoCuenta;
+	
+	@Column(name = "cue_saldo")
+	private Double saldo;
 
 	@OneToOne
 	@JoinColumn(name = "cue_ced")
@@ -33,20 +36,28 @@ public class Cuenta {
 		this.usuario = usuario;
 	}
 
-	public int getNumero_cuenta() {
-		return numero_cuenta;
+	public String getNumeroCuenta() {
+		return numeroCuenta;
 	}
 
-	public void setNumero_cuenta(int numero_cuenta) {
-		this.numero_cuenta = numero_cuenta;
+	public void setNumeroCuenta(String numeroCuenta) {
+		this.numeroCuenta = numeroCuenta;
 	}
 
-	public String getTipo_cuenta() {
-		return tipo_cuenta;
+	public String getTipoCuenta() {
+		return tipoCuenta;
 	}
 
-	public void setTipo_cuenta(String tipo_cuenta) {
-		this.tipo_cuenta = tipo_cuenta;
+	public void setTipoCuenta(String tipoCuenta) {
+		this.tipoCuenta = tipoCuenta;
+	}
+
+	public Double getSaldo() {
+		return saldo;
+	}
+
+	public void setSaldo(Double saldo) {
+		this.saldo = saldo;
 	}
 
 }
