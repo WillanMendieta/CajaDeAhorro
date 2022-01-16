@@ -20,7 +20,6 @@ public class RetirosON implements RetirosONLocal {
 		Cuenta cuenta = movimiento.getCuenta();
 		Double saldoCuenta = cuenta.getSaldo();
 		Double montoTransferencia = movimiento.getMonto();
-		System.out.println("Id MOVIMIENTO !!!!!!!" + movimiento.getIdMovimiento());
 		if (saldoCuenta >= montoTransferencia) {
 			cuenta.setSaldo(saldoCuenta - montoTransferencia);
 			movimientoDAO.insert(movimiento);

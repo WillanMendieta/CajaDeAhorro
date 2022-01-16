@@ -32,17 +32,12 @@ public class CuentaDAO {
 		em.merge(op);
 	}
 
-	public List<Cuenta> getList() {
-
+	public List<Cuenta> getList() {		
 		List<Cuenta> listado = new ArrayList<Cuenta>();
 
-		// No se hace consulta a la base sino a la entidad.
-		String jpql = "SELECT op FROM Cuentas op";
+		String jpql = "SELECT op FROM Cuenta op";
 		Query query = em.createQuery(jpql, Cuenta.class);
 		listado = query.getResultList();
-
-		// JPQL
-		// Alternativa para SQL
 
 		return listado;
 	}

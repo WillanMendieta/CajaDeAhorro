@@ -7,7 +7,7 @@ import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
-import ec.edu.ups.est.ProyectoFinal.business.CuentaON;
+import ec.edu.ups.est.ProyectoFinal.business.CuentasONLocal;
 import ec.edu.ups.est.ProyectoFinal.business.RetirosONLocal;
 import ec.edu.ups.est.ProyectoFinal.business.TipoMovimientoON;
 import ec.edu.ups.est.ProyectoFinal.model.Cuenta;
@@ -23,7 +23,7 @@ public class RetirosBean {
 	private RetirosONLocal retirosON;
 	
 	@Inject
-	private CuentaON cuentaON;
+	private CuentasONLocal cuentaON;
 	
 	@Inject
 	private TipoMovimientoON tipoMovimientoON;
@@ -41,8 +41,6 @@ public class RetirosBean {
 		tipoMovimiento.setNombre("Retiro");
 		TipoMovimiento tipoMovimiento2 = new TipoMovimiento();
 		tipoMovimiento2.setNombre("Depósito");
-		System.out.println("Id TIPO MOVIMIENTO BEAN !!!!!!!" + tipoMovimiento.getId());
-		System.out.println("Id TIPO MOVIMIENTO BEAN !!!!!!!" + tipoMovimiento2.getId());
 		try {
 			tipoMovimientoON.crear(tipoMovimiento);		
 			tipoMovimientoON.crear(tipoMovimiento2);
@@ -60,6 +58,7 @@ public class RetirosBean {
 		Cuenta cuenta = new Cuenta();
 		cuenta.setNumeroCuenta("1");
 		cuenta.setSaldo(650.35);
+		cuenta.setTipoCuenta("Ahorros");
 		cuenta.setUsuario(usuario);
 		cuentaON.insertarCuenta(cuenta);
 	}

@@ -4,8 +4,30 @@
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:h="http://java.sun.com/jsf/html"> 
 
-<h:head></h:head> 
 <body>
-hola retiros
-</body> 
+<!-- <ui:composition> -->
+<!--     <ui:define name="title"> -->
+<!--         Listado de cuentas -->
+<!--     </ui:define> -->
+<!--     <ui:define name="content"> -->
+    	<h:form>
+	        <h:dataTable var="cuenta" class="" value="#{cuentasBean.cuentas}">
+				<h:column>
+					<f:facet name="header">Número de cuenta</f:facet>
+					#{cuenta.numeroCuenta}
+				</h:column>
+				<h:column>
+					<f:facet name="header">Tipo de cuenta</f:facet>
+					#{cuenta.tipoCuenta}
+				</h:column>
+				<h:column>
+					<f:facet name="header">Saldo</f:facet>
+					#{cuenta.saldo}
+				</h:column>
+			</h:dataTable>
+		</h:form>
+<!--     </ui:define> -->
+<!-- </ui:composition> -->
+</body>
+
 </html>

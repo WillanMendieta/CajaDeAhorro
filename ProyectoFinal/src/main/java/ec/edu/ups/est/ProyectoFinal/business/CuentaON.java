@@ -11,7 +11,7 @@ import ec.edu.ups.est.ProyectoFinal.model.Cuenta;
 import ec.edu.ups.est.ProyectoFinal.model.Usuario;
 
 @Stateless
-public class CuentaON {
+public class CuentaON implements CuentasONLocal {
 
 	@Inject
 	private CuentaDAO cuentaDAO;
