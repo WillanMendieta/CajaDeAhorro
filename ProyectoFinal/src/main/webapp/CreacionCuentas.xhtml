@@ -1,58 +1,63 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:h="http://java.sun.com/jsf/html">
-
-<h:head></h:head>
-<body>
-
-	<h:form>
-
-		<h:outputLabel for="cedula"> Cédula: </h:outputLabel>
-		<h:inputText id="cedula"
-			value="#{cuentaBean.newCuenta.usuario.cedula}">
-		</h:inputText>
-
-		<h:outputLabel for="nombre">Nombre:</h:outputLabel>
-		<h:inputText id="nombre"
-			value="#{cuentaBean.newCuenta.usuario.nombre}" />
-
-		<h:outputLabel for="apellido">Apellido:</h:outputLabel>
-		<h:inputText id="apellido"
-			value="#{cuentaBean.newCuenta.usuario.apellido}" />
-
-		<h:outputLabel for="direccion"> Dirección:</h:outputLabel>
-		<h:inputText id="direccion"
-			value="#{cuentaBean.newCuenta.usuario.direccion}" />
-
-		<h:outputLabel for="telefono">Teléfono:</h:outputLabel>
-		<h:inputText id="telefono"
-			value="#{cuentaBean.newCuenta.usuario.telefono}" />
-
-		<h:outputLabel for="correo">Correo: </h:outputLabel>
-		<h:inputText id="correo"
-			value="#{cuentaBean.newCuenta.usuario.correo}" />
-
-		<h:outputLabel for="contra"> Contraseña:</h:outputLabel>
-		<h:inputText id="contra"
-			value="#{cuentaBean.newCuenta.usuario.contra}" />
-
-		<h:outputLabel>N° Cuenta:</h:outputLabel>
-		<h:inputText value="#{cuentaBean.newCuenta.numero_cuenta}" />
-		<h:commandButton action="#{cuentaBean.generarNumCuenta()}"
-			value="Generar" />
-
-		<h:outputLabel>Tipo Cuenta:</h:outputLabel>
-		<h:selectOneMenu value="#{cuentaBean.newCuenta.tipo_cuenta}">
-			<f:selectItem itemValue="Ahorros" itemLabel="Ahorros" />
-			<f:selectItem itemValue="Corriente" itemLabel="Corriente" />
-		</h:selectOneMenu>
-
-		<h:commandButton action="#{cuentaBean.guardarCuenta()}"
-			value="GUARDAR" />
-
-	</h:form>
-
-</body>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html">
+ 
+<ui:composition template="template/plantilla.xhtml">
+    <ui:define name="title">
+        Retiro
+    </ui:define>
+	    <ui:define name="content">
+			<h:form>
+		
+				<h:outputLabel for="cedula"> Cédula: </h:outputLabel>
+				<h:inputText id="cedula"
+					value="#{cuentaBean.newCuenta.usuario.cedula}">
+				</h:inputText>
+		
+				<h:outputLabel for="nombre">Nombre:</h:outputLabel>
+				<h:inputText id="nombre"
+					value="#{cuentaBean.newCuenta.usuario.nombre}" />
+		
+				<h:outputLabel for="apellido">Apellido:</h:outputLabel>
+				<h:inputText id="apellido"
+					value="#{cuentaBean.newCuenta.usuario.apellido}" />
+		
+				<h:outputLabel for="direccion"> Dirección:</h:outputLabel>
+				<h:inputText id="direccion"
+					value="#{cuentaBean.newCuenta.usuario.direccion}" />
+		
+				<h:outputLabel for="telefono">Teléfono:</h:outputLabel>
+				<h:inputText id="telefono"
+					value="#{cuentaBean.newCuenta.usuario.telefono}" />
+		
+				<h:outputLabel for="correo">Correo: </h:outputLabel>
+				<h:inputText id="correo"
+					value="#{cuentaBean.newCuenta.usuario.correo}" />
+		
+				<h:outputLabel for="contra"> Contraseña:</h:outputLabel>
+				<h:inputText id="contra"
+					value="#{cuentaBean.newCuenta.usuario.contra}" />
+		
+				<h:outputLabel>N° Cuenta:</h:outputLabel>
+				<h:inputText value="#{cuentaBean.newCuenta.numero_cuenta}" />
+				<h:commandButton action="#{cuentaBean.generarNumCuenta()}"
+					value="Generar" />
+		
+				<h:outputLabel>Tipo Cuenta:</h:outputLabel>
+				<h:selectOneMenu value="#{cuentaBean.newCuenta.tipo_cuenta}">
+					<f:selectItem itemValue="Ahorros" itemLabel="Ahorros" />
+					<f:selectItem itemValue="Corriente" itemLabel="Corriente" />
+				</h:selectOneMenu>
+		
+				<h:commandButton action="#{cuentaBean.guardarCuenta()}"
+					value="GUARDAR" />
+		
+			</h:form>
+			
+			
+		</ui:define>
+ 
+</ui:composition>
 </html>
+
