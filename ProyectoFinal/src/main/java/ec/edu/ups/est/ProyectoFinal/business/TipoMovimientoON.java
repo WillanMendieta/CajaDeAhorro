@@ -3,14 +3,11 @@ package ec.edu.ups.est.ProyectoFinal.business;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 
-import ec.edu.ups.est.ProyectoFinal.dao.MovimientoDAO;
 import ec.edu.ups.est.ProyectoFinal.dao.TipoMovimientoDAO;
-import ec.edu.ups.est.ProyectoFinal.model.Cuenta;
-import ec.edu.ups.est.ProyectoFinal.model.Movimiento;
 import ec.edu.ups.est.ProyectoFinal.model.TipoMovimiento;
 
 @Stateless
-public class TipoMovimientoON {
+public class TipoMovimientoON implements TipoMovimientoONLocal {
 	@Inject
 	private TipoMovimientoDAO tipoMovimientoDAO;
 	

@@ -38,7 +38,6 @@ public class CuentaDAO {
 		String jpql = "SELECT op FROM Cuenta op";
 		Query query = em.createQuery(jpql, Cuenta.class);
 		listado = query.getResultList();
-
 		return listado;
 	}
 

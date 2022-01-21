@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html">
+ 
+<ui:composition template="template/plantilla.xhtml">
+    <ui:define name="title">
+        Retiro
+    </ui:define>
+	    <ui:define name="content">
+		<h:form>
+	
+		Cédula: <h:inputText value="#{clienteBean.newUsuario.cedula}" />
+		Nombre: <h:inputText value="#{clienteBean.newUsuario.nombre}" />
+		Apellido: <h:inputText value="#{clienteBean.newUsuario.apellido}" />
+		Direccion: <h:inputText value="#{clienteBean.newUsuario.direccion}" />
+		Teléfono: <h:inputText value="#{clienteBean.newUsuario.telefono}" />
+		Correo: <h:inputText value="#{clienteBean.newUsuario.correo}" />
+		Contraseña: <h:inputText value="#{clienteBean.newUsuario.contra}" />
+		
+		<h:outputLabel>Tipo Usuario:</h:outputLabel>
+				<h:selectOneMenu value="#{clienteBean.newUsuario.tipoUsuario}">
+					<f:selectItem itemValue="Admin" itemLabel="Admin" />
+					<f:selectItem itemValue="Usuario" itemLabel="Usuario" />
+				</h:selectOneMenu>
+
+			<h:commandButton action="#{clienteBean.guardarClienteAdmin()}"
+				value="GUARDAR" />
+
+		</h:form>
+
+
+	</ui:define>
+ 
+</ui:composition>
+</html>
