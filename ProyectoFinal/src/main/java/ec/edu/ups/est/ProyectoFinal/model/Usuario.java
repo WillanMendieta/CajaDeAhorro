@@ -3,12 +3,14 @@ package ec.edu.ups.est.ProyectoFinal.model;
 import java.io.Serializable;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -40,6 +42,19 @@ public class Usuario implements Serializable {
 
 	@JoinColumn(name = "usu_contra")
 	private String contra;
+	
+	//@OneToOne(cascade = CascadeType.MERGE)
+	@JoinColumn(name ="usu_tip_usu")
+	private String tipoUsuario; 
+	
+
+	public String getTipoUsuario() {
+		return tipoUsuario;
+	}
+
+	public void setTipoUsuario(String tipoUsuario) {
+		this.tipoUsuario = tipoUsuario;
+	}
 
 	@OneToMany(fetch = FetchType.EAGER)
 	private List<Cuenta> cuenta;

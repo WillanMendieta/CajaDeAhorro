@@ -25,6 +25,6 @@ public class TipoMovimientoON implements TipoMovimientoONLocal {
 	}
 	
 	public TipoMovimiento buscar(int id) {
-		return tipoMovimientoDAO.read(id);
+		return tipoMovimientoDAO.read(id); 
 	}
 }
