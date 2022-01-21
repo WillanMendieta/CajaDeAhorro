@@ -36,6 +36,19 @@ public class ClienteBean {
 	
 	public String guardarCliente() {
 		try {
+			this.newusuario.setTipoUsuario("Usuario");
+			usuarioON.insertarUsuario(newusuario);
+		}
+		catch(Exception e){
+			e.printStackTrace();
+		}
+		
+		return "lista-usuarios?faces-redirect=true";
+	}
+	
+	public String guardarClienteAdmin() {
+		try {
+			
 			usuarioON.insertarUsuario(newusuario);
 		}
 		catch(Exception e){

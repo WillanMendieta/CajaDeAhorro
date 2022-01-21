@@ -18,7 +18,13 @@
 		Correo: <h:inputText value="#{clienteBean.newUsuario.correo}" />
 		Contraseña: <h:inputText value="#{clienteBean.newUsuario.contra}" />
 		
-			<h:commandButton action="#{clienteBean.guardarCliente()}"
+		<h:outputLabel>Tipo Usuario:</h:outputLabel>
+				<h:selectOneMenu value="#{clienteBean.newUsuario.tipoUsuario}">
+					<f:selectItem itemValue="Admin" itemLabel="Admin" />
+					<f:selectItem itemValue="Usuario" itemLabel="Usuario" />
+				</h:selectOneMenu>
+
+			<h:commandButton action="#{clienteBean.guardarClienteAdmin()}"
 				value="GUARDAR" />
 
 		</h:form>
