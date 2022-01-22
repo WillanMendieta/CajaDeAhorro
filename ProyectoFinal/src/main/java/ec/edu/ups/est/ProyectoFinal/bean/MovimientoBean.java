@@ -1,6 +1,7 @@
 package ec.edu.ups.est.ProyectoFinal.bean;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;
@@ -16,6 +17,7 @@ import ec.edu.ups.est.ProyectoFinal.model.Movimiento;
 import ec.edu.ups.est.ProyectoFinal.model.TipoMovimiento;
 import ec.edu.ups.est.ProyectoFinal.model.Usuario;
 
+
 @Named
 @RequestScoped
 public class MovimientoBean {
@@ -27,10 +29,14 @@ public class MovimientoBean {
 	
 	@Inject
 	private TipoMovimientoONLocal tipoMovimientoON;
+
+	private TipoMovimiento tipo;
 	
 	private String numeroCuenta;
 	private Double cantidadRetirada;
 	private Double cantidadDepositada;
+	private List<Movimiento> movimientos;
+	
 	
 	
 	//creacion de usuaruios por aki  para ajilitar el codigo
@@ -136,5 +142,13 @@ public class MovimientoBean {
 		}
 		return "listado-retiros?faces-redirect=true";
 	}
+	public List<Movimiento> getMovimientos() {
+		return movimientos;
+	}
+	public TipoMovimiento getTipo(int id) {
+		tipoMovimientoON.buscar(id);
+		return tipo;
+	}
+	
 	
 }

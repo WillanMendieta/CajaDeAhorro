@@ -31,6 +31,10 @@ public class CuentaBean implements Serializable {
 	public Cuenta getNewCuenta() {
 		return newcuenta;
 	}
+	public Cuenta getCuenta(String numCue) {
+		cuentaON.getCuenta(numCue);
+		return newcuenta;
+	}
 
 	public void setNewCuenta(Cuenta cuenta) {
 		this.newcuenta = cuenta;
