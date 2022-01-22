@@ -8,31 +8,34 @@
         Retiro
     </ui:define>
 	    <ui:define name="content">
-			<div class="col-lg-6">
+			<div class="col-lg-6" style="padding-top: 2rem;">
 						<div class="card">
 							<div class="card-body">
-								<div class="card-title">Retiro Cuenta</div>
+								<div class="card-title">Retiro de fondos</div>
 			
 								<h:form>
 									<div class="form-group">
-										<label for="input-1">Cuenta</label>
+										<label for="input-1">Número de cuenta:</label>
 										<h:inputText value="#{movimientoBean.numeroCuenta}"
 											class="form-control" id="input-1"
 											placeholder="Ingrese la Cuenta" />
 									</div>
 			
 									<div class="form-group">
-										<label for="input-2">Monto</label>
+										<label for="monto">Monto a retirar</label>
 										<h:inputText value="#{movimientoBean.cantidadRetirada}"
-											class="form-control" id="input-2"
+											type="number"
+											class="form-control" id="monto"
+											converterMessage="Solo puede ingresar números"
 											placeholder="Ingrese la cantidad a retirar" />
+										<h:message for="monto" style="color:red; margin-top: 0.5rem; display: block" />
 									</div>
 			
-									<div class="form-group">
+									<div class="form-group d-flex">
 			
-										<h:commandButton action="#{movimientoBean.retirarFondos()}"
-											value="Guardar" class="btn btn-light px-5" />
-										<i class="icon-lock" />
+										<h:commandButton id="boton-retirar" action="#{movimientoBean.retirarFondos()}"
+											value="Retirar" style="flex-grow: 1;" class="btn btn-success px-5" />
+										
 									</div>
 			
 								</h:form>
