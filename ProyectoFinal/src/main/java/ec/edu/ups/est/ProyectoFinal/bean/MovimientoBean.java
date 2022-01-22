@@ -8,6 +8,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import ec.edu.ups.est.ProyectoFinal.business.CuentaON;
+import ec.edu.ups.est.ProyectoFinal.business.CuentasONLocal;
 import ec.edu.ups.est.ProyectoFinal.business.MovimientoONLocal;
 import ec.edu.ups.est.ProyectoFinal.business.TipoMovimientoON;
 import ec.edu.ups.est.ProyectoFinal.business.TipoMovimientoONLocal;
@@ -23,7 +24,7 @@ public class MovimientoBean {
 	private MovimientoONLocal movimientoON;
 	
 	@Inject
-	private CuentaON cuentaON;
+	private CuentasONLocal cuentaON;
 	
 	@Inject
 	private TipoMovimientoONLocal tipoMovimientoON;
