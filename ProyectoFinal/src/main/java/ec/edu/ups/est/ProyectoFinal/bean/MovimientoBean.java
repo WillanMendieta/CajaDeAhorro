@@ -113,7 +113,7 @@ public class MovimientoBean {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return "listado-retiros?faces-redirect=true";
+		return "estado-de-cuenta?faces-redirect=true&numero-cuenta=" + numeroCuenta;
 	}
 	
 	public String depositarFondos() {
