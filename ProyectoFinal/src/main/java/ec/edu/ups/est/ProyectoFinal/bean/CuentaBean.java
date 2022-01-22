@@ -9,6 +9,7 @@ import javax.inject.Named;
 import java.util.Random;
 
 import ec.edu.ups.est.ProyectoFinal.business.CuentaON;
+import ec.edu.ups.est.ProyectoFinal.business.CuentasONLocal;
 import ec.edu.ups.est.ProyectoFinal.model.Cuenta;
 import ec.edu.ups.est.ProyectoFinal.model.Usuario;
 
@@ -19,7 +20,7 @@ public class CuentaBean implements Serializable {
 	private Cuenta newcuenta = new Cuenta();
 
 	@Inject
-	private CuentaON cuentaON;
+	private CuentasONLocal cuentaON;
 
 	@PostConstruct
 	private void init() {

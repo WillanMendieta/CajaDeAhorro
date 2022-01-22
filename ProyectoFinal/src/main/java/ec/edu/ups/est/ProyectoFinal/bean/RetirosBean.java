@@ -10,6 +10,7 @@ import javax.inject.Named;
 import ec.edu.ups.est.ProyectoFinal.business.CuentasONLocal;
 import ec.edu.ups.est.ProyectoFinal.business.RetirosONLocal;
 import ec.edu.ups.est.ProyectoFinal.business.TipoMovimientoON;
+import ec.edu.ups.est.ProyectoFinal.business.TipoMovimientoONLocal;
 import ec.edu.ups.est.ProyectoFinal.model.Cuenta;
 import ec.edu.ups.est.ProyectoFinal.model.Movimiento;
 import ec.edu.ups.est.ProyectoFinal.model.TipoMovimiento;
@@ -26,7 +27,7 @@ public class RetirosBean {
 	private CuentasONLocal cuentaON;
 	
 	@Inject
-	private TipoMovimientoON tipoMovimientoON;
+	private TipoMovimientoONLocal tipoMovimientoON;
 	
 	private String numeroCuenta;
 	private Double cantidadRetirada;
