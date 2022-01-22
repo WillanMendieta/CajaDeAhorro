@@ -14,38 +14,17 @@
 				<h:inputText id="cedula"
 					value="#{cuentaBean.newCuenta.usuario.cedula}">
 				</h:inputText>
-		
-				<h:outputLabel for="nombre">Nombre:</h:outputLabel>
-				<h:inputText id="nombre"
-					value="#{cuentaBean.newCuenta.usuario.nombre}" />
-		
-				<h:outputLabel for="apellido">Apellido:</h:outputLabel>
-				<h:inputText id="apellido"
-					value="#{cuentaBean.newCuenta.usuario.apellido}" />
-		
-				<h:outputLabel for="direccion"> Dirección:</h:outputLabel>
-				<h:inputText id="direccion"
-					value="#{cuentaBean.newCuenta.usuario.direccion}" />
-		
-				<h:outputLabel for="telefono">Teléfono:</h:outputLabel>
-				<h:inputText id="telefono"
-					value="#{cuentaBean.newCuenta.usuario.telefono}" />
-		
-				<h:outputLabel for="correo">Correo: </h:outputLabel>
-				<h:inputText id="correo"
-					value="#{cuentaBean.newCuenta.usuario.correo}" />
-		
-				<h:outputLabel for="contra"> Contraseña:</h:outputLabel>
-				<h:inputText id="contra"
-					value="#{cuentaBean.newCuenta.usuario.contra}" />
+				<h:outputLabel for="saldo"> Saldo:</h:outputLabel>
+				<h:inputText id="saldo"
+					value="#{cuentaBean.newCuenta.saldo}" />
 		
 				<h:outputLabel>N° Cuenta:</h:outputLabel>
-				<h:inputText value="#{cuentaBean.newCuenta.numero_cuenta}" />
+				<h:inputText value="#{cuentaBean.newCuenta.numeroCuenta}" />
 				<h:commandButton action="#{cuentaBean.generarNumCuenta()}"
 					value="Generar" />
 		
 				<h:outputLabel>Tipo Cuenta:</h:outputLabel>
-				<h:selectOneMenu value="#{cuentaBean.newCuenta.tipo_cuenta}">
+				<h:selectOneMenu value="#{cuentaBean.newCuenta.tipoCuenta}">
 
 					<f:selectItem itemValue="Ahorros" itemLabel="Ahorros" />
 					<f:selectItem itemValue="Corriente" itemLabel="Corriente" />

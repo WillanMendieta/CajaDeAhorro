@@ -10,6 +10,7 @@ import javax.inject.Named;
 
 import ec.edu.ups.est.ProyectoFinal.business.CuentaON;
 import ec.edu.ups.est.ProyectoFinal.business.CuentasONLocal;
+import ec.edu.ups.est.ProyectoFinal.business.MovimientoON;
 import ec.edu.ups.est.ProyectoFinal.business.MovimientoONLocal;
 import ec.edu.ups.est.ProyectoFinal.business.TipoMovimientoON;
 import ec.edu.ups.est.ProyectoFinal.business.TipoMovimientoONLocal;
@@ -36,7 +37,7 @@ public class MovimientoBean {
 	private String numeroCuenta;
 	private Double cantidadRetirada;
 	private Double cantidadDepositada;
-	private List<Movimiento> movimientos;
+
 	
 	
 	
@@ -44,6 +45,7 @@ public class MovimientoBean {
 	@PostConstruct
 	public void init() {
 		this.createFakeData();
+		
 	}
 	
 	public void createFakeData() {
@@ -59,7 +61,7 @@ public class MovimientoBean {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		Usuario usuario = new Usuario();	
+		/*Usuario usuario = new Usuario();	
 		usuario.setCedula("01");
 		usuario.setApellido("");
 		usuario.setContra("");
@@ -71,7 +73,7 @@ public class MovimientoBean {
 		cuenta.setNumeroCuenta("1");
 		cuenta.setSaldo(650.35);
 		cuenta.setUsuario(usuario);
-		cuentaON.insertarCuenta(cuenta);
+		cuentaON.insertarCuenta(cuenta);*/
 	}
 	
 	public String getNumeroCuenta() {
@@ -143,13 +145,11 @@ public class MovimientoBean {
 		}
 		return "listado-retiros?faces-redirect=true";
 	}
-	public List<Movimiento> getMovimientos() {
-		return movimientos;
-	}
+
 	public TipoMovimiento getTipo(int id) {
-		tipoMovimientoON.buscar(id);
+		tipo=this.tipoMovimientoON.buscar(id);
 		return tipo;
 	}
-	
+
 	
 }

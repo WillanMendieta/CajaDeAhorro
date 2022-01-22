@@ -2,6 +2,8 @@ package ec.edu.ups.est.ProyectoFinal.business;
 
 
 
+import java.util.List;
+
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 
@@ -12,6 +14,7 @@ import ec.edu.ups.est.ProyectoFinal.model.Movimiento;
 
 @Stateless			
 public class MovimientoON implements MovimientoONLocal {
+	
 	@Inject
 	private MovimientoDAO daoMovimiento;
 	
@@ -52,5 +55,10 @@ public class MovimientoON implements MovimientoONLocal {
 			cuentaDAO.upgrade(cuenta);
 		
 	}
+
+	public List<Movimiento> getMovimientos() {
+		return daoMovimiento.getList();
+	}
+	
 	
 }

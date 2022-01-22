@@ -10,8 +10,8 @@
     </ui:define>
     <ui:define name="content">
     	<h:form>
-	        <h:dataTable var="mov" class="table table-striped" value="#{movimientoBean.movimientos}">
-	
+	        <h:dataTable var="mov" class="table table-striped" value="#{movimientosBean.movimientos}">
+	     
 				<h:column>
 					<f:facet name="header">ID Movimiento</f:facet>
 					#{mov.idMovimiento}
@@ -26,29 +26,29 @@
 				</h:column>
 				<h:column>
 					<f:facet name="header">Nro. Cuenta</f:facet>
-					#{mov.cuenta}
+					#{mov.cuenta.numeroCuenta}
 				</h:column>
 				<h:column>
 					<f:facet name="header">Cedula</f:facet>
-					#{cuentaBean.getCuenta(mov.cuenta).usuario.cedula}
+					#{cuentasBean.getCuenta(mov.cuenta.numeroCuenta).usuario.cedula}
 				</h:column>
 				<h:column>
 					<f:facet name="header">Nombre</f:facet>
-					#{cuentaBean.getCuenta(mov.cuenta).usuario.nombre}
+					#{cuentasBean.getCuenta(mov.cuenta.numeroCuenta).usuario.nombre}
 				</h:column>
 				<h:column>
 					<f:facet name="header">Apellidos</f:facet>
-					#{cuentaBean.getCuenta(mov.cuenta).usuario.apellido}
+					#{cuentasBean.getCuenta(mov.cuenta.numeroCuenta).usuario.apellido}
 				</h:column>
 				<h:column>
 					<f:facet name="header">Saldo</f:facet>
-					#{cuentaBean.getCuenta(mov.cuenta).saldo}
+					#{cuentasBean.getCuenta(mov.cuenta.numeroCuenta).saldo}
 				</h:column>
 				<h:column>
 					<f:facet name="header">Tipo Movimiento</f:facet>
-					#{movimientoBean.getTipo(mov.tipoMovimiento)}
+					#{movimientoBean.getTipo(mov.tipoMovimiento.id).nombre}
 				</h:column>
-
+				
 			</h:dataTable>
 		</h:form>
 

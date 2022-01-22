@@ -33,7 +33,7 @@ public class CuentaBean implements Serializable {
 		return newcuenta;
 	}
 	public Cuenta getCuenta(String numCue) {
-		cuentaON.getCuenta(numCue);
+	    newcuenta= this.cuentaON.getCuenta(numCue);
 		return newcuenta;
 	}
 

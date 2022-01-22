@@ -29,7 +29,7 @@ public class Cuenta implements Serializable {
 	private Usuario usuario;
 
 	public Usuario getUsuario() {
-		return usuario;
+		return this.usuario;
 	}
 
 	public void setUsuario(Usuario usuario) {
