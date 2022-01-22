@@ -1,6 +1,7 @@
 package ec.edu.ups.est.ProyectoFinal.bean;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;
@@ -9,6 +10,7 @@ import javax.inject.Named;
 
 import ec.edu.ups.est.ProyectoFinal.business.CuentaON;
 import ec.edu.ups.est.ProyectoFinal.business.CuentasONLocal;
+import ec.edu.ups.est.ProyectoFinal.business.MovimientoON;
 import ec.edu.ups.est.ProyectoFinal.business.MovimientoONLocal;
 import ec.edu.ups.est.ProyectoFinal.business.TipoMovimientoON;
 import ec.edu.ups.est.ProyectoFinal.business.TipoMovimientoONLocal;
@@ -16,6 +18,7 @@ import ec.edu.ups.est.ProyectoFinal.model.Cuenta;
 import ec.edu.ups.est.ProyectoFinal.model.Movimiento;
 import ec.edu.ups.est.ProyectoFinal.model.TipoMovimiento;
 import ec.edu.ups.est.ProyectoFinal.model.Usuario;
+
 
 @Named
 @RequestScoped
@@ -28,16 +31,21 @@ public class MovimientoBean {
 	
 	@Inject
 	private TipoMovimientoONLocal tipoMovimientoON;
+
+	private TipoMovimiento tipo;
 	
 	private String numeroCuenta;
 	private Double cantidadRetirada;
 	private Double cantidadDepositada;
+
+	
 	
 	
 	//creacion de usuaruios por aki  para ajilitar el codigo
 	@PostConstruct
 	public void init() {
 		this.createFakeData();
+		
 	}
 	
 	public void createFakeData() {
@@ -53,7 +61,7 @@ public class MovimientoBean {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		Usuario usuario = new Usuario();	
+		/*Usuario usuario = new Usuario();	
 		usuario.setCedula("01");
 		usuario.setApellido("");
 		usuario.setContra("");
@@ -65,7 +73,7 @@ public class MovimientoBean {
 		cuenta.setNumeroCuenta("1");
 		cuenta.setSaldo(650.35);
 		cuenta.setUsuario(usuario);
-		cuentaON.insertarCuenta(cuenta);
+		cuentaON.insertarCuenta(cuenta);*/
 	}
 	
 	public String getNumeroCuenta() {
@@ -137,5 +145,11 @@ public class MovimientoBean {
 		}
 		return "listado-retiros?faces-redirect=true";
 	}
+
+	public TipoMovimiento getTipo(int id) {
+		tipo=this.tipoMovimientoON.buscar(id);
+		return tipo;
+	}
+
 	
 }

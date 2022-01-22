@@ -18,6 +18,7 @@ public class CuentasBean {
 	private CuentasONLocal cuentaON;
 	
 	private List<Cuenta> cuentas;
+	private Cuenta newcuenta ;
 	
 	@PostConstruct
 	public void init() {
@@ -35,5 +36,7 @@ public class CuentasBean {
 	public void loadCuentas() {
 		this.cuentas = cuentaON.getCuentas();
 	}
-
+	public Cuenta getCuenta(String numCue) {	    
+		return cuentaON.getCuenta(numCue);
+	}
 }
