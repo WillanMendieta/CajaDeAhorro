@@ -36,9 +36,10 @@
 				</h:column>
 			</h:dataTable>
 		</h:form>
-		
-		El saldo actual es: 	
-		#{cuentasBean.getCuenta(movimientosBean.numeroCuenta).saldo}
+		<p style="padding-left: 1rem; padding-top: 1rem; font-size: 1.2rem;">
+			El saldo actual de la cuenta es: 	
+			$#{cuentasBean.getCuenta(movimientosBean.numeroCuenta).saldo}
+		</p>
     </ui:define>
 </ui:composition>
 
