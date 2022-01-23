@@ -1,20 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:h="http://java.sun.com/jsf/html"> 
-
-<h:head></h:head> 
-<body> 
-
-<h:form>
-	
-		Cédula: <h:inputText value="#{clienteBean.newUsuario.cedula}" />
-		Contraseña: <h:inputText value="#{clienteBean.newUsuario.contra}" />
-
-		<h:commandButton action="#{clienteBean.cargarCliente()}" value="INGRESAR" />
-		
-	</h:form>
-
-</body> 
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html">
+ 
+<ui:composition template="template/plantilla.xhtml">
+    <ui:define name="title">
+        Login
+    </ui:define>
+			    <ui:define name="content">
+					<div class="col-lg-6">
+						<div class="card">
+							<div class="card-body">
+								<div class="card-title">Inicio de Sesion</div>
+			
+								<h:form>
+									<div class="form-group">
+										<label for="input-1">Cedula</label>
+										<h:inputText value="#{loginBean.cedula}"
+											class="form-control" id="input-1"
+											placeholder="Ingrese el número de cédula" />
+									</div>
+									<div class="form-group">
+										<label for="input-2">Contraseña</label>
+										<h:inputText value="#{loginBean.contra}"
+											class="form-control" id="input-2"
+											placeholder="Ingrese su cnotraseña" />
+									</div>
+			
+									<div class="form-group">
+										<h:commandButton action="#{loginBean.login()}"
+											value="Ingresar" class="btn btn-light px-5" />
+										<i class="icon-key" />
+									</div>
+			
+								</h:form>
+			
+							</div>
+						</div>
+					</div>
+			
+				</ui:define>
+ 
+</ui:composition>
 </html>
