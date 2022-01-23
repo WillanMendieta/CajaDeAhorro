@@ -18,27 +18,37 @@ public class MovimientosBean {
 	private MovimientoONLocal movimientoON;
 	
 	private List<Movimiento> movimientos;
+	private String numeroCuenta;
 	
 	@PostConstruct
 	public void init() {
 		this.loadMovimientos();
 	}
 	
-	
+	public void loadDataPorCuenta() {
+		if(this.numeroCuenta == null)
+			return;
+		this.movimientos = movimientoON.getMovimientosPorCuenta(this.numeroCuenta);
+	}
 	
 	public List<Movimiento> getMovimientos() {
 		return movimientos;
 	}
 
-
-
 	public void setMovimientos(List<Movimiento> movimientos) {
 		this.movimientos = movimientos;
 	}
 
-
-
 	public void loadMovimientos() {
 		this.movimientos = movimientoON.getMovimientos();
 	}
+
+	public String getNumeroCuenta() {
+		return numeroCuenta;
+	}
+
+	public void setNumeroCuenta(String numeroCuenta) {
+		this.numeroCuenta = numeroCuenta;
+	}
+	
 }

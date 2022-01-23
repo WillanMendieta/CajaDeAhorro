@@ -21,15 +21,9 @@ public class MovimientoON implements MovimientoONLocal {
 	@Inject
 	private CuentaDAO cuentaDAO;
 	
-	
-	
 	public void insertarMovimientos(Movimiento m) {
-		
 		daoMovimiento.insert(m);
-		
 	}
-	
-	
 	
 	public void retiro(Movimiento movimiento)  throws Exception {
 		Cuenta cuenta = movimiento.getCuenta();
@@ -58,6 +52,10 @@ public class MovimientoON implements MovimientoONLocal {
 
 	public List<Movimiento> getMovimientos() {
 		return daoMovimiento.getList();
+	}
+	
+	public List<Movimiento> getMovimientosPorCuenta(String numeroCuenta) {
+		return daoMovimiento.getListPorCuenta(numeroCuenta);
 	}
 	
 	

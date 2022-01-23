@@ -22,10 +22,17 @@ public class CuentaDAO {
 	}
 	
 	public Cuenta read(String numero) {
-
 		Cuenta op = em.find(Cuenta.class, numero);
 		return op;
-
+	}
+	
+	public Cuenta readByNumeroCuenta(String numero) {
+		List<Cuenta> listado = new ArrayList<Cuenta>();
+		String jpql = "SELECT op FROM Cuenta op WHERE op.numeroCuenta = ?1";
+		Query query = em.createQuery(jpql, Cuenta.class);
+		query.setParameter(1, numero);
+		listado = query.getResultList();
+		return listado.get(0);
 	}
 	
 	public void upgrade(Cuenta op) {

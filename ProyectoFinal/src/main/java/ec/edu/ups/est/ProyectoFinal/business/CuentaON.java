@@ -42,6 +42,10 @@ public class CuentaON implements CuentasONLocal {
 	public Cuenta getCuenta(String numero) {
 		return cuentaDAO.read(numero);
 	}
+	
+	public Cuenta getCuentaPorNumero(String numero) {
+		return cuentaDAO.readByNumeroCuenta(numero);
+	}
 
 	public List<Cuenta> getCuentas() {
 		return cuentaDAO.getList();

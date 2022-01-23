@@ -39,4 +39,9 @@ public class CuentasBean {
 	public Cuenta getCuenta(String numCue) {	    
 		return cuentaON.getCuenta(numCue);
 	}
+	
+	public Cuenta getCuentaPorNumero(String numCue) {
+	    newcuenta= this.cuentaON.getCuentaPorNumero(numCue);
+		return newcuenta;
+	}
 }

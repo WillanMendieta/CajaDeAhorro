@@ -14,4 +14,5 @@ public interface MovimientoONLocal {
 	public void retiro(Movimiento movimiento) throws Exception;
 	public void deposito(Movimiento movimiento)  throws Exception;
 	public List<Movimiento> getMovimientos();
+	public List<Movimiento> getMovimientosPorCuenta(String numeroCuenta);
 }
