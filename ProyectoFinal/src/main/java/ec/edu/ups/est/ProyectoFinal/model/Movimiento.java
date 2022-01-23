@@ -37,9 +37,8 @@ public class Movimiento implements Serializable {
 	@JoinColumn(name = "cue_num")
 	private Cuenta cuenta;
 	
-	@OneToOne(cascade = CascadeType.MERGE)
-	@JoinColumn(name = "tip_mov_id")
-	private TipoMovimiento tipoMovimiento;
+	@Column(name = "mov_tipo")
+	private String tipoMovimiento;
 
 	public int getIdMovimiento() {
 		return idMovimiento;
@@ -74,11 +73,11 @@ public class Movimiento implements Serializable {
 		this.cuenta = cuenta;
 	}
 
-	public TipoMovimiento getTipoMovimiento() {
+	public String getTipoMovimiento() {
 		return tipoMovimiento;
 	}
 
-	public void setTipoMovimiento(TipoMovimiento tipoMovimiento) {
+	public void setTipoMovimiento(String tipoMovimiento) {
 		this.tipoMovimiento = tipoMovimiento;
 	}
 

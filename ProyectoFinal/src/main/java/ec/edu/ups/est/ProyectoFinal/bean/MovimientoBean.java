@@ -8,16 +8,10 @@ import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
-import ec.edu.ups.est.ProyectoFinal.business.CuentaON;
 import ec.edu.ups.est.ProyectoFinal.business.CuentasONLocal;
-import ec.edu.ups.est.ProyectoFinal.business.MovimientoON;
 import ec.edu.ups.est.ProyectoFinal.business.MovimientoONLocal;
-import ec.edu.ups.est.ProyectoFinal.business.TipoMovimientoON;
-import ec.edu.ups.est.ProyectoFinal.business.TipoMovimientoONLocal;
 import ec.edu.ups.est.ProyectoFinal.model.Cuenta;
 import ec.edu.ups.est.ProyectoFinal.model.Movimiento;
-import ec.edu.ups.est.ProyectoFinal.model.TipoMovimiento;
-import ec.edu.ups.est.ProyectoFinal.model.Usuario;
 
 
 @Named
@@ -29,11 +23,6 @@ public class MovimientoBean {
 	@Inject
 	private CuentasONLocal cuentaON;
 	
-	@Inject
-	private TipoMovimientoONLocal tipoMovimientoON;
-
-	private TipoMovimiento tipo;
-	
 	private String numeroCuenta;
 	private Double cantidadRetirada;
 	private Double cantidadDepositada;
@@ -44,18 +33,7 @@ public class MovimientoBean {
 		this.createFakeData();
 	}
 	
-	public void createFakeData() {
-		TipoMovimiento tipoMovimiento = new TipoMovimiento();
-		tipoMovimiento.setNombre("Retiro");
-		TipoMovimiento tipoMovimiento2 = new TipoMovimiento();
-		tipoMovimiento2.setNombre("Depósito");
-		try {
-			tipoMovimientoON.crear(tipoMovimiento);		
-			tipoMovimientoON.crear(tipoMovimiento2);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
+	public void createFakeData() {}
 	
 	public String getNumeroCuenta() {
 		return numeroCuenta;
@@ -88,15 +66,13 @@ public class MovimientoBean {
 	//Metodos
 
 	public String retirarFondos() {
-		System.out.println("Retirando de cuenta: " + numeroCuenta);
 		try {
 			Cuenta cuenta = cuentaON.getCuenta(numeroCuenta);
-			TipoMovimiento tipoMovimiento = tipoMovimientoON.buscar(0);
 			Movimiento movimiento = new Movimiento();
 			movimiento.setCuenta(cuenta);
 			movimiento.setFecha(new Date());
 			movimiento.setMonto(cantidadRetirada);
-			movimiento.setTipoMovimiento(tipoMovimiento);
+			movimiento.setTipoMovimiento("Retiro");
 			movimientoON.retiro(movimiento);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -107,16 +83,13 @@ public class MovimientoBean {
 	public String depositarFondos() {
 		try {
 			Cuenta cuenta = cuentaON.getCuenta(numeroCuenta);
-			System.out.println("USUARIO!!!:   " + cuenta.getUsuario().getCedula());
-			System.out.println("USUARIO!!!:   " + cuenta.getUsuario().getNombre());
-			TipoMovimiento tipoMovimiento = tipoMovimientoON.buscar(1);
 			
 			Movimiento movimiento = new Movimiento();
 			
 			movimiento.setCuenta(cuenta);
 			movimiento.setFecha(new Date());
 			movimiento.setMonto(cantidadDepositada);
-			movimiento.setTipoMovimiento(tipoMovimiento);
+			movimiento.setTipoMovimiento("Depósito");
 			
 			movimientoON.deposito(movimiento);
 		} catch (Exception e) {
@@ -124,11 +97,4 @@ public class MovimientoBean {
 		}
 		return "listado-retiros?faces-redirect=true";
 	}
-
-	public TipoMovimiento getTipo(int id) {
-		tipo = this.tipoMovimientoON.buscar(id);
-		return tipo;
-	}
-
-	
 }
