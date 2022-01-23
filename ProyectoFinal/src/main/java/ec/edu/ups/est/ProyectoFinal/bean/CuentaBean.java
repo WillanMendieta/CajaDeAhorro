@@ -1,23 +1,22 @@
 package ec.edu.ups.est.ProyectoFinal.bean;
 
-import java.io.Serializable;
-
 import javax.annotation.PostConstruct;
+import javax.enterprise.context.RequestScoped;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.util.Random;
 
-import ec.edu.ups.est.ProyectoFinal.business.CuentaON;
 import ec.edu.ups.est.ProyectoFinal.business.CuentasONLocal;
 import ec.edu.ups.est.ProyectoFinal.model.Cuenta;
 import ec.edu.ups.est.ProyectoFinal.model.Usuario;
 
 @Named
-@ViewScoped
-public class CuentaBean implements Serializable {
+@RequestScoped
+public class CuentaBean {
 
 	private Cuenta newcuenta = new Cuenta();
+	private String cedulaUsuario = "";
 
 	@Inject
 	private CuentasONLocal cuentaON;
@@ -26,7 +25,14 @@ public class CuentaBean implements Serializable {
 	private void init() {
 		newcuenta = new Cuenta();
 		newcuenta.setUsuario(new Usuario());
+	}
 
+	public String getCedulaUsuario() {
+		return cedulaUsuario;
+	}
+
+	public void setCedulaUsuario(String cedulaUsuario) {
+		this.cedulaUsuario = cedulaUsuario;
 	}
 
 	public Cuenta getNewCuenta() {
@@ -41,10 +47,9 @@ public class CuentaBean implements Serializable {
 		this.newcuenta = cuenta;
 	}
 
-	public String guardarCuenta() {
+	public void guardarCuenta() {
+		newcuenta.setUsuario(getUsuario());
 		cuentaON.insertarCuenta(newcuenta);
-
-		return null;
 	}
 	
 	public String generarNumCuenta() {
@@ -53,10 +58,8 @@ public class CuentaBean implements Serializable {
 		return null;
 	}
 	
-	public String cargarUsuario() {
-		String cedula = newcuenta.getUsuario().getCedula();
-		Usuario u = cuentaON.getUsuario(cedula);
-		newcuenta.setUsuario(u);
-		return null;
+	public Usuario getUsuario() {
+		Usuario u = cuentaON.getUsuario(this.cedulaUsuario);
+		return u;
 	}
 }

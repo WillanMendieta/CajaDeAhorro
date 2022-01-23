@@ -39,13 +39,9 @@ public class MovimientoBean {
 	private Double cantidadDepositada;
 
 	
-	
-	
-	//creacion de usuaruios por aki  para ajilitar el codigo
 	@PostConstruct
 	public void init() {
 		this.createFakeData();
-		
 	}
 	
 	public void createFakeData() {
@@ -53,27 +49,12 @@ public class MovimientoBean {
 		tipoMovimiento.setNombre("Retiro");
 		TipoMovimiento tipoMovimiento2 = new TipoMovimiento();
 		tipoMovimiento2.setNombre("Depósito");
-		System.out.println("Id TIPO MOVIMIENTO BEAN !!!!!!!" + tipoMovimiento.getId());
-		System.out.println("Id TIPO MOVIMIENTO BEAN !!!!!!!" + tipoMovimiento2.getId());
 		try {
 			tipoMovimientoON.crear(tipoMovimiento);		
 			tipoMovimientoON.crear(tipoMovimiento2);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		/*Usuario usuario = new Usuario();	
-		usuario.setCedula("01");
-		usuario.setApellido("");
-		usuario.setContra("");
-		usuario.setCorreo("");
-		usuario.setDireccion("");
-		usuario.setNombre("");
-		usuario.setTelefono("");
-		Cuenta cuenta = new Cuenta();
-		cuenta.setNumeroCuenta("1");
-		cuenta.setSaldo(650.35);
-		cuenta.setUsuario(usuario);
-		cuentaON.insertarCuenta(cuenta);*/
 	}
 	
 	public String getNumeroCuenta() {
@@ -112,7 +93,6 @@ public class MovimientoBean {
 			Cuenta cuenta = cuentaON.getCuenta(numeroCuenta);
 			TipoMovimiento tipoMovimiento = tipoMovimientoON.buscar(0);
 			Movimiento movimiento = new Movimiento();
-			System.out.println("Id MOVIMIENTO BEAN !!!!!!!" + movimiento.getIdMovimiento());
 			movimiento.setCuenta(cuenta);
 			movimiento.setFecha(new Date());
 			movimiento.setMonto(cantidadRetirada);
@@ -125,14 +105,13 @@ public class MovimientoBean {
 	}
 	
 	public String depositarFondos() {
-		System.out.println("depositar de cuenta: " + numeroCuenta);
 		try {
 			Cuenta cuenta = cuentaON.getCuenta(numeroCuenta);
+			System.out.println("USUARIO!!!:   " + cuenta.getUsuario().getCedula());
+			System.out.println("USUARIO!!!:   " + cuenta.getUsuario().getNombre());
 			TipoMovimiento tipoMovimiento = tipoMovimientoON.buscar(1);
 			
 			Movimiento movimiento = new Movimiento();
-			
-			System.out.println("depositando" + movimiento.getIdMovimiento());
 			
 			movimiento.setCuenta(cuenta);
 			movimiento.setFecha(new Date());
@@ -147,7 +126,7 @@ public class MovimientoBean {
 	}
 
 	public TipoMovimiento getTipo(int id) {
-		tipo=this.tipoMovimientoON.buscar(id);
+		tipo = this.tipoMovimientoON.buscar(id);
 		return tipo;
 	}
 
