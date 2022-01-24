@@ -26,6 +26,8 @@ public class MovimientoBean {
 	private String numeroCuenta;
 	private Double cantidadRetirada;
 	private Double cantidadDepositada;
+	private String nombreUsuario;
+	private String cedulaUsuario;
 
 	
 	@PostConstruct
@@ -43,7 +45,25 @@ public class MovimientoBean {
 		this.numeroCuenta = numeroCuenta;
 	}
 	
+	
+	
 	//Retiro
+
+	public String getNombreUsuario() {
+		return nombreUsuario;
+	}
+
+	public void setNombreUsuario(String nombreUsuario) {
+		this.nombreUsuario = nombreUsuario;
+	}
+
+	public String getCedulaUsuario() {
+		return cedulaUsuario;
+	}
+
+	public void setCedulaUsuario(String cedulaUsuario) {
+		this.cedulaUsuario = cedulaUsuario;
+	}
 
 	public Double getCantidadRetirada() {
 		return cantidadRetirada;
@@ -96,5 +116,18 @@ public class MovimientoBean {
 			e.printStackTrace();
 		}
 		return "estado-de-cuenta?faces-redirect=true&numero-cuenta=" + numeroCuenta;
+	}
+	
+	public void cargarDatosDeCuenta() {
+		if (numeroCuenta != null) {
+			Cuenta cuenta = cuentaON.getCuenta(numeroCuenta);
+			if (cuenta != null) {
+				System.out.println(cuenta.getUsuario().getNombre() + " " + cuenta.getUsuario().getApellido());
+				nombreUsuario = cuenta.getUsuario().getNombre() + " " + cuenta.getUsuario().getApellido();
+				cedulaUsuario = cuenta.getUsuario().getCedula();
+				System.out.println(nombreUsuario);
+			}	
+		}
+		
 	}
 }

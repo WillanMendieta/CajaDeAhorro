@@ -12,15 +12,25 @@
 						<div class="card">
 							<div class="card-body">
 								<div class="card-title">Retiro de fondos</div>
-			
 								<h:form>
 									<div class="form-group">
-										<label for="input-1">Número de cuenta:</label>
+										<label for="txtNumeroCuenta">Número de cuenta:</label>
 										<h:inputText value="#{movimientoBean.numeroCuenta}"
-											class="form-control" id="input-1"
-											placeholder="Ingrese la Cuenta" />
+											class="form-control" id="txtNumeroCuenta" placeholder="Ingrese la Cuenta" >
+											<f:ajax execute="txtNumeroCuenta" render="txtCedulaUser txtNombreUser" 
+												listener="#{movimientoBean.cargarDatosDeCuenta()}" />
+										</h:inputText>
 									</div>
-			
+									
+									<div class="form-group">
+				                      <label for="txtCedulaUser">Cédula Usuario</label>
+				                      <h:inputText class="form-control" id="txtCedulaUser" value="#{clientesBean.cedulaUsuario}" />
+				                    </div>
+				                    <div class="form-group">
+				                      <label for="txtNombreUser">Nombre Usuario</label>
+				                      <h:inputText value="#{clientesBean.nombreUsuario}" class="form-control" id="txtNombreUser" />
+				                    </div>
+				                    
 									<div class="form-group">
 										<label for="monto">Monto a retirar</label>
 										<h:inputText value="#{movimientoBean.cantidadRetirada}"
@@ -30,16 +40,11 @@
 											placeholder="Ingrese la cantidad a retirar" />
 										<h:message for="monto" style="color:red; margin-top: 0.5rem; display: block" />
 									</div>
-			
 									<div class="form-group d-flex">
-			
 										<h:commandButton id="boton-retirar" action="#{movimientoBean.retirarFondos()}"
 											value="Retirar" style="flex-grow: 1;" class="btn btn-success px-5" />
-										
 									</div>
-			
 								</h:form>
-			
 							</div>
 						</div>
 				</div>
