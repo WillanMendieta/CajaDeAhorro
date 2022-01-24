@@ -23,12 +23,12 @@
 									</div>
 									
 									<div class="form-group">
-				                      <label for="txtCedulaUser">Cédula Usuario</label>
-				                      <h:inputText class="form-control" id="txtCedulaUser" value="#{clientesBean.cedulaUsuario}" />
+				                      <label for="txtCedulaUser">Cédula del usuario:</label>
+				                      <h:outputText class="form-control" id="txtCedulaUser" value="#{movimientoBean.cedulaUsuario}" />
 				                    </div>
 				                    <div class="form-group">
-				                      <label for="txtNombreUser">Nombre Usuario</label>
-				                      <h:inputText value="#{clientesBean.nombreUsuario}" class="form-control" id="txtNombreUser" />
+				                      <label for="txtNombreUser">Nombre del usuario:</label>
+				                      <h:outputText value="#{movimientoBean.nombreUsuario}" class="form-control" id="txtNombreUser" />
 				                    </div>
 				                    
 									<div class="form-group">

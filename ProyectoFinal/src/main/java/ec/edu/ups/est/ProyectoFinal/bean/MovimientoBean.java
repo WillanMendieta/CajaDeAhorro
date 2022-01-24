@@ -1,7 +1,6 @@
 package ec.edu.ups.est.ProyectoFinal.bean;
 
 import java.util.Date;
-import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;
