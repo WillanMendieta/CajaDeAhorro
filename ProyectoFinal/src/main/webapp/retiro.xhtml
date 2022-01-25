@@ -15,11 +15,14 @@
 								<h:form>
 									<div class="form-group">
 										<label for="txtNumeroCuenta">Número de cuenta:</label>
-										<h:inputText value="#{movimientoBean.numeroCuenta}"
+										<h:inputText requiredMessage="Este campo es requerido" 
+											value="#{movimientoBean.numeroCuenta}"
 											class="form-control" id="txtNumeroCuenta" placeholder="Ingrese la Cuenta" >
 											<f:ajax execute="txtNumeroCuenta" render="txtCedulaUser txtNombreUser" 
 												listener="#{movimientoBean.cargarDatosDeCuenta()}" />
+											<f:validateRequired />
 										</h:inputText>
+										<h:message for="txtNumeroCuenta" style="color:red; margin-top: 0.5rem; display: block" />
 									</div>
 									
 									<div class="form-group">
@@ -36,8 +39,11 @@
 										<h:inputText value="#{movimientoBean.cantidadRetirada}"
 											type="number"
 											class="form-control" id="monto"
+											requiredMessage="Este campo es requerido"
 											converterMessage="Solo puede ingresar números"
-											placeholder="Ingrese la cantidad a retirar" />
+											placeholder="Ingrese la cantidad a retirar">
+											<f:validateRequired />
+										</h:inputText>
 										<h:message for="monto" style="color:red; margin-top: 0.5rem; display: block" />
 									</div>
 									<div class="form-group d-flex">
