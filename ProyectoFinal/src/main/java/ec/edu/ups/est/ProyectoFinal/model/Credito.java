@@ -37,7 +37,7 @@ public class Credito implements Serializable {
 	@Column(name = "cre_plazos")
 	private int plazosCredito;
 	
-	@OneToOne
+	@OneToOne(cascade = CascadeType.MERGE)
 	@JoinColumn(name = "cre_usuario")
 	private Usuario usuario;
 	
