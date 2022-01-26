@@ -25,7 +25,7 @@ public class Amortizacion implements Serializable {
 	@Column(name = "amo_fecha")
 	private Date fechaPago;
 	
-	@Column(name = "amo_fecha")
+	@Column(name = "amo_monto_pagado")
 	private double montoPagado;
 	
 	@OneToOne

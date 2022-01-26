@@ -19,7 +19,7 @@ public class CreditoON implements CreditoONLocal {
 	@Inject
 	private UsuarioDAO usuarioDAO;
 	
-	public void solicitarCredito(double montoSolicitado, int numeroCuotas, String cedulaPersona) {
+	public void solicitarCredito(double montoSolicitado, int numeroCuotas, String cedulaPersona) throws Exception {
 		Credito credito = new Credito();
 		credito.setInteres(0.08);
 		credito.setMontoSolicitado(montoSolicitado);
@@ -29,7 +29,7 @@ public class CreditoON implements CreditoONLocal {
 		creditoDAO.insert(credito);
 	}
 	
-	public void pagarCredito(int idCredito) {
+	public void pagarCredito(int idCredito) throws Exception {
 		Credito creditoGuardado = creditoDAO.read(idCredito);
 		System.out.println("CREDITO GUARDADO!!!!   " + creditoGuardado.getMontoSolicitado());
 		if (creditoGuardado != null) {
