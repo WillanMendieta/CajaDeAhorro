@@ -19,12 +19,18 @@
 							<h:form>
 								<div class="form-group">
 			                      <label for="txtCedulaUser">Cédula del usuario:</label>
-			                      <h:outputText class="form-control" id="txtCedulaUser" value="#{creditoBean.cedulaPersona}" />
+			                      <h:inputText class="form-control" id="txtCedulaUser" value="#{creditoBean.cedulaPersona}" requiredMessage="Este campo es requerido">
+			                      	<f:validateRequired />
+			                      </h:inputText>
+			                      <h:message for="txtCedulaUser" style="color:red; margin-top: 0.5rem; display: block" />
 			                    </div>
 			                    
-								<div class="form-group">
-									<label for="selectCuotas">Número de cuotas:</label>
-									<h:selectOneMenu id="selectCuotas" value="#{creditoBean.numeroCuotas}">
+			                    <div class="input-group mb-3">
+								  <div class="input-group-prepend">
+								    <label class="input-group-text" for="selectCuotas">Número de cuotas:</label>
+								  </div>
+								  
+								  	<h:selectOneMenu class="custom-select" id="selectCuotas" value="#{creditoBean.numeroCuotas}">
 										<f:selectItem itemValue="1" itemLabel="1" />
 										<f:selectItem itemValue="2" itemLabel="2" />
 										<f:selectItem itemValue="3" itemLabel="3" />
@@ -35,6 +41,7 @@
 										<f:selectItem itemValue="48" itemLabel="48" />
 									</h:selectOneMenu>
 								</div>
+								
 			                    
 								<div class="form-group">
 									<label for="monto">Monto solicitado:</label>
@@ -43,8 +50,10 @@
 										class="form-control" id="monto"
 										requiredMessage="Este campo es requerido"
 										converterMessage="Solo puede ingresar números"
+										validatorMessage="El valor mínimo a solicitar es $100"
 										placeholder="Ingrese la cantidad a retirar">
 										<f:validateRequired />
+										<f:validateLongRange minimum="1" />
 									</h:inputText>
 									<h:message for="monto" style="color:red; margin-top: 0.5rem; display: block" />
 								</div>
