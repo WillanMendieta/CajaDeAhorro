@@ -42,9 +42,9 @@ public class CreditoBean {
 			creditoON.solicitarCredito(cantidadCredito, numeroCuotas, cedulaPersona);
 		} catch (Exception e) {
 			e.printStackTrace();
-			return "mensaje-error?faces-redirect=true&texto=No%20se%20ha%20podido%20solicitar";
+			return "mensaje-error?faces-redirect=true&texto=" + e.getMessage();
 		}
-		return "mensaje-exito?faces-redirect=true&texto=Se%20ha%20solicitado%20con%20éxito";
+		return "mensaje-exito?faces-redirect=true&texto=Se ha solicitado el crédito con éxito";
 	}
 	
 }

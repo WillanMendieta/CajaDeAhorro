@@ -10,6 +10,7 @@ import ec.edu.ups.est.ProyectoFinal.dao.CreditoDAO;
 import ec.edu.ups.est.ProyectoFinal.dao.UsuarioDAO;
 import ec.edu.ups.est.ProyectoFinal.model.Amortizacion;
 import ec.edu.ups.est.ProyectoFinal.model.Credito;
+import ec.edu.ups.est.ProyectoFinal.model.Usuario;
 
 @Stateless
 public class CreditoON implements CreditoONLocal {
@@ -25,7 +26,11 @@ public class CreditoON implements CreditoONLocal {
 		credito.setMontoSolicitado(montoSolicitado);
 		credito.setFecha(new Date());
 		credito.setPlazosCredito(numeroCuotas);
-		credito.setUsuario(usuarioDAO.read(cedulaPersona));
+		Usuario usuario = usuarioDAO.read(cedulaPersona);
+		if (usuario == null) {
+			throw new Exception("El usuario para el crédito no existe");
+		}
+		credito.setUsuario(usuario);
 		creditoDAO.insert(credito);
 	}
 	
