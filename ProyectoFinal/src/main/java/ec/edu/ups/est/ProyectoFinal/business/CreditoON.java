@@ -30,22 +30,24 @@ public class CreditoON implements CreditoONLocal {
 		if (usuario == null) {
 			throw new Exception("El usuario para el crédito no existe");
 		}
-		credito.setUsuario(usuario);
-		creditoDAO.insert(credito);
+		List<Credito> creditosUsuario = usuario.getCreditos();
+		creditosUsuario.add(credito);
+		usuario.setCreditos(creditosUsuario);
+		usuarioDAO.upgrade(usuario);
 	}
 	
 	public void pagarCredito(int idCredito) throws Exception {
 		Credito creditoGuardado = creditoDAO.read(idCredito);
-		System.out.println("CREDITO GUARDADO!!!!   " + creditoGuardado.getMontoSolicitado());
-		if (creditoGuardado != null) {
-			List<Amortizacion> amortizacionesCredito = creditoGuardado.getAmortizaciones();
-			Amortizacion nuevaAmortizacion = new Amortizacion();
-			nuevaAmortizacion.setCredito(creditoGuardado);
-			nuevaAmortizacion.setFechaPago(new Date());
-			nuevaAmortizacion.setMontoPagado(creditoGuardado.getMontoSolicitado() * (creditoGuardado.getInteres() / (double)creditoGuardado.getPlazosCredito()));
-			amortizacionesCredito.add(nuevaAmortizacion);
-			creditoGuardado.setAmortizaciones(amortizacionesCredito);
-			creditoDAO.upgrade(creditoGuardado);
-		}
+		System.out.println("CREDITO GUARDADO ES:  !!!!   " + creditoGuardado.getMontoSolicitado());
+//		if (creditoGuardado != null) {
+//			List<Amortizacion> amortizacionesCredito = creditoGuardado.getAmortizaciones();
+//			Amortizacion nuevaAmortizacion = new Amortizacion();
+//			nuevaAmortizacion.setCredito(creditoGuardado);
+//			nuevaAmortizacion.setFechaPago(new Date());
+//			nuevaAmortizacion.setMontoPagado(creditoGuardado.getMontoSolicitado() * (creditoGuardado.getInteres() / (double)creditoGuardado.getPlazosCredito()));
+//			amortizacionesCredito.add(nuevaAmortizacion);
+//			creditoGuardado.setAmortizaciones(amortizacionesCredito);
+//			creditoDAO.upgrade(creditoGuardado);
+//		}
 	}
 }

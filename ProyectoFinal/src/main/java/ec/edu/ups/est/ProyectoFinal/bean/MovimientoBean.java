@@ -119,7 +119,9 @@ public class MovimientoBean {
 	
 	public void cargarDatosDeCuenta() {
 		if (numeroCuenta != null) {
+			System.out.println("numero es "+numeroCuenta);
 			Cuenta cuenta = cuentaON.getCuenta(numeroCuenta);
+			System.out.println("La CUENTA ES: !!!!  "+cuenta.getNumeroCuenta());
 			if (cuenta != null) {
 				nombreUsuario = cuenta.getUsuario().getNombre() + " " + cuenta.getUsuario().getApellido();
 				cedulaUsuario = cuenta.getUsuario().getCedula();

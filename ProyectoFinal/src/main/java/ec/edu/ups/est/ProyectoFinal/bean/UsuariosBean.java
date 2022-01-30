@@ -36,7 +36,7 @@ public class UsuariosBean {
 	}
 	
 	public String verUsuario(String cedula) {
-		return null;
+		return "usuario?faces-redirect=true&cedula=" + cedula;
 	}
 
 }

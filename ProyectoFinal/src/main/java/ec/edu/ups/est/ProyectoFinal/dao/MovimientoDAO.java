@@ -37,7 +37,7 @@ public class MovimientoDAO {
 		Query query = em.createQuery(jpql, Movimiento.class);
 		query.setParameter(1, numeroCuenta);
 		listado = query.getResultList();
-		System.out.println("LISTADOO!!!!! 0:      " + listado.get(0).getCuenta().getNumeroCuenta());
+		//System.out.println("LISTADOO!!!!! 0:      " + listado.get(0).getCuenta().getNumeroCuenta());
 		return listado;
 	}
 

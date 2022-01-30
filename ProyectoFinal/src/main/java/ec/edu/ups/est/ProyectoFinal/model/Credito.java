@@ -37,12 +37,8 @@ public class Credito implements Serializable {
 	@Column(name = "cre_plazos")
 	private int plazosCredito;
 	
-	@OneToOne(cascade = CascadeType.MERGE)
-	@JoinColumn(name = "cre_usuario")
-	private Usuario usuario;
-	
 	@OneToMany(cascade = CascadeType.ALL)
-	@JoinColumn(name="cre_codigo")
+	@JoinColumn(name="cre_id")
 	private List<Amortizacion> amortizaciones;
 
 	public int getId() {
@@ -83,14 +79,6 @@ public class Credito implements Serializable {
 
 	public void setPlazosCredito(int plazosCredito) {
 		this.plazosCredito = plazosCredito;
-	}
-
-	public Usuario getUsuario() {
-		return usuario;
-	}
-
-	public void setUsuario(Usuario usuario) {
-		this.usuario = usuario;
 	}
 
 	public List<Amortizacion> getAmortizaciones() {

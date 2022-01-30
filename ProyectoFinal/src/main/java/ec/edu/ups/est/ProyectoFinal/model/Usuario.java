@@ -10,7 +10,6 @@ import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -22,31 +21,42 @@ public class Usuario implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 	@Id
-	@JoinColumn(name = "usu_ced")
+	@Column(name = "usu_ced")
 	private String cedula;
 
-	@JoinColumn(name = "usu_nombre")
+	@Column(name = "usu_nombre")
 	private String nombre;
 
-	@JoinColumn(name = "usu_apellido")
+	@Column(name = "usu_apellido")
 	private String apellido;
 
-	@JoinColumn(name = "usu_direccion")
+	@Column(name = "usu_direccion")
 	private String direccion;
 
-	@JoinColumn(name = "usu_telefono")
+	@Column(name = "usu_telefono")
 	private String telefono;
 
-	@JoinColumn(name = "usu_correo")
+	@Column(name = "usu_correo")
 	private String correo;
 
-	@JoinColumn(name = "usu_contra")
+	@Column(name = "usu_contra")
 	private String contra;
 	
-	//@OneToOne(cascade = CascadeType.MERGE)
-	@JoinColumn(name ="usu_tip_usu")
-	private String tipoUsuario; 
+	@Column(name ="usu_tip_usu")
+	private String tipoUsuario;
 	
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@JoinColumn(name="usu_ced")
+	private List<Credito> creditos;
+	
+	
+	public List<Credito> getCreditos() {
+		return creditos;
+	}
+
+	public void setCreditos(List<Credito> creditos) {
+		this.creditos = creditos;
+	}
 
 	public String getTipoUsuario() {
 		return tipoUsuario;
@@ -55,9 +65,6 @@ public class Usuario implements Serializable {
 	public void setTipoUsuario(String tipoUsuario) {
 		this.tipoUsuario = tipoUsuario;
 	}
-
-	@OneToMany(fetch = FetchType.EAGER)
-	private List<Cuenta> cuenta;
 
 	public String getCedula() {
 		return cedula;
@@ -113,18 +120,6 @@ public class Usuario implements Serializable {
 
 	public void setContra(String contra) {
 		this.contra = contra;
-	}
-
-	public static long getSerialversionuid() {
-		return serialVersionUID;
-	}
-
-	public List<Cuenta> getCuenta() {
-		return cuenta;
-	}
-
-	public void setCuenta(List<Cuenta> cuenta) {
-		this.cuenta = cuenta;
 	}
 
 }

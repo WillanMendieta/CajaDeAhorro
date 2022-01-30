@@ -27,10 +27,6 @@ public class Amortizacion implements Serializable {
 	
 	@Column(name = "amo_monto_pagado")
 	private double montoPagado;
-	
-	@OneToOne
-	@JoinColumn(name = "cre_id")
-	private Credito credito;
 
 	public int getId() {
 		return id;
@@ -54,14 +50,6 @@ public class Amortizacion implements Serializable {
 
 	public void setMontoPagado(double montoPagado) {
 		this.montoPagado = montoPagado;
-	}
-
-	public Credito getCredito() {
-		return credito;
-	}
-
-	public void setCredito(Credito credito) {
-		this.credito = credito;
 	}
 	
 }

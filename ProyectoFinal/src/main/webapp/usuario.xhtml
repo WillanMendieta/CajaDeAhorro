@@ -1,0 +1,53 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"> 
+
+<h:head>
+   	<f:metadata>
+    	<f:viewParam name="cedula" value="#{usuarioBean.cedula}"></f:viewParam>
+    	<f:viewAction action="#{usuarioBean.loadCreditos()}"/>
+   	</f:metadata>
+</h:head>
+
+<ui:composition template="template/plantilla.xhtml">
+    <ui:define name="title">
+        Usuario #{usuarioBean.cedula}
+    </ui:define>
+    <ui:define name="content">
+    	<h:form>
+    		<h4 style="padding: 1rem 0 0;">
+    			Créditos del usuario:
+    		</h4>
+	        <h:dataTable var="credito" class="table table-striped" value="#{usuarioBean.creditos}">
+				<h:column>
+					<f:facet name="header">Fecha</f:facet>
+					#{credito.fecha}
+				</h:column>
+				<h:column>
+					<f:facet name="header">Interés</f:facet>
+					#{credito.interes}
+				</h:column>
+				<h:column>
+					<f:facet name="header">Monto solicitado</f:facet>
+					#{credito.montoSolicitado}
+				</h:column>
+				<h:column>
+					<f:facet name="header">Plazos</f:facet>
+					#{credito.plazosCredito}
+				</h:column>
+				<h:column>
+					<f:facet name="header">Ver más</f:facet>
+					<h:commandButton id="boton-retirar" action="#{usuariosBean.verUsuario(usuario.cedula)}"
+											value="Ver más" style="flex-grow: 1;" class="btn btn-success px-5" />
+				</h:column>
+			</h:dataTable>
+			<h4 style="padding: 1rem 0 0;">
+    			Otra información:
+    		</h4>
+		</h:form>
+    </ui:define>
+</ui:composition>
+
+</html>

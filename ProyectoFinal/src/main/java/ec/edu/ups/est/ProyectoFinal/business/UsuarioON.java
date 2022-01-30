@@ -22,4 +22,8 @@ public class UsuarioON {
 	public List<Usuario> getUsuarios(){
 		return usuarioDAO.getList();
 	}
+	
+	public Usuario getUsuario(String cedula) {
+		return usuarioDAO.read(cedula);
+	}
 }

@@ -25,7 +25,7 @@ public class Cuenta implements Serializable {
 	private Double saldo;
 
 	@OneToOne
-	@JoinColumn(name = "cue_ced")
+	@JoinColumn(name = "usu_ced")
 	private Usuario usuario;
 
 	public Usuario getUsuario() {
