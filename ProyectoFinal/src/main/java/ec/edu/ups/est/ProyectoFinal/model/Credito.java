@@ -38,7 +38,7 @@ public class Credito implements Serializable {
 	@Column(name = "cre_plazos")
 	private int plazosCredito;
 	
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@JoinColumn(name="cre_id")
 	private List<Amortizacion> amortizaciones;
 

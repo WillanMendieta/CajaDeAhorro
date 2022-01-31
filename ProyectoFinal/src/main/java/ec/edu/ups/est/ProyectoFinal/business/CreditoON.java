@@ -43,9 +43,12 @@ public class CreditoON implements CreditoONLocal {
 			List<Amortizacion> amortizacionesCredito = creditoGuardado.getAmortizaciones();
 			Amortizacion nuevaAmortizacion = new Amortizacion();
 			nuevaAmortizacion.setFechaPago(new Date());
-			nuevaAmortizacion.setMontoPagado(creditoGuardado.getMontoSolicitado() * (creditoGuardado.getInteres() / (double)creditoGuardado.getPlazosCredito()));
+			double montoInteres = creditoGuardado.getMontoSolicitado() * (creditoGuardado.getInteres() / (double)creditoGuardado.getPlazosCredito());
+			double montoMensual = creditoGuardado.getMontoSolicitado() / (double)creditoGuardado.getPlazosCredito();
+			nuevaAmortizacion.setMontoPagado(montoInteres + montoMensual);
 			amortizacionesCredito.add(nuevaAmortizacion);
 			creditoGuardado.setAmortizaciones(amortizacionesCredito);
+			
 			creditoDAO.upgrade(creditoGuardado);
 		}
 	}

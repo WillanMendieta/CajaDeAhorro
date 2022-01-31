@@ -22,6 +22,7 @@ public class CreditoDAO {
 	
 	public Credito read(int id) {
 		Credito op = em.find(Credito.class, id);
+		op.getAmortizaciones().size();
 		return op;
 	}
 	
