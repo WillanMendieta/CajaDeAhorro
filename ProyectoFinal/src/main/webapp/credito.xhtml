@@ -31,7 +31,7 @@
 				</h:column>
 			</h:dataTable>
 			<h:commandButton id="boton-pagar" action="#{creditoBean.realizarPago()}" disabled="#{creditoBean.buttonDisabled}"
-											value="Realizar pago" style="flex-grow: 1; margin: 1rem 0;" 
+											value="#{creditoBean.buttonDisabled ? 'Pagado' : 'Realizar pago'}" style="flex-grow: 1; margin: 1rem 0;" 
 											class="btn #{creditoBean.buttonDisabled ? 'btn-danger' : 'btn-success'} px-5" />
 		</h:form>
     </ui:define>

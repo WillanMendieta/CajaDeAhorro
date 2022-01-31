@@ -2,6 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:jsf="http://xmlns.jcp.org/jsf"
       xmlns:h="http://java.sun.com/jsf/html"> 
 
 <h:head>
@@ -39,6 +40,16 @@
 			<h:column>
 				<f:facet name="header">Plazos</f:facet>
 				#{credito.plazosCredito}
+			</h:column>
+			<h:column>
+				<f:facet name="header">Estado</f:facet>
+				#{credito.estaPagado ? 'Pagado' : 'Por pagar'}
+				<span jsf:rendered="#{credito.estaPagado == true}">
+					<i class="zmdi zmdi-check-circle text-success"></i>
+				</span>
+				<span jsf:rendered="#{credito.estaPagado == false}">
+					<i class="zmdi zmdi-minus-circle text-warning"></i>
+				</span>
 			</h:column>
 			<h:column>
 				<f:facet name="header">Ver más</f:facet>
