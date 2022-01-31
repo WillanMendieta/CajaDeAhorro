@@ -1,10 +1,13 @@
 package ec.edu.ups.est.ProyectoFinal.bean;
 
+import java.util.List;
+
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
 import ec.edu.ups.est.ProyectoFinal.business.CreditoONLocal;
+import ec.edu.ups.est.ProyectoFinal.model.Amortizacion;
 import ec.edu.ups.est.ProyectoFinal.model.Credito;
 
 @Named
@@ -16,7 +19,15 @@ public class CreditoBean {
 	private int numeroCuotas;
 	private double cantidadCredito;
 	private String cedulaPersona;
+	private int idCredito;
+	private List<Amortizacion> amortizaciones;
 	
+	public int getIdCredito() {
+		return idCredito;
+	}
+	public void setIdCredito(int idCredito) {
+		this.idCredito = idCredito;
+	}
 	public int getNumeroCuotas() {
 		return numeroCuotas;
 	}
@@ -36,6 +47,13 @@ public class CreditoBean {
 		this.cedulaPersona = cedulaPersona;
 	}
 	
+	public List<Amortizacion> getAmortizaciones() {
+		return amortizaciones;
+	}
+	public void setAmortizaciones(List<Amortizacion> amortizaciones) {
+		this.amortizaciones = amortizaciones;
+	}
+	
 	public String solicitarCredito() {
 		try {
 			Credito credito = new Credito();
@@ -47,4 +65,16 @@ public class CreditoBean {
 		return "mensaje-exito?faces-redirect=true&texto=Se ha solicitado el crédito con éxito";
 	}
 	
+	public String realizarPago() {
+		try {
+			creditoON.pagarCredito(idCredito);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return "credito?faces-redirect=true&id=" + idCredito;
+	}
+	
+	public void cargarAmortizaciones() {
+		amortizaciones = creditoON.cargarAmortizaciones(idCredito);
+	}
 }
