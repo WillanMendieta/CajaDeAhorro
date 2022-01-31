@@ -8,6 +8,7 @@
    	<f:metadata>
     	<f:viewParam name="id" value="#{creditoBean.idCredito}"></f:viewParam>
     	<f:viewAction action="#{creditoBean.cargarAmortizaciones()}"/>
+    	<f:viewAction action="#{creditoBean.verificarBotonPago()}"/>
    	</f:metadata>
 </h:head>
 <ui:composition template="template/plantilla.xhtml">
@@ -29,8 +30,9 @@
 					#{amortizacion.montoPagado}
 				</h:column>
 			</h:dataTable>
-			<h:commandButton id="boton-pagar" action="#{creditoBean.realizarPago()}"
-											value="Realizar pago" style="flex-grow: 1; margin: 1rem 0;" class="btn btn-success px-5" />
+			<h:commandButton id="boton-pagar" action="#{creditoBean.realizarPago()}" disabled="#{creditoBean.buttonDisabled}"
+											value="Realizar pago" style="flex-grow: 1; margin: 1rem 0;" 
+											class="btn #{creditoBean.buttonDisabled ? 'btn-danger' : 'btn-success'} px-5" />
 		</h:form>
     </ui:define>
 </ui:composition>

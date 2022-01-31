@@ -8,7 +8,6 @@ import javax.inject.Named;
 
 import ec.edu.ups.est.ProyectoFinal.business.CreditoONLocal;
 import ec.edu.ups.est.ProyectoFinal.model.Amortizacion;
-import ec.edu.ups.est.ProyectoFinal.model.Credito;
 
 @Named
 @RequestScoped
@@ -21,7 +20,14 @@ public class CreditoBean {
 	private String cedulaPersona;
 	private int idCredito;
 	private List<Amortizacion> amortizaciones;
+	private boolean isButtonDisabled = false;
 	
+	public boolean isButtonDisabled() {
+		return isButtonDisabled;
+	}
+	public void setButtonDisabled(boolean isButtonDisabled) {
+		this.isButtonDisabled = isButtonDisabled;
+	}
 	public int getIdCredito() {
 		return idCredito;
 	}
@@ -56,7 +62,6 @@ public class CreditoBean {
 	
 	public String solicitarCredito() {
 		try {
-			Credito credito = new Credito();
 			creditoON.solicitarCredito(cantidadCredito, numeroCuotas, cedulaPersona);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -76,5 +81,9 @@ public class CreditoBean {
 	
 	public void cargarAmortizaciones() {
 		amortizaciones = creditoON.cargarAmortizaciones(idCredito);
+	}
+	
+	public void verificarBotonPago() {
+		this.isButtonDisabled = creditoON.getCredito(idCredito).isEstaPagado();
 	}
 }
