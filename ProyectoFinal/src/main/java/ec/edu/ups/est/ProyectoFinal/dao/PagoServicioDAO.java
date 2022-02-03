@@ -8,6 +8,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
+import ec.edu.ups.est.ProyectoFinal.model.Credito;
 import ec.edu.ups.est.ProyectoFinal.model.Movimiento;
 import ec.edu.ups.est.ProyectoFinal.model.PagoServicio;
 
@@ -23,6 +24,10 @@ public class PagoServicioDAO {
 
 		em.persist(ps);
 
+	}
+	public PagoServicio read(int id) {
+		PagoServicio ps = em.find(PagoServicio.class, id);
+		return ps;
 	}
 	public void upgrade(PagoServicio ps) {
 		em.merge(ps);

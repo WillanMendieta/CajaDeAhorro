@@ -8,7 +8,6 @@ import javax.inject.Inject;
 import ec.edu.ups.est.ProyectoFinal.dao.CuentaDAO;
 import ec.edu.ups.est.ProyectoFinal.dao.PagoServicioDAO;
 import ec.edu.ups.est.ProyectoFinal.model.Cuenta;
-import ec.edu.ups.est.ProyectoFinal.model.Movimiento;
 import ec.edu.ups.est.ProyectoFinal.model.PagoServicio;
 
 @Stateless
@@ -24,15 +23,15 @@ public class PagoServicioON {
 		ps.setEstado(false);
 		servicioDAO.insert(ps);
 	}
-	public void pagoServicio(int idPago)  throws Exception {
+	public void pagarServicio(int idPago)  throws Exception {
 		PagoServicio ps=servicioDAO.read(idPago);
 		Cuenta cuenta = ps.getCuenta();
 		Double saldoCuenta = cuenta.getSaldo();
 		Double montoPago = ps.getMonto();
 		System.out.println("Id MOVIMIENTO !!!!!!!" + ps.getIdPagoServico());
 			cuenta.setSaldo(saldoCuenta - montoPago);
-			ps.setEstado(true);;
-			servicioDAO.upgrade(ps);;
+			ps.setEstado(true);
+			servicioDAO.upgrade(ps);
 			cuentaDAO.upgrade(cuenta);
 		
 	}
