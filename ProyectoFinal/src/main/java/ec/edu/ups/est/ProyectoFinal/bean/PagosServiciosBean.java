@@ -8,17 +8,19 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import ec.edu.ups.est.ProyectoFinal.business.PagoServicioONLocal;
-import ec.edu.ups.est.ProyectoFinal.model.Movimiento;
 import ec.edu.ups.est.ProyectoFinal.model.PagoServicio;
 
 @Named
 @RequestScoped
 public class PagosServiciosBean {
 	
+
 	@Inject
 	private PagoServicioONLocal pagoServicioON;
+	
 	private List<PagoServicio> pagosServicios;
 	private String numeroCuenta;
+	
 	@PostConstruct
 	public void init() {
 		this.loadMovimientos();

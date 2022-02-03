@@ -1,0 +1,69 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"> 
+
+<h:head></h:head> 
+
+<ui:composition template="template/plantilla.xhtml">
+    <ui:define name="title">
+        Solicitar Crédito
+    </ui:define>
+    <ui:define name="content">
+	    <div class="">
+	    	<div style="padding-top: 2rem; justify-content: center;" class="d-flex">
+					<div style="width: 500px" class="card">
+						<div class="card-body">
+							<div class="card-title">Agregar Servicio</div>
+							<h:form>
+								<div class="form-group">
+			                      <label for="txtCedulaUser">Numero de Cuenta:</label>
+			                      <h:inputText class="form-control" id="txtNumeroCuenta" value="#{pagoServicioBean.numeroCuenta}" requiredMessage="Este campo es requerido">
+			                      	<f:validateRequired />
+			                      </h:inputText>
+			                      <h:message for="txtCedulaUser" style="color:red; margin-top: 0.5rem; display: block" />
+			                    </div>
+			                    
+			                    <div class="input-group mb-3">
+								  <div class="input-group-prepend">
+								    <label class="input-group-text" for="selectCuotas">Servicio a agregar:</label>
+								  </div>
+								  
+								  	<h:selectOneMenu class="custom-select" id="selectCuotas" value="#{pagoServicioBean.servicio}">
+										<f:selectItem itemValue="Agua" itemLabel="Agua" />
+										<f:selectItem itemValue="Luz" itemLabel="Luz" />
+										<f:selectItem itemValue="Internet" itemLabel="Internet" />
+									</h:selectOneMenu>
+								</div>
+								
+			                    
+								<div class="form-group">
+									<label for="monto">Monto a Pagar:</label>
+									<h:inputText value="#{pagoServicioBean.monto}"
+										type="number"
+										class="form-control" id="monto"
+										requiredMessage="Este campo es requerido"
+										converterMessage="Solo puede ingresar números"
+										validatorMessage="El valor mínimo a solicitar es $100"
+										placeholder="Ingrese la cantidad a retirar">
+										<f:validateRequired />
+										<f:validateLongRange minimum="100" />
+									</h:inputText>
+									<h:message for="monto" style="color:red; margin-top: 0.5rem; display: block" />
+								</div>
+								
+								<div class="form-group d-flex">
+									<h:commandButton id="boton-retirar" action="#{pagoServicioBean.GuardarPago()}"
+										value="Agregar Servicio" style="flex-grow: 1;" class="btn btn-success px-5" />
+								</div>
+							</h:form>
+						</div>
+					</div>
+			</div>
+	    </div>
+	</ui:define>
+ 
+</ui:composition>
+
+</html>

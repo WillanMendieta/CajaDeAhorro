@@ -12,6 +12,7 @@ import ec.edu.ups.est.ProyectoFinal.model.Credito;
 @Named
 @RequestScoped
 public class UsuarioBean {
+	
 	@Inject
 	private UsuarioON usuarioON;
 	

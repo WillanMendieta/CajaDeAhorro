@@ -4,24 +4,25 @@ import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
-import ec.edu.ups.est.ProyectoFinal.business.CuentasONLocal;
+
 import ec.edu.ups.est.ProyectoFinal.business.PagoServicioONLocal;
 
 @Named
 @RequestScoped
 public class PagoServicioBean {
-
+	
 	@Inject
 	private PagoServicioONLocal pagoServicioON;
 	
-	@Inject
-	private CuentasONLocal cuentaON;
+
 	
 	private int idPago;
 	private String NumeroCuenta;
 	private String servicio;
 	private Double monto;
 	private boolean estado;
+	
+	
 	
 	public int getIdPago() {
 		return idPago;
@@ -52,6 +53,15 @@ public class PagoServicioBean {
 	}
 	public void setEstado(boolean estado) {
 		this.estado = estado;
+	}
+	public  String GuardarPago() {
+		try {
+			pagoServicioON.guardarPago(monto, servicio, NumeroCuenta);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return "mensaje-error?faces-redirect=true&texto=" + e.getMessage();
+		}
+		return "mensaje-exito?faces-redirect=true&texto=Se ha solicitado el crédito con éxito";
 	}
 	
 	public String realizarPago() {
