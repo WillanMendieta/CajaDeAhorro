@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
-    xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html">
- 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+
 <ui:composition template="template/plantilla.xhtml">
 	<ui:define name="title">
         Giros
@@ -10,30 +12,28 @@
 	<ui:define name="content">
 		<h:form>
 
-			<h:outputLabel for="cedula"> Codigo Giro: </h:outputLabel>
-			<h:inputText id="  " value="">
-			</h:inputText>
+			
+			
+			<h:outputLabel > Cuenta:</h:outputLabel>
+			<h:inputText  value="#{giroBean.newgiro.cuenta.numeroCuenta}" />
 
-			<h:outputLabel for="saldo"> Cuenta:</h:outputLabel>
-			<h:inputText id="" value="" />
+			<h:outputLabel > Monto:</h:outputLabel>
+			<h:inputText  value="#{giroBean.newgiro.valor}" />
 
-			<h:outputLabel>Nombre Usuario:</h:outputLabel>
+
+			<h:outputLabel>Banco Destino:</h:outputLabel>
 			<h:inputText value="" />
-			<h:commandButton action="" value="" />
 
-			<h:outputLabel for="saldo"> Monto:</h:outputLabel>
-			<h:inputText id="" value="" />
+			<h:outputLabel > Pais Destino:</h:outputLabel>
+			<h:inputText  value="#{giroBean.newgiro.pais}" />
 
-			<h:outputLabel for="saldo"> Pais Destino:</h:outputLabel>
-			<h:inputText id="" value="" />
+			<h:outputLabel > Ciudad Destino:</h:outputLabel>
+			<h:inputText value="#{giroBean.newgiro.ciudad}" />
 
-			<h:outputLabel for="saldo"> Ciudad Destino:</h:outputLabel>
-			<h:inputText id="" value="" />
+			<h:outputLabel > Interes por Envio:</h:outputLabel>
+			<h:inputText  value="#{giroBean.newgiro.interes}" />
 
-			<h:outputLabel for="saldo"> Interes por Envio:</h:outputLabel>
-			<h:inputText id="" value="" />
-
-			<h:commandButton action="" value="GUARDAR" />
+			<h:commandButton action="#{giroBean.guardarGiro()}" value="GUARDAR" />
 
 		</h:form>
 
