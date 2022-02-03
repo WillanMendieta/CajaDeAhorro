@@ -1,0 +1,40 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"> 
+
+<h:head>
+   	<f:metadata>
+    	<f:viewParam name="id" value="#{creditoBean.idCredito}"></f:viewParam>
+    	<f:viewAction action="#{creditoBean.cargarAmortizaciones()}"/>
+    	<f:viewAction action="#{creditoBean.verificarBotonPago()}"/>
+   	</f:metadata>
+</h:head>
+<ui:composition template="template/plantillaUsuario.xhtml">
+    <ui:define name="title">
+        Credito #{creditoBean.idCredito}
+    </ui:define>
+    <ui:define name="content">
+    	<h:form>
+    		<h4 style="padding: 1rem 0 0; margin-bottom: 1rem;">
+    			Amortizaciones del crédito:
+    		</h4>
+	        <h:dataTable var="amortizacion" class="table table-striped" value="#{creditoBean.amortizaciones}">
+				<h:column>
+					<f:facet name="header">Fecha</f:facet>
+					#{amortizacion.fechaPago}
+				</h:column>
+				<h:column>
+					<f:facet name="header">Monto pagado</f:facet>
+					#{amortizacion.montoPagado}
+				</h:column>
+			</h:dataTable>
+			<h:commandButton id="boton-pagar" action="#{creditoBean.realizarPago()}" disabled="#{creditoBean.buttonDisabled}"
+											value="#{creditoBean.buttonDisabled ? 'Pagado' : 'Realizar pago'}" style="flex-grow: 1; margin: 1rem 0;" 
+											class="btn #{creditoBean.buttonDisabled ? 'btn-danger' : 'btn-success'} px-5" />
+		</h:form>
+    </ui:define>
+</ui:composition>
+
+</html>

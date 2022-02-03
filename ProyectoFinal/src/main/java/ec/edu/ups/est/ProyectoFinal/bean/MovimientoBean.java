@@ -23,6 +23,7 @@ public class MovimientoBean {
 	private CuentasONLocal cuentaON;
 	
 	private String numeroCuenta;
+	private String numeroCuentaDestino;
 	private Double cantidadRetirada;
 	private Double cantidadDepositada;
 	private String nombreUsuario;
@@ -36,6 +37,16 @@ public class MovimientoBean {
 	
 	public void createFakeData() {}
 	
+	
+	
+	public String getNumeroCuentaDestino() {
+		return numeroCuentaDestino;
+	}
+
+	public void setNumeroCuentaDestino(String numeroCuentaDestino) {
+		this.numeroCuentaDestino = numeroCuentaDestino;
+	}
+
 	public String getNumeroCuenta() {
 		return numeroCuenta;
 	}
@@ -102,14 +113,11 @@ public class MovimientoBean {
 	public String depositarFondos() {
 		try {
 			Cuenta cuenta = cuentaON.getCuenta(numeroCuenta);
-			
 			Movimiento movimiento = new Movimiento();
-			
 			movimiento.setCuenta(cuenta);
 			movimiento.setFecha(new Date());
 			movimiento.setMonto(cantidadDepositada);
 			movimiento.setTipoMovimiento("Depósito");
-			
 			movimientoON.deposito(movimiento);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -117,10 +125,68 @@ public class MovimientoBean {
 		return "estado-de-cuenta?faces-redirect=true&numero-cuenta=" + numeroCuenta;
 	}
 	
+	public String transferenciasDeCuentas () {
+		
+	
+			
+			
+			System.out.println("llega al inicio del metodo");
+			//Retiro
+			
+			Cuenta cuentaOrigen = cuentaON.getCuenta(numeroCuenta);
+			Movimiento movimiento = new Movimiento();
+			movimiento.setCuenta(cuentaOrigen);
+			movimiento.setFecha(new Date());
+			movimiento.setMonto(cantidadRetirada);
+			movimiento.setTipoMovimiento("Transferencia");
+			try {
+				movimientoON.retiro(movimiento);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			System.out.println("Ya retiro");
+
+			//Deposito
+			Cuenta cuentaDestino = cuentaON.getCuenta(numeroCuentaDestino);
+			Movimiento movimientoDestino = new Movimiento();
+			movimientoDestino.setCuenta(cuentaDestino);
+			movimientoDestino.setFecha(new Date());
+			movimientoDestino.setMonto(cantidadRetirada);
+			movimientoDestino.setTipoMovimiento("Transferencia");
+			try {
+				movimientoON.deposito(movimientoDestino);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			System.out.println("Yan termino ");
+			
+		
+		return "Se realixo";
+		
+		
+	}
+	
 	public void cargarDatosDeCuenta() {
 		if (numeroCuenta != null) {
 			System.out.println("numero es "+numeroCuenta);
 			Cuenta cuenta = cuentaON.getCuenta(numeroCuenta);
+			System.out.println("La CUENTA ES: !!!!  "+cuenta.getNumeroCuenta());
+			if (cuenta != null) {
+				nombreUsuario = cuenta.getUsuario().getNombre() + " " + cuenta.getUsuario().getApellido();
+				cedulaUsuario = cuenta.getUsuario().getCedula();
+			}	
+		}
+		
+	}
+	
+	public void cargarDatosDeCuentaDestino() {
+		if (numeroCuentaDestino!= null) {
+			System.out.println("numero es "+numeroCuentaDestino);
+			Cuenta cuenta = cuentaON.getCuenta(numeroCuentaDestino);
 			System.out.println("La CUENTA ES: !!!!  "+cuenta.getNumeroCuenta());
 			if (cuenta != null) {
 				nombreUsuario = cuenta.getUsuario().getNombre() + " " + cuenta.getUsuario().getApellido();
