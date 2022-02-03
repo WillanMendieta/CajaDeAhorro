@@ -21,7 +21,7 @@ public class PagoServicio implements Serializable{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "pas_id")
-	private int idPagoServico;
+	private int idPagoServicio;
 
 	@OneToOne
 	@JoinColumn(name = "pas_cuenta")
@@ -37,11 +37,11 @@ public class PagoServicio implements Serializable{
 	private boolean estado;
 
 	public int getIdPagoServico() {
-		return idPagoServico;
+		return idPagoServicio;
 	}
 
 	public void setIdPagoServico(int idPagoServico) {
-		this.idPagoServico = idPagoServico;
+		this.idPagoServicio = idPagoServico;
 	}
 
 

@@ -10,7 +10,7 @@ import ec.edu.ups.est.ProyectoFinal.model.PagoServicio;
 public interface PagoServicioONLocal {
 
 	public void insertarPagoServicio(PagoServicio ps);
-	public void pagarServicio(PagoServicio ps)  throws Exception;
+	public void pagarServicio(int idPago)  throws Exception;
 	public List<PagoServicio> getPagoServicios() ;
 	public List<PagoServicio> getPagoServiciosCuenta(String numeroCuenta);
 }
