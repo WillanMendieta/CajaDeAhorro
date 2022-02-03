@@ -20,7 +20,7 @@ public class PagoServicioBean {
 	private String NumeroCuenta;
 	private String servicio;
 	private Double monto;
-	private boolean estado;
+	private boolean estado=false;
 	
 	
 	
@@ -54,7 +54,8 @@ public class PagoServicioBean {
 	public void setEstado(boolean estado) {
 		this.estado = estado;
 	}
-	public  String GuardarPago() {
+	
+	public  String AgregarPago() {
 		try {
 			pagoServicioON.guardarPago(monto, servicio, NumeroCuenta);
 		} catch (Exception e) {
@@ -70,6 +71,6 @@ public class PagoServicioBean {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return "pagoServicio?faces-redirect=true&idPagoServicio=" + idPago;
+		return "mensaje-exito?faces-redirect=true&texto=Se ha realizado el pago del credito";
 	}
 }

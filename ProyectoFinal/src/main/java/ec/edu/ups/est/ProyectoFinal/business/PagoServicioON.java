@@ -1,6 +1,6 @@
 package ec.edu.ups.est.ProyectoFinal.business;
 
-import java.util.Date;
+
 import java.util.List;
 
 import javax.ejb.Stateless;
@@ -13,7 +13,7 @@ import ec.edu.ups.est.ProyectoFinal.model.PagoServicio;
 
 
 @Stateless
-public class PagoServicioON {
+public class PagoServicioON implements PagoServicioONLocal {
 
 	@Inject
 	private PagoServicioDAO servicioDAO;
