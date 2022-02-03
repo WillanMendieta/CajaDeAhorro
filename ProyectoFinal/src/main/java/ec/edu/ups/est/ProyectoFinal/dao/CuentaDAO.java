@@ -22,7 +22,10 @@ public class CuentaDAO {
 	}
 	
 	public Cuenta read(String numero) {
+		System.out.println("llega pero no lee " + numero);
 		Cuenta op = em.find(Cuenta.class, numero);
+		
+		System.out.println("llega a leer");
 		return op;
 	}
 	

@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html">
+ 
+<ui:composition template="template/plantilla.xhtml">
+    <ui:define name="title">
+        Transferencia
+    </ui:define>
+	    <ui:define name="content">
+		    <div class="">
+		    	<div style="padding-top: 2rem; justify-content: center;" class="d-flex">
+						<div style="width: 500px" class="card">
+							<div class="card-body">
+								<div class="card-title">Transferencia</div>
+								<h:form>
+									<div class="form-group">
+										<label for="txtNumeroCuenta">Número de cuenta Destino:</label>
+										<h:inputText requiredMessage="Este campo es requerido" 
+											value="#{movimientoBean.numeroCuentaDestino}"
+											class="form-control" id="txtNumeroCuenta" placeholder="Ingrese la Cuenta" >
+											<f:ajax execute="txtNumeroCuenta" render="txtCedulaUser txtNombreUser" 
+												listener="#{movimientoBean.cargarDatosDeCuentaDestino()}" />
+											<f:validateRequired />
+										</h:inputText>
+										<h:message for="txtNumeroCuenta" style="color:red; margin-top: 0.5rem; display: block" />
+									</div>
+									
+									<div class="form-group">
+				                      <label for="txtCedulaUser">Cédula del usuario:</label>
+				                      <h:outputText class="form-control" id="txtCedulaUser" value="#{movimientoBean.cedulaUsuario}" />
+				                    </div>
+				                    <div class="form-group">
+				                      <label for="txtNombreUser">Nombre del usuario:</label>
+				                      <h:outputText value="#{movimientoBean.nombreUsuario}" class="form-control" id="txtNombreUser" />
+				                    </div>
+				                    
+				                    
+				                    <div class="form-group">
+										<label for="input-1">Cuenta Origen</label>
+										<h:inputText value="#{movimientoBean.numeroCuenta}"
+											class="form-control" id="input-1"
+											placeholder="Ingrese la Cuenta" />
+									</div>
+									
+									<div class="form-group">
+										<label for="monto">Monto a Transferir</label>
+										<h:inputText value="#{movimientoBean.cantidadRetirada}"
+											type="number"
+											class="form-control" id="monto"
+											requiredMessage="Este campo es requerido"
+											converterMessage="Solo puede ingresar números"
+											placeholder="Ingrese la cantidad a retirar">
+											<f:validateRequired />
+										</h:inputText>
+										<h:message for="monto" style="color:red; margin-top: 0.5rem; display: block" />
+									</div>
+									
+									<div class="form-group">
+										
+										<h:commandButton id="boton-retirar" action="#{movimientoBean.transferenciasDeCuentas()}"
+											value="Realizar tranferencia" style="flex-grow: 1;" class="btn btn-success px-5" />
+									</div>
+								</h:form>
+							</div>
+
+			
+							</div>
+						</div>
+					</div>
+							
+							
+		</ui:define>
+ 
+</ui:composition>
+
+
+
+</html>
+
