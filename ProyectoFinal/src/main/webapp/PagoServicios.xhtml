@@ -45,18 +45,16 @@
 										class="form-control" id="monto"
 										requiredMessage="Este campo es requerido"
 										converterMessage="Solo puede ingresar números"
-										validatorMessage="El valor mínimo a solicitar es $100"
-										placeholder="Ingrese la cantidad a retirar">
+										validatorMessage="El valor mínimo a solicitar es $10"
+										placeholder="Ingrese la cantidad a pagar">
 										<f:validateRequired />
-										<f:validateLongRange minimum="100" />
+										<f:validateLongRange minimum="10" />
 									</h:inputText>
 									<h:message for="monto" style="color:red; margin-top: 0.5rem; display: block" />
 								</div>
 								
-								<div class="form-group d-flex">
-									<h:commandButton id="boton-retirar" action="#{pagoServicioBean.AgregarPago()}"
-										value="Agregar Servicio" style="flex-grow: 1;" class="btn btn-success px-5" />
-								</div>
+								<h:commandButton action="#{pagoServicioBean.AgregarPago()}"
+				value="Agregar Servicio a Pagar" />
 							</h:form>
 						</div>
 					</div>
