@@ -1,0 +1,46 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"> 
+
+<h:head>
+   	<f:metadata>
+    	<f:viewParam name="numero-cuenta" value="#{movimientosBean.numeroCuenta}"></f:viewParam>
+    	<f:viewAction action="#{movimientosBean.loadDataPorCuenta()}"/>
+   	</f:metadata>
+</h:head>
+
+<ui:composition template="/template/plantillaUsuario.xhtml">
+    <ui:define name="title">
+        Cuenta #{movimientosBean.numeroCuenta}
+    </ui:define>
+    <ui:define name="content">
+    	<h:form>
+	        <h:dataTable var="mov" class="table table-striped" value="#{movimientosBean.movimientos}">
+				<h:column>
+					<f:facet name="header">ID Movimiento</f:facet>
+					#{mov.idMovimiento}
+				</h:column>
+				<h:column>
+					<f:facet name="header">Fecha</f:facet>
+					#{mov.fecha}
+				</h:column>
+				<h:column>
+					<f:facet name="header">Monto</f:facet>
+					#{mov.monto}
+				</h:column>
+				<h:column>
+					<f:facet name="header">Tipo Movimiento</f:facet>
+					#{mov.tipoMovimiento}
+				</h:column>
+			</h:dataTable>
+		</h:form>
+		<p style="padding-left: 1rem; padding-top: 1rem; font-size: 1.2rem;">
+			El saldo actual de la cuenta es: 	
+			$#{cuentasBean.getCuenta(movimientosBean.numeroCuenta).saldo}
+		</p>
+    </ui:define>
+</ui:composition>
+
+</html>
