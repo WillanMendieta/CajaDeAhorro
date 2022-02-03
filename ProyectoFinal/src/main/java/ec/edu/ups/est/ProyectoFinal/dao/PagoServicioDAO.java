@@ -8,7 +8,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
-
+import ec.edu.ups.est.ProyectoFinal.model.Movimiento;
 import ec.edu.ups.est.ProyectoFinal.model.PagoServicio;
 
 
@@ -26,6 +26,13 @@ public class PagoServicioDAO {
 	}
 	public void upgrade(PagoServicio ps) {
 		em.merge(ps);
+	}
+	public List<PagoServicio> getList() {		
+		List<PagoServicio> listado = new ArrayList<PagoServicio>();
+		String jpql = "SELECT op FROM PagoServicio op";
+		Query query = em.createQuery(jpql, PagoServicio.class);
+		listado = query.getResultList();
+		return listado;
 	}
 	public List<PagoServicio> getListPorCuenta(String numeroCuenta) {
 		List<PagoServicio> listado = new ArrayList<PagoServicio>();
