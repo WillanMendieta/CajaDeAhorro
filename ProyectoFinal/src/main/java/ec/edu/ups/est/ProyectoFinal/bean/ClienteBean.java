@@ -41,9 +41,10 @@ public class ClienteBean {
 		}
 		catch(Exception e){
 			e.printStackTrace();
+			return "mensaje-error?faces-redirect=true&texto=" + e.getMessage();
 		}
 		
-		return "lista-usuarios?faces-redirect=true";
+		return "mensaje-exito?faces-redirect=true&texto=Cliente Creado con exito";
 	}
 	
 	public String guardarClienteAdmin() {
