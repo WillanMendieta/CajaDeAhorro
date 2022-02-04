@@ -18,8 +18,8 @@
 							<div class="card-title">Agregar Servicio</div>
 							<h:form>
 								<div class="form-group">
-			                      <label for="txtCedulaUser">Numero de Cuenta:</label>
-			                      <h:inputText class="form-control" id="txtNumeroCuenta" value="#{pagoServicioBean.numeroCuenta}" requiredMessage="Este campo es requerido">
+			                      <label for="txtCedulaUser">Numero de Cedula:</label>
+			                      <h:inputText class="form-control" id="txtNumeroCuenta" value="#{pagoServicioBean.cedulaPersona}" requiredMessage="Este campo es requerido">
 			                      	<f:validateRequired />
 			                      </h:inputText>
 			                      <h:message for="txtCedulaUser" style="color:red; margin-top: 0.5rem; display: block" />
@@ -52,9 +52,10 @@
 									</h:inputText>
 									<h:message for="monto" style="color:red; margin-top: 0.5rem; display: block" />
 								</div>
-								
-								<h:commandButton action="#{pagoServicioBean.AgregarPago()}"
-				value="Agregar Servicio a Pagar" />
+								<div class="form-group d-flex">
+									<h:commandButton id="boton-retirar" action="#{pagoServicioBean.AgregarPago()}"
+										value="Agregar Servicio a Pagar" style="flex-grow: 1;" class="btn btn-success px-5" />
+								</div>
 							</h:form>
 						</div>
 					</div>
@@ -65,3 +66,4 @@
 </ui:composition>
 
 </html>
+								

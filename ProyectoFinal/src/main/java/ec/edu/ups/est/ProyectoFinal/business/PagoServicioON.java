@@ -36,7 +36,7 @@ public class PagoServicioON implements PagoServicioONLocal {
 		ps.setEstado(false);
 		Usuario usuario = usuarioDAO.read(cedulaPersona);
 		if (usuario == null) {
-			throw new Exception("El usuario para el crédito no existe");
+			throw new Exception("El usuario para el servicio no existe");
 		}
 		List<PagoServicio> serviciosUsuario = usuario.getPagoServicios();
 		serviciosUsuario.add(ps);

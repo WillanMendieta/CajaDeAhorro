@@ -49,7 +49,7 @@ public class Usuario implements Serializable {
 	@JoinColumn(name="usu_ced")
 	private List<Credito> creditos;
 	
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@JoinColumn(name="usu_ced")
 	private List<PagoServicio> pagoServicios;
 	

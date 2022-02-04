@@ -17,7 +17,7 @@ public class PagoServicioBean {
 
 	
 	private int idPago;
-	private String NumeroCuenta;
+	private String cedulaPersona;
 	private String servicio;
 	private Double monto;
 	private boolean estado=false;
@@ -30,11 +30,12 @@ public class PagoServicioBean {
 	public void setIdPago(int idPago) {
 		this.idPago = idPago;
 	}
-	public String getNumeroCuenta() {
-		return NumeroCuenta;
+
+	public String getCedulaPersona() {
+		return cedulaPersona;
 	}
-	public void setNumeroCuenta(String numeroCuenta) {
-		NumeroCuenta = numeroCuenta;
+	public void setCedulaPersona(String cedulaPersona) {
+		this.cedulaPersona = cedulaPersona;
 	}
 	public String getServicio() {
 		return servicio;
@@ -57,7 +58,7 @@ public class PagoServicioBean {
 	
 	public  String AgregarPago() {
 		try {
-			pagoServicioON.guardarPago(monto, servicio, NumeroCuenta);
+			pagoServicioON.guardarPago(monto, servicio, cedulaPersona);
 		} catch (Exception e) {
 			e.printStackTrace();
 			return "mensaje-error?faces-redirect=true&texto=" + e.getMessage();
