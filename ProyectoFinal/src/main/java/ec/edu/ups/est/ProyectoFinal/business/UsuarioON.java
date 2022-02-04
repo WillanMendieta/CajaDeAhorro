@@ -14,6 +14,7 @@ public class UsuarioON {
 	@Inject
 	private UsuarioDAO usuarioDAO;
 
+
 	public void insertarUsuario(Usuario u) throws Exception {
 		if (!this.validaCedula(u.getCedula()))
 			throw new Exception("Cedula Incorrecta");
@@ -25,9 +26,7 @@ public class UsuarioON {
 			throw new Exception("Contraseña Incorrecta Debe Contener ( @ * - )");
 		if (!this.validarTelefono(u.getTelefono()))
 			throw new Exception("Teléfono Incorrecto Son 10 Números");
-		if (!this.validarVacios(u.getApellido(), u.getCedula(), u.getContra(), u.getCorreo(), u.getDireccion(),
-				u.getNombre(), u.getTelefono()))
-			throw new Exception("Existen campos vacion, por favor llenelos");
+		
 		usuarioDAO.insert(u);
 	}
 
@@ -79,14 +78,5 @@ public class UsuarioON {
 		}
 	}
 
-	public boolean validarVacios(String cedula, String correo, String contrasena, String telefono, String nombre,
-			String apellido, String direccion) {
-		if (telefono == "" || cedula == "" || correo == "" || contrasena == "" || nombre == "" || apellido == ""
-				|| direccion == "") {
-			return false;
-		} else {
-			return true;
-		}
-	}
 
 }
