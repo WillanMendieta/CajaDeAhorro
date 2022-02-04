@@ -12,6 +12,10 @@ public class CiudadDAO {
 	@PersistenceContext
 	private EntityManager em;
 
+	public void insert(Ciudad op) {
+		em.persist(op);
+	}
+	
 	public Ciudad read(int codigo) {
 		Ciudad c = em.find(Ciudad.class, codigo);
 		return c;
