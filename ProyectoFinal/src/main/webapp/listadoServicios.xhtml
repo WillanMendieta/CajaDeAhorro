@@ -2,58 +2,58 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:jsf="http://xmlns.jcp.org/jsf"
       xmlns:h="http://java.sun.com/jsf/html"> 
+
+<h:head>
+   	<f:metadata>
+    	<f:viewParam name="cedula" value="#{usuarioBean.cedula}"></f:viewParam>
+    	<f:viewAction action="#{usuarioBean.loadServicios()}"/>
+   	</f:metadata>
+</h:head>
 
 <ui:composition template="template/plantilla.xhtml">
     <ui:define name="title">
-        Listado de Servicios
+        Usuario #{usuarioBean.cedula}
     </ui:define>
     <ui:define name="content">
-    
-    	<h:form>
-	        <h:dataTable var="ser" class="table table-striped" value="#{pagosServiciosBean.loadDataPorCuenta()}">
-	     
-				<h:column>
-					<f:facet name="header">ID Movimiento</f:facet>
-					#{mov.idMovimiento}
-				</h:column>
-				<h:column>
-					<f:facet name="header">Fecha</f:facet>
-					#{mov.fecha}
-				</h:column>
-				<h:column>
-					<f:facet name="header">Monto</f:facet>
-					#{mov.monto}
-				</h:column>
-				<h:column>
-					<f:facet name="header">Nro. Cuenta</f:facet>
-					#{mov.cuenta.numeroCuenta}
-				</h:column>
-				<h:column>
-					<f:facet name="header">Cedula</f:facet>
-					#{cuentasBean.getCuenta(mov.cuenta.numeroCuenta).usuario.cedula}
-				</h:column>
-				<h:column>
-					<f:facet name="header">Nombre</f:facet>
-					#{cuentasBean.getCuenta(mov.cuenta.numeroCuenta).usuario.nombre}
-				</h:column>
-				<h:column>
-					<f:facet name="header">Apellidos</f:facet>
-					#{cuentasBean.getCuenta(mov.cuenta.numeroCuenta).usuario.apellido}
-				</h:column>
-				<h:column>
-					<f:facet name="header">Saldo</f:facet>
-					#{cuentasBean.getCuenta(mov.cuenta.numeroCuenta).saldo}
-				</h:column>
-				<h:column>
-					<f:facet name="header">Tipo Movimiento</f:facet>
-					#{mov.tipoMovimiento}
-				</h:column>
-				
-			</h:dataTable>
-		</h:form>
-
+   		<h4 style="padding: 1rem 0 0;">
+   			Servicios del usuario:
+   		</h4>
+        <h:dataTable var="servicio" class="table table-striped" value="#{usuarioBean.servicios}">
+        	<h:column>
+				<f:facet name="header">id</f:facet>
+				#{servicio.idPagoServico}
+			</h:column>
+			<h:column>
+				<f:facet name="header">Servicio</f:facet>
+				#{servicio.servicio}
+			</h:column>
+			<h:column>
+				<f:facet name="header">Monto</f:facet>
+				#{servicio.monto}
+			</h:column>
+			<h:column>
+				<f:facet name="header">Estado</f:facet>
+				#{servicio.estado ? 'Pagado' : 'Por pagar'}
+				<span jsf:rendered="#{servicio.estado == true}">
+					<i class="zmdi zmdi-check-circle text-success"></i>
+				</span>
+				<span jsf:rendered="#{servicio.estado == false}">
+					<i class="zmdi zmdi-minus-circle text-warning"></i>
+				</span>
+			</h:column>
+			<h:column>
+				<f:facet name="header">Ver más</f:facet>
+				<a style="flex-grow: 1;" class="btn btn-success px-5" href="/ProyectoFinal/credito.xhtml?id=#{credito.id}">
+					Ver más
+				</a>
+			</h:column>
+		</h:dataTable>
+		<h4 style="padding: 1rem 0 0;">
+   			Otra información:
+   		</h4>
     </ui:define>
- 
 </ui:composition>
+
 </html>
