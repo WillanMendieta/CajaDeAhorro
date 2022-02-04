@@ -104,4 +104,7 @@ public class Giro implements Serializable {
 		this.ciudad = ciudad;
 	}
 
+	
+	
+	
 }

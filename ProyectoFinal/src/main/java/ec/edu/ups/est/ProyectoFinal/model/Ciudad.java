@@ -1,25 +1,38 @@
 package ec.edu.ups.est.ProyectoFinal.model;
 
+import java.io.Serializable;
+import java.util.List;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "TBL_Ciudad")
-public class Ciudad {
+public class Ciudad implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 
 	@Id
-	@JoinColumn(name = "ciu_codigo")
+	@Column(name = "ciu_codigo")
 	@GeneratedValue
 	private int id;
 
-	@JoinColumn(name = "ciu_nombre")
+	@Column(name = "ciu_nombre")
 	private String nombre;
 
-	@JoinColumn(name = "ciu_interes")
-	private String interes;
+	@OneToMany(mappedBy = "ciudad", cascade = CascadeType.ALL)
+	private List<Giro> giro;
+
+	@Column(name = "ciu_interes")
+	private double interes;
 
 	public int getId() {
 		return id;
@@ -37,11 +50,20 @@ public class Ciudad {
 		this.nombre = nombre;
 	}
 
-	public String getInteres() {
+	
+	public List<Giro> getGiro() {
+		return giro;
+	}
+
+	public void setGiro(List<Giro> giro) {
+		this.giro = giro;
+	}
+
+	public double getInteres() {
 		return interes;
 	}
 
-	public void setInteres(String interes) {
+	public void setInteres(double interes) {
 		this.interes = interes;
 	}
 
