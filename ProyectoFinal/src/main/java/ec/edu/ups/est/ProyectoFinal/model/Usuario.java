@@ -10,6 +10,7 @@ import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -45,6 +46,9 @@ public class Usuario implements Serializable {
 	@Column(name ="usu_tip_usu")
 	private String tipoUsuario;
 	
+	@OneToOne(mappedBy = "usuario")
+	private Cuenta cuenta;
+	
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@JoinColumn(name="usu_ced")
 	private List<Credito> creditos;
@@ -56,6 +60,14 @@ public class Usuario implements Serializable {
 
 	public void setCreditos(List<Credito> creditos) {
 		this.creditos = creditos;
+	}
+
+	public Cuenta getCuenta() {
+		return cuenta;
+	}
+
+	public void setCuenta(Cuenta cuenta) {
+		this.cuenta = cuenta;
 	}
 
 	public String getTipoUsuario() {

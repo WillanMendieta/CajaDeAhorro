@@ -10,4 +10,6 @@ public interface CreditoONLocal {
 	public void pagarCredito(int idCredito) throws Exception;
 	public List<Amortizacion> cargarAmortizaciones(int idCredito);
 	public Credito getCredito(int id);
+	public void aprobarCredito(int idCredito);
+	public List<Credito> getCreditos();
 }

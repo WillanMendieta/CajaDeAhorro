@@ -48,7 +48,9 @@ public class CuentaBean {
 	}
 
 	public void guardarCuenta() {
-		newcuenta.setUsuario(getUsuario());
+		Usuario usuario = getUsuario();
+		usuario.setCuenta(newcuenta);
+		newcuenta.setUsuario(usuario);
 		cuentaON.insertarCuenta(newcuenta);
 	}
 	

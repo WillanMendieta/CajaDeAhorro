@@ -16,37 +16,23 @@ import javax.ws.rs.core.MediaType;
 import ec.edu.ups.est.ProyectoFinal.business.CreditoONLocal;
 import ec.edu.ups.est.ProyectoFinal.model.Credito;
 
-@Path("credito")
+@Path("creditos")
 public class CreditoRest {
 	@Inject
 	private CreditoONLocal creditoON;
 	
 	@GET
-	@Path("suma")
+	@Path("aprobar")
 	@Produces(MediaType.APPLICATION_JSON)
-	public double suma(@QueryParam("a") double a, @QueryParam("b") double b) {
-		return a + b;
-	}
-	
-	@POST
-	@Path("suma")
-	@Produces(MediaType.APPLICATION_JSON)
-	public double sumaPost(@FormParam("a") double a, @FormParam("b") double b) {
-		return a + b;
-	}
-	
-	@PUT
-	@Produces(MediaType.APPLICATION_JSON)
-	@Consumes(MediaType.APPLICATION_JSON)
-	public String insertarCredito(Credito credito) {
-		//creditoON.insertarCredito(credito);
-		return "OK";
+	public String aprobarCredito(@QueryParam("id") int id) {
+		creditoON.aprobarCredito(id);
+		return "Credito aprobado";
 	}
 	
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
-	public Credito buscarCredito() {
-		return new Credito();
+	public List<Credito> listarCreditos() {
+		return creditoON.getCreditos();
 	}
 	
 }

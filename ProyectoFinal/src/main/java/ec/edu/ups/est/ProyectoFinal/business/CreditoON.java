@@ -27,6 +27,7 @@ public class CreditoON implements CreditoONLocal {
 		credito.setFecha(new Date());
 		credito.setPlazosCredito(numeroCuotas);
 		credito.setEstaPagado(false);
+		credito.setEstaAprobado(false);
 		Usuario usuario = usuarioDAO.read(cedulaPersona);
 		if (usuario == null) {
 			throw new Exception("El usuario para el crédito no existe");
@@ -37,10 +38,20 @@ public class CreditoON implements CreditoONLocal {
 		usuarioDAO.upgrade(usuario);
 	}
 	
+	public void aprobarCredito(int idCredito) {
+		Credito creditoGuardado = creditoDAO.read(idCredito);
+		creditoGuardado.setEstaAprobado(true);
+		creditoDAO.upgrade(creditoGuardado);
+	}
+	
+	public List<Credito> getCreditos() {
+		return creditoDAO.getList();
+	}
+	
 	public void pagarCredito(int idCredito) throws Exception {
 		Credito creditoGuardado = creditoDAO.read(idCredito);
 		System.out.println("CREDITO GUARDADO ES:  !!!!   " + creditoGuardado.getMontoSolicitado());
-		if (creditoGuardado != null && creditoGuardado.isEstaPagado() == false) {
+		if (creditoGuardado != null && creditoGuardado.isEstaPagado() == false && creditoGuardado.isEstaAprobado() == true) {
 			List<Amortizacion> amortizacionesCredito = creditoGuardado.getAmortizaciones();
 			Amortizacion nuevaAmortizacion = new Amortizacion();
 			nuevaAmortizacion.setFechaPago(new Date());

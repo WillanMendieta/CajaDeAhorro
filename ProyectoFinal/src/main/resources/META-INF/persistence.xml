@@ -28,9 +28,9 @@
          <!--The database schema is auto created on deployment and dropped before redeploy.
              Note: the following configuration does not drop the tables on undeploy. If you prefer this, use this
              Hibernate property instead:
-             <property name="hibernate.hbm2ddl.auto" value="create-drop" />
+             <property name="hibernate.hbm2ddl.auto" value="create-drop" drop-and-create />
          -->
-         <property name="javax.persistence.schema-generation.database.action" value="update"/>
+         <property name="javax.persistence.schema-generation.database.action" value="drop-and-create"/>
          <property name="javax.persistence.schema-generation.create-source" value="metadata"/>
          <property name="javax.persistence.schema-generation.drop-source" value="metadata"/>
 

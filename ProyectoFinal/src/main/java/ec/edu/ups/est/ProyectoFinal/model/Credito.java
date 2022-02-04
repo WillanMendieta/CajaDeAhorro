@@ -12,6 +12,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -41,6 +42,12 @@ public class Credito implements Serializable {
 	@Column(name = "cre_esta_pagado")
 	private boolean estaPagado;
 	
+	@Column(name = "cre_esta_aprobado")
+	private boolean estaAprobado;
+	
+	//@ManyToOne(mappedBy = "credito")
+	//private Usuario usuario;
+	
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@JoinColumn(name="cre_id")
 	private List<Amortizacion> amortizaciones;
@@ -51,6 +58,14 @@ public class Credito implements Serializable {
 
 	public void setId(int id) {
 		this.id = id;
+	}
+
+	public boolean isEstaAprobado() {
+		return estaAprobado;
+	}
+
+	public void setEstaAprobado(boolean estaAprobado) {
+		this.estaAprobado = estaAprobado;
 	}
 
 	public boolean isEstaPagado() {
