@@ -30,11 +30,6 @@ public class CreditoDAO {
 		em.merge(op);
 	}
 	
-	public void delete(int id) {
-		Credito credito = em.find(Credito.class, id);
-		em.remove(credito);
-	}
-	
 	public List<Credito> getList() {		
 		List<Credito> listado = new ArrayList<Credito>();
 		String jpql = "SELECT op FROM Credito op";

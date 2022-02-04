@@ -1,0 +1,59 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:jsf="http://xmlns.jcp.org/jsf"
+      xmlns:h="http://java.sun.com/jsf/html"> 
+
+<h:head>
+   	<f:metadata>
+    	<f:viewParam name="cedula" value="#{usuarioBean.cedula}"></f:viewParam>
+    	<f:viewAction action="#{usuarioBean.loadServicios()}"/>
+   	</f:metadata>
+</h:head>
+
+<ui:composition template="template/plantilla.xhtml">
+    <ui:define name="title">
+        Usuario #{usuarioBean.cedula}
+    </ui:define>
+    <ui:define name="content">
+   		<h4 style="padding: 1rem 0 0;">
+   			Servicios del usuario:
+   		</h4>
+        <h:dataTable var="servicio" class="table table-striped" value="#{usuarioBean.servicios}">
+        	<h:column>
+				<f:facet name="header">id</f:facet>
+				#{servicio.idPagoServico}
+			</h:column>
+			<h:column>
+				<f:facet name="header">Servicio</f:facet>
+				#{servicio.servicio}
+			</h:column>
+			<h:column>
+				<f:facet name="header">Monto</f:facet>
+				#{servicio.monto}
+			</h:column>
+			<h:column>
+				<f:facet name="header">Estado</f:facet>
+				#{servicio.estado ? 'Pagado' : 'Por pagar'}
+				<span jsf:rendered="#{servicio.estado == true}">
+					<i class="zmdi zmdi-check-circle text-success"></i>
+				</span>
+				<span jsf:rendered="#{servicio.estado == false}">
+					<i class="zmdi zmdi-minus-circle text-warning"></i>
+				</span>
+			</h:column>
+			<h:column>
+				<f:facet name="header">Ver más</f:facet>
+				<a style="flex-grow: 1;" class="btn btn-success px-5" href="/ProyectoFinal/credito.xhtml?id=#{credito.id}">
+					Ver más
+				</a>
+			</h:column>
+		</h:dataTable>
+		<h4 style="padding: 1rem 0 0;">
+   			Otra información:
+   		</h4>
+    </ui:define>
+</ui:composition>
+
+</html>

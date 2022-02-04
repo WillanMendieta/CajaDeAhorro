@@ -38,5 +38,8 @@ public class UsuariosBean {
 	public String verUsuario(String cedula) {
 		return "usuario?faces-redirect=true&cedula=" + cedula;
 	}
+	public String verServicio(String cedula) {
+		return "listadoServicios?faces-redirect=true&cedula=" + cedula;
+	}
 
 }
