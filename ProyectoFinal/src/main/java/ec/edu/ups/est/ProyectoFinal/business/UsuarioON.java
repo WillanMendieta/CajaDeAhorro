@@ -78,5 +78,9 @@ public class UsuarioON {
 		}
 	}
 
+	public Usuario validarSesion(String cedula, String contrasena) {
+		
+		return usuarioDAO.getSesion(cedula, contrasena);
+	}
 
 }
