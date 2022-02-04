@@ -8,19 +8,103 @@
         Retiro
     </ui:define>
 	    <ui:define name="content">
-		<h:form>
 	
-		Cédula: <h:inputText value="#{clienteBean.newUsuario.cedula}" />
-		Nombre: <h:inputText value="#{clienteBean.newUsuario.nombre}" />
-		Apellido: <h:inputText value="#{clienteBean.newUsuario.apellido}" />
-		Direccion: <h:inputText value="#{clienteBean.newUsuario.direccion}" />
-		Teléfono: <h:inputText value="#{clienteBean.newUsuario.telefono}" />
-		Correo: <h:inputText value="#{clienteBean.newUsuario.correo}" />
-		Contraseña: <h:inputText value="#{clienteBean.newUsuario.contra}" />
-			<h:commandButton action="#{clienteBean.guardarCliente()}"
-				value="GUARDAR" />
+		<div class="">
+			<div style="padding-top: 2rem; justify-content: center;"
+				class="d-flex">
+				<div style="width: 500px" class="card">
+					<div class="card-body">
+						<div class="card-title">Crear Usuario</div>
+						<h:form>
+							<div class="form-group">
+								<label for="cedula">Cédula:</label>
+								<h:inputText class="form-control" id="cedula"
+									value="#{clienteBean.newUsuario.cedula}"
+									requiredMessage="Este campo es requerido">
+									<f:validateRequired />
+								</h:inputText>
+								<h:message for="txtCedulaUser"
+									style="color:red; margin-top: 0.5rem; display: block" />
+							</div>
 
-		</h:form>
+							<div class="form-group">
+								<label for="nombre">Nombre:</label>
+								<h:inputText class="form-control" id="nombre"
+									value="#{clienteBean.newUsuario.nombre}"
+									requiredMessage="Este campo es requerido">
+									<f:validateRequired />
+								</h:inputText>
+								<h:message for="txtCedulaUser"
+									style="color:red; margin-top: 0.5rem; display: block" />
+							</div>
+
+							<div class="form-group">
+								<label for="apellido">Apellido:</label>
+								<h:inputText class="form-control" id="apellido"
+									value="#{clienteBean.newUsuario.apellido}"
+									requiredMessage="Este campo es requerido">
+									<f:validateRequired />
+								</h:inputText>
+								<h:message for="txtCedulaUser"
+									style="color:red; margin-top: 0.5rem; display: block" />
+							</div>
+
+							<div class="form-group">
+								<label for="dir">Direccion:</label>
+								<h:inputText class="form-control" id="dir"
+									value="#{clienteBean.newUsuario.direccion}"
+									requiredMessage="Este campo es requerido">
+									<f:validateRequired />
+								</h:inputText>
+								<h:message for="final"
+									style="color:red; margin-top: 0.5rem; display: block" />
+							</div>
+							
+							<div class="form-group">
+								<label for="tel">Teléfono:</label>
+								<h:inputText class="form-control" id="tel"
+									value="#{clienteBean.newUsuario.telefono}"
+									requiredMessage="Este campo es requerido">
+									<f:validateRequired />
+								</h:inputText>
+								<h:message for="final"
+									style="color:red; margin-top: 0.5rem; display: block" />
+							</div>
+							
+							<div class="form-group">
+								<label for="correo">Correo:</label>
+								<h:inputText class="form-control" id="correo"
+									value="#{clienteBean.newUsuario.correo}"
+									requiredMessage="Este campo es requerido">
+									<f:validateRequired />
+								</h:inputText>
+								<h:message for="final"
+									style="color:red; margin-top: 0.5rem; display: block" />
+							</div>
+							
+							<div class="form-group">
+								<label for="contra">Contraseña:</label>
+								<h:inputText class="form-control" id="contra"
+									value="#{clienteBean.newUsuario.contra}"
+									requiredMessage="Este campo es requerido">
+									<f:validateRequired />
+								</h:inputText>
+								<h:message for="final"
+									style="color:red; margin-top: 0.5rem; display: block" />
+							</div>
+
+
+
+							<div class="form-group d-flex">
+								<h:commandButton id="btnGuardar"
+									action="#{clienteBean.guardarCliente()}" value="GUARDAR"
+									style="flex-grow: 1;" class="btn btn-success px-5" />
+							</div>
+						</h:form>
+					</div>
+				</div>
+			</div>
+		</div>
 
 
 	</ui:define>

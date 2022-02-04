@@ -1,43 +1,94 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
-    xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html">
- 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+
 <ui:composition template="template/plantilla.xhtml">
-    <ui:define name="title">
+	<ui:define name="title">
         Retiro
     </ui:define>
-	    <ui:define name="content">
-			<h:form>
-		
-				<h:outputLabel for="cedula"> Cédula: </h:outputLabel>
-				<h:inputText id="cedula"
-					value="#{cuentaBean.cedulaUsuario}">
-				</h:inputText>
-				<h:outputLabel for="saldo"> Saldo:</h:outputLabel>
-				<h:inputText id="saldo"
-					value="#{cuentaBean.newCuenta.saldo}" />
-		
-				<h:outputLabel>N° Cuenta:</h:outputLabel>
-				<h:inputText value="#{cuentaBean.newCuenta.numeroCuenta}" />
-				<h:commandButton action="#{cuentaBean.generarNumCuenta()}"
-					value="Generar" />
-		
-				<h:outputLabel>Tipo Cuenta:</h:outputLabel>
-				<h:selectOneMenu value="#{cuentaBean.newCuenta.tipoCuenta}">
+	<ui:define name="content">
 
-					<f:selectItem itemValue="Ahorros" itemLabel="Ahorros" />
-					<f:selectItem itemValue="Corriente" itemLabel="Corriente" />
-				</h:selectOneMenu>
-		
-				<h:commandButton action="#{cuentaBean.guardarCuenta()}"
-					value="GUARDAR" />
-		
-			</h:form>
-			
-			
-		</ui:define>
- 
+		<div class="">
+			<div style="padding-top: 2rem; justify-content: center;"
+				class="d-flex">
+				<div style="width: 500px" class="card">
+					<div class="card-body">
+						<div class="card-title">Crear Cuenta</div>
+						<h:form>
+							<div class="form-group">
+								<label for="cedula">Cédula:</label>
+								<h:inputText class="form-control" id="cedula"
+									value="#{cuentaBean.cedulaUsuario}"
+									requiredMessage="Este campo es requerido">
+									<f:validateRequired />
+								</h:inputText>
+								<h:message for="txtCedulaUser"
+									style="color:red; margin-top: 0.5rem; display: block" />
+							</div>
+
+							<div class="form-group">
+								<label for="nombre">Saldo:</label>
+								<h:inputText class="form-control" id="nombre"
+									value="#{cuentaBean.newCuenta.saldo}"
+									requiredMessage="Este campo es requerido">
+									<f:validateRequired />
+								</h:inputText>
+								<h:message for="txtCedulaUser"
+									style="color:red; margin-top: 0.5rem; display: block" />
+							</div>
+
+							<div class="form-group">
+								<label for="apellido">N° Cuenta::</label>
+								<h:inputText class="form-control" id="apellido"
+									value="#{cuentaBean.newCuenta.numeroCuenta}"
+									requiredMessage="Este campo es requerido">
+									<f:validateRequired />
+								</h:inputText>
+								<h:message for="txtCedulaUser"
+									style="color:red; margin-top: 0.5rem; display: block" />
+							</div>
+
+							<div class="form-group d-flex">
+								<h:commandButton id="btnGenerar"
+									action="#{cuentaBean.generarNumCuenta()}" value="Generar"
+									style="flex-grow: 1;" class="btn btn-success px-5" />
+							</div>
+
+							<div class="form-group">
+								<label for="cuenta">Tipo de cuenta:</label>
+
+								<h:selectOneMenu class="custom-select" id="cuentaSelec"
+									value="#{giroBean.newgiro.banco}">
+									<f:selectItem itemValue=""
+										itemLabel="Seleccione el tipo de cuenta" />
+									<f:selectItem itemValue="Ahorros" itemLabel="Ahorros" />
+									<f:selectItem itemValue="Corriente" itemLabel="Corriente" />
+
+								</h:selectOneMenu>
+
+								<h:message for="cuenta"
+									style="color:red; margin-top: 0.5rem; display: block" />
+							</div>
+
+
+
+							<div class="form-group d-flex">
+								<h:commandButton id="btnGuardar"
+									action="#{cuentaBean.guardarCuenta()}" value="CREAR"
+									style="flex-grow: 1;" class="btn btn-success px-5" />
+							</div>
+						</h:form>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+	</ui:define>
+
 </ui:composition>
 </html>
 

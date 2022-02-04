@@ -23,6 +23,11 @@ public class UsuarioON {
 			throw new Exception("Contraseña Incorrecta Debe Contener 8 Caracteres Minimo");
 		if (!this.validarContrasenaCarac(u.getContra()))
 			throw new Exception("Contraseña Incorrecta Debe Contener ( @ * - )");
+		if (!this.validarTelefono(u.getTelefono()))
+			throw new Exception("Teléfono Incorrecto Son 10 Números");
+		if (!this.validarVacios(u.getApellido(), u.getCedula(), u.getContra(), u.getCorreo(), u.getDireccion(),
+				u.getNombre(), u.getTelefono()))
+			throw new Exception("Existen campos vacion, por favor llenelos");
 		usuarioDAO.insert(u);
 	}
 
@@ -63,6 +68,24 @@ public class UsuarioON {
 			return true;
 		} else {
 			return false;
+		}
+	}
+
+	public boolean validarTelefono(String telefono) {
+		if (telefono.length() == 10) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	public boolean validarVacios(String cedula, String correo, String contrasena, String telefono, String nombre,
+			String apellido, String direccion) {
+		if (telefono == "" || cedula == "" || correo == "" || contrasena == "" || nombre == "" || apellido == ""
+				|| direccion == "") {
+			return false;
+		} else {
+			return true;
 		}
 	}
 
