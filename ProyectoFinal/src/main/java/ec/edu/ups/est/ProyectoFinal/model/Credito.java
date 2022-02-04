@@ -45,8 +45,9 @@ public class Credito implements Serializable {
 	@Column(name = "cre_esta_aprobado")
 	private boolean estaAprobado;
 	
-	//@ManyToOne(mappedBy = "credito")
-	//private Usuario usuario;
+	@ManyToOne
+	@JoinColumn(name = "usu_ced")
+	private Usuario usuario;
 	
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@JoinColumn(name="cre_id")
@@ -58,6 +59,14 @@ public class Credito implements Serializable {
 
 	public void setId(int id) {
 		this.id = id;
+	}
+
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
 	}
 
 	public boolean isEstaAprobado() {

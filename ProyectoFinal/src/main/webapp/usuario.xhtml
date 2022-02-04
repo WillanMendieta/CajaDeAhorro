@@ -43,17 +43,23 @@
 			</h:column>
 			<h:column>
 				<f:facet name="header">Estado</f:facet>
-				#{credito.estaPagado ? 'Pagado' : 'Por pagar'}
-				<span jsf:rendered="#{credito.estaPagado == true}">
-					<i class="zmdi zmdi-check-circle text-success"></i>
+				<span jsf:rendered="#{credito.estaAprobado == false}">
+					No aprobado
+					<i class="zmdi zmdi-minus-circle text-danger"></i>
 				</span>
-				<span jsf:rendered="#{credito.estaPagado == false}">
-					<i class="zmdi zmdi-minus-circle text-warning"></i>
+				<span jsf:rendered="#{credito.estaAprobado == true}">
+					#{credito.estaPagado ? 'Pagado' : 'Por pagar'}
+					<span jsf:rendered="#{credito.estaPagado == true}">
+						<i class="zmdi zmdi-check-circle text-success"></i>
+					</span>
+					<span jsf:rendered="#{credito.estaPagado == false}">
+						<i class="zmdi zmdi-minus-circle text-warning"></i>
+					</span>
 				</span>
 			</h:column>
 			<h:column>
 				<f:facet name="header">Ver más</f:facet>
-				<a style="flex-grow: 1;" class="btn btn-success px-5" href="/ProyectoFinal/credito.xhtml?id=#{credito.id}">
+				<a style="flex-grow: 1; visibility: #{credito.estaAprobado == false ? 'hidden' : 'visible'}" class="btn btn-success px-5" href="/ProyectoFinal/credito.xhtml?id=#{credito.id}">
 					Ver más
 				</a>
 			</h:column>

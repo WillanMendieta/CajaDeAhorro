@@ -7,9 +7,11 @@ import javax.ejb.Stateless;
 import javax.inject.Inject;
 
 import ec.edu.ups.est.ProyectoFinal.dao.CreditoDAO;
+import ec.edu.ups.est.ProyectoFinal.dao.CuentaDAO;
 import ec.edu.ups.est.ProyectoFinal.dao.UsuarioDAO;
 import ec.edu.ups.est.ProyectoFinal.model.Amortizacion;
 import ec.edu.ups.est.ProyectoFinal.model.Credito;
+import ec.edu.ups.est.ProyectoFinal.model.Cuenta;
 import ec.edu.ups.est.ProyectoFinal.model.Usuario;
 
 @Stateless
@@ -19,6 +21,9 @@ public class CreditoON implements CreditoONLocal {
 	
 	@Inject
 	private UsuarioDAO usuarioDAO;
+	
+	@Inject
+	private CuentaDAO cuentaDAO;
 	
 	public void solicitarCredito(double montoSolicitado, int numeroCuotas, String cedulaPersona) throws Exception {
 		Credito credito = new Credito();
@@ -32,16 +37,18 @@ public class CreditoON implements CreditoONLocal {
 		if (usuario == null) {
 			throw new Exception("El usuario para el crédito no existe");
 		}
-		List<Credito> creditosUsuario = usuario.getCreditos();
-		creditosUsuario.add(credito);
-		usuario.setCreditos(creditosUsuario);
-		usuarioDAO.upgrade(usuario);
+		credito.setUsuario(usuario);
+		creditoDAO.insert(credito);
 	}
 	
 	public void aprobarCredito(int idCredito) {
 		Credito creditoGuardado = creditoDAO.read(idCredito);
 		creditoGuardado.setEstaAprobado(true);
+		Usuario usuarioCredito = creditoGuardado.getUsuario();
+		Cuenta cuentaUsuario = usuarioCredito.getCuenta();
+		cuentaUsuario.setSaldo(cuentaUsuario.getSaldo() + creditoGuardado.getMontoSolicitado());
 		creditoDAO.upgrade(creditoGuardado);
+		cuentaDAO.upgrade(cuentaUsuario);
 	}
 	
 	public List<Credito> getCreditos() {

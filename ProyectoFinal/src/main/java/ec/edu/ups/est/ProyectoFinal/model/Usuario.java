@@ -49,8 +49,7 @@ public class Usuario implements Serializable {
 	@OneToOne(mappedBy = "usuario")
 	private Cuenta cuenta;
 	
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-	@JoinColumn(name="usu_ced")
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "usuario")
 	private List<Credito> creditos;
 	
 	
