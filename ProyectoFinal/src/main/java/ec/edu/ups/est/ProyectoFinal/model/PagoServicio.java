@@ -22,10 +22,6 @@ public class PagoServicio implements Serializable{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "pas_id")
 	private int idPagoServicio;
-
-	@OneToOne
-	@JoinColumn(name = "pas_cuenta")
-	private Cuenta cuenta;
 	
 	@Column(name = "pas_servicio")
 	private String servicio;
@@ -42,15 +38,6 @@ public class PagoServicio implements Serializable{
 
 	public void setIdPagoServico(int idPagoServico) {
 		this.idPagoServicio = idPagoServico;
-	}
-
-
-	public Cuenta getCuenta() {
-		return cuenta;
-	}
-
-	public void setCuenta(Cuenta cuenta) {
-		this.cuenta = cuenta;
 	}
 
 	public String getServicio() {

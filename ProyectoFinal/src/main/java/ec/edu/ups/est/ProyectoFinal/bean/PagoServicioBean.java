@@ -62,7 +62,7 @@ public class PagoServicioBean {
 			e.printStackTrace();
 			return "mensaje-error?faces-redirect=true&texto=" + e.getMessage();
 		}
-		return "mensaje-exito?faces-redirect=true&texto=Se ha solicitado el crédito con éxito";
+		return "mensaje-exito?faces-redirect=true&texto=Se ha agregado el Servicio con Exito";
 	}
 	
 	public String realizarPago() {

@@ -49,7 +49,20 @@ public class Usuario implements Serializable {
 	@JoinColumn(name="usu_ced")
 	private List<Credito> creditos;
 	
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@JoinColumn(name="usu_ced")
+	private List<PagoServicio> pagoServicios;
 	
+	
+	
+	public List<PagoServicio> getPagoServicios() {
+		return pagoServicios;
+	}
+
+	public void setPagoServicios(List<PagoServicio> pagoServicios) {
+		this.pagoServicios = pagoServicios;
+	}
+
 	public List<Credito> getCreditos() {
 		return creditos;
 	}

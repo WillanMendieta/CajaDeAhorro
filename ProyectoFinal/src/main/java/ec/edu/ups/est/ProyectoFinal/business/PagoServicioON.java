@@ -8,8 +8,11 @@ import javax.inject.Inject;
 
 import ec.edu.ups.est.ProyectoFinal.dao.CuentaDAO;
 import ec.edu.ups.est.ProyectoFinal.dao.PagoServicioDAO;
+import ec.edu.ups.est.ProyectoFinal.dao.UsuarioDAO;
+import ec.edu.ups.est.ProyectoFinal.model.Credito;
 import ec.edu.ups.est.ProyectoFinal.model.Cuenta;
 import ec.edu.ups.est.ProyectoFinal.model.PagoServicio;
+import ec.edu.ups.est.ProyectoFinal.model.Usuario;
 
 
 @Stateless
@@ -21,31 +24,32 @@ public class PagoServicioON implements PagoServicioONLocal {
 	@Inject
 	private CuentaDAO cuentaDAO;
 	
+	@Inject
+	private UsuarioDAO usuarioDAO;
+	
 
 	
-	public void guardarPago(double monto,String servicio, String numeroCuenta) throws Exception {
+	public void guardarPago(double monto,String servicio, String cedulaPersona) throws Exception {
 		PagoServicio ps= new PagoServicio();
 		ps.setMonto(monto);
 		ps.setServicio(servicio);
 		ps.setEstado(false);
-		Cuenta cuenta = cuentaDAO.read(numeroCuenta);
-		if (cuenta == null) {
-			throw new Exception("La cuenta no existe");
+		Usuario usuario = usuarioDAO.read(cedulaPersona);
+		if (usuario == null) {
+			throw new Exception("El usuario para el crédito no existe");
 		}
-		ps.setCuenta(cuenta);
-		servicioDAO.insert(ps);
+		List<PagoServicio> serviciosUsuario = usuario.getPagoServicios();
+		serviciosUsuario.add(ps);
+		usuario.setPagoServicios(serviciosUsuario);
+		usuarioDAO.upgrade(usuario);
 	}
 	
 	public void pagarServicio(int idPago)  throws Exception {
 		PagoServicio ps=servicioDAO.read(idPago);
-		Cuenta cuenta = ps.getCuenta();
-		Double saldoCuenta = cuenta.getSaldo();
 		Double montoPago = ps.getMonto();
 		System.out.println("Id MOVIMIENTO !!!!!!!" + ps.getIdPagoServico());
-			cuenta.setSaldo(saldoCuenta - montoPago);
 			ps.setEstado(true);
 			servicioDAO.upgrade(ps);
-			cuentaDAO.upgrade(cuenta);
 		
 	}
 
@@ -53,7 +57,8 @@ public class PagoServicioON implements PagoServicioONLocal {
 		return servicioDAO.getList();
 	}
 	
-	public List<PagoServicio> getPagoServiciosCuenta(String numeroCuenta) {
-		return servicioDAO.getListPorCuenta(numeroCuenta);
+
+	public PagoServicio getPagoServicio(int id) {
+		return servicioDAO.read(id);
 	}
 }

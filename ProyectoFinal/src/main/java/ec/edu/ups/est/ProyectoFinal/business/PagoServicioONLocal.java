@@ -12,5 +12,5 @@ public interface PagoServicioONLocal {
 	public void guardarPago(double monto,String servicio, String numeroCuenta) throws Exception;
 	public void pagarServicio(int idPago)  throws Exception;
 	public List<PagoServicio> getPagoServicios() ;
-	public List<PagoServicio> getPagoServiciosCuenta(String numeroCuenta);
+	public PagoServicio getPagoServicio(int id);
 }

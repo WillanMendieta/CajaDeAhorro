@@ -26,11 +26,7 @@ public class PagosServiciosBean {
 		this.loadMovimientos();
 	}
 	
-	public void loadDataPorCuenta() {
-		if(this.numeroCuenta == null)
-			return;
-		this.pagosServicios = pagoServicioON.getPagoServiciosCuenta(numeroCuenta);
-	}
+	
 	
 
 	public List<PagoServicio> getPagosServicios() {
