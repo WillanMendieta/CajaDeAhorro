@@ -1,10 +1,14 @@
 package ec.edu.ups.est.ProyectoFinal.dao;
 
+import java.util.List;
+
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 import ec.edu.ups.est.ProyectoFinal.model.Ciudad;
+import ec.edu.ups.est.ProyectoFinal.model.Usuario;
 
 @Stateless
 public class CiudadDAO {
@@ -21,4 +25,18 @@ public class CiudadDAO {
 		return c;
 
 	}
+	
+	public List<Ciudad>  singleCiudad(String nombre) {
+		
+		String jpql="SELECT op FROM Ciudad WHERE nombre = ?1";
+		Query query = em.createQuery(jpql, Ciudad.class);
+		query.setParameter(1, nombre);
+		
+		List<Ciudad> ciudad = query.getResultList();
+		
+
+		return ciudad;
+
+	}
+
 }

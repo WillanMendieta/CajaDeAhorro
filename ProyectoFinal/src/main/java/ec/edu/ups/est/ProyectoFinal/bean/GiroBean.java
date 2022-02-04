@@ -43,10 +43,12 @@ public class GiroBean {
 	public String guardarGiro() {
 		newgiro.setInteres(interes);
 		try {
+			newgiro.setMontoFinal((interes * newgiro.getValor())+newgiro.getValor());
 			giroON.insertarGiro(newgiro);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		
 
 		return null;
 	}
@@ -66,7 +68,8 @@ public class GiroBean {
 		newgiro.setCiudad(ciudad);
 		return null;
 	}
-
+	
+	
 	public double getInteres() {
 		return interes;
 	}
