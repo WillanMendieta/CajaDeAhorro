@@ -4,8 +4,36 @@
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:h="http://java.sun.com/jsf/html"> 
 
-<h:head></h:head> 
-<body> 
-ups
-</body> 
+	<h:head>
+ 		<f:metadata>
+ 			<f:viewParam name="id" value="#{loginBean.cedula}"></f:viewParam>
+ 			<f:viewAction action="#{loginBean.loadUsuario()}"/>
+ 		</f:metadata>
+ 	</h:head> 
+
+<ui:composition template="template/plantilla.xhtml">
+    <ui:define name="title">
+        Inicio
+    </ui:define>
+    		<ui:define name="content">
+    		Inicio
+    		<h:form>
+    		<h:outputLabel value="Bienvenido" />
+    		<!-- <h:outputText  value="#{loginBean.usuario.nombre}" />  -->
+    		<h:dataTable var="cuenta" class="" value="#{loginBean.loadUsuario()}">
+    		<h:column>
+					<f:facet name="header">Nombre</f:facet>
+					#{loginBean.usuario.nombre}
+			</h:column>
+			</h:dataTable>
+			
+			</h:form>
+				<!-- 
+    			<aside>
+                <img src="./template/Imagenes/4.gif"  />
+                </aside>
+				 -->
+    		</ui:define>
+</ui:composition>
+
 </html>
