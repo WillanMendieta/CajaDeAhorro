@@ -6,6 +6,7 @@ import javax.inject.Named;
 
 
 import ec.edu.ups.est.ProyectoFinal.business.PagoServicioONLocal;
+import ec.edu.ups.est.ProyectoFinal.model.PagoServicio;
 
 @Named
 @RequestScoped
@@ -72,6 +73,10 @@ public class PagoServicioBean {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return "mensaje-exito?faces-redirect=true&texto=Se ha realizado el pago del credito";
+		return "mensaje-exito?faces-redirect=true&texto=Se ha realizado el pago del Servicio";
+	}
+	public PagoServicio cargarPago(){
+		PagoServicio ps=pagoServicioON.getPagoServicio(idPago);
+		return ps;
 	}
 }

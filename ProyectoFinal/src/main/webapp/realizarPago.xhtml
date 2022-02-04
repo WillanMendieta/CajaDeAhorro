@@ -1,0 +1,43 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"> 
+
+<h:head>
+   	<f:metadata>
+    	<f:viewParam name="id" value="#{pagoServicioBean.idPago}"></f:viewParam>
+ 
+   	</f:metadata>
+</h:head>
+<ui:composition template="template/plantilla.xhtml">
+    <ui:define name="title">
+        Credito #{creditoBean.idCredito}
+    </ui:define>
+    <ui:define name="content">
+    	<h:form>
+    		<h4 style="padding: 1rem 0 0; margin-bottom: 1rem;">
+    			Pago Servicio
+    		</h4>
+	        <h:dataTable var="pago" class="table table-striped" value="#{pagoServicioBean.cargarPago()}">
+				<h:column>
+					<f:facet name="header">Cedula</f:facet>
+					#{pago.usuario.cedula}
+				</h:column>
+				<h:column>
+					<f:facet name="header">Monto a Cancelar</f:facet>
+					#{pago.monto}
+				</h:column>
+				<h:column>
+					<f:facet name="header">Saldo Actual</f:facet>
+					#{pago.usuario.cuenta.saldo}
+				</h:column>
+			</h:dataTable>
+<h:commandButton id="boton-retirarl" action="#{pagoServicioBean.realizarPago()}"
+											value="Pagar" style="flex-grow: 1;" class="btn btn-success px-5" />
+		</h:form>
+    </ui:define>
+</ui:composition>
+
+</html>
+		

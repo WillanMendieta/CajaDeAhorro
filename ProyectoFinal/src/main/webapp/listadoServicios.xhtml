@@ -45,8 +45,8 @@
 			</h:column>
 			<h:column>
 				<f:facet name="header">Ver más</f:facet>
-				<a style="flex-grow: 1;" class="btn btn-success px-5" href="/ProyectoFinal/credito.xhtml?id=#{credito.id}">
-					Ver más
+				<a style="flex-grow: 1; visibility: #{servicio.estado == true ? 'hidden' : 'visible'}" class="btn btn-success px-5" href="/ProyectoFinal/realizarPago.xhtml?id=#{servicio.idPagoServico}">
+					Realizar Pago
 				</a>
 			</h:column>
 		</h:dataTable>

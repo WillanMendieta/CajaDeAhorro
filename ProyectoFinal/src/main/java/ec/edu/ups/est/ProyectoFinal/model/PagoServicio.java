@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -31,6 +32,20 @@ public class PagoServicio implements Serializable{
 	
 	@Column(name = "pas_estado")
 	private boolean estado;
+	
+	@ManyToOne
+	@JoinColumn(name = "usu_ced")
+	private Usuario usuario;
+	
+	
+
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
+	}
 
 	public int getIdPagoServico() {
 		return idPagoServicio;

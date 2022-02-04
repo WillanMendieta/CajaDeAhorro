@@ -38,18 +38,24 @@ public class PagoServicioON implements PagoServicioONLocal {
 		if (usuario == null) {
 			throw new Exception("El usuario para el servicio no existe");
 		}
+		ps.setUsuario(usuario);
 		List<PagoServicio> serviciosUsuario = usuario.getPagoServicios();
 		serviciosUsuario.add(ps);
 		usuario.setPagoServicios(serviciosUsuario);
 		usuarioDAO.upgrade(usuario);
 	}
 	
-	public void pagarServicio(int idPago)  throws Exception {
+	public void pagarServicio(int idPago)  throws Exception {		
 		PagoServicio ps=servicioDAO.read(idPago);
+		Usuario usuario=ps.getUsuario();
+		Cuenta cuenta=usuario.getCuenta();
 		Double montoPago = ps.getMonto();
+		Double saldo=cuenta.getSaldo();
+		cuenta.setSaldo(saldo - montoPago);
 		System.out.println("Id MOVIMIENTO !!!!!!!" + ps.getIdPagoServico());
 			ps.setEstado(true);
 			servicioDAO.upgrade(ps);
+			cuentaDAO.upgrade(cuenta);
 		
 	}
 
