@@ -40,23 +40,24 @@ public class PolizaON implements PolizaONLocal {
 		polizaDAO.insert(poliza);
 	}
 	
-	public void solicitarPoliza(double montoInicio, int numeroCuotas, String cedulaPersona) throws Exception {
+	public void aceptarPoliza(double montoInicio, int numeroCuotas, String cedulaPersona) throws Exception {
 		Poliza poliza = new Poliza();
 		poliza.setInteres(0.05);
 		poliza.setMontoInicio(montoInicio);
-		poliza.setMontoCobrar((montoInicio* poliza.getInteres())+ montoInicio);
+		poliza.setMontoCobrar(montoInicio* poliza.getInteres()+ montoInicio);
 		poliza.setFecha(new Date());
 		poliza.setPlazosPoliza(numeroCuotas);
-		poliza.setEstaAprobado(false);
+		poliza.setEstaAprobado(true);
 		Usuario usuario = usuarioDAO.read(cedulaPersona);
 		if (usuario == null) {
 			throw new Exception("El usuario para la poliza no existe");
 		}
 		poliza.setUsuario(usuario);
-		polizaDAO.insert(poliza);
+		polizaDAO.upgrade(poliza);
+		//aceptarPoliza2(poliza.getId());
 	}
 	
-	public void aprobarPoliza(int idPoliza) {
+	public void aceptarPoliza2(int idPoliza) {
 		Poliza polizaGuardado = polizaDAO.read(idPoliza);
 		polizaGuardado.setEstaAprobado(true);
 		Usuario usuarioPoliza = polizaGuardado.getUsuario();

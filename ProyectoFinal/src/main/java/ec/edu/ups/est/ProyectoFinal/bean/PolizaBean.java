@@ -27,8 +27,6 @@ public class PolizaBean {
 	private boolean isButtonDisabled = false;
 	private Poliza poliza = new Poliza();
 	
-	private List<Poliza> polizas;
-	
 	public boolean isButtonDisabled() {
 		return isButtonDisabled;
 	}
@@ -62,21 +60,15 @@ public class PolizaBean {
 	public String getCedulaPersona() {
 		return cedulaPersona;
 	}
+	
 	public void setCedulaPersona(String cedulaPersona) {
 		this.cedulaPersona = cedulaPersona;
 	}
 	
-	public List<Poliza> getPoliza() {
-		return polizas;
-	}
-	public void setPolizas(List<Poliza> polizas) {
-		this.polizas = polizas;
+	public void setPoliza(Poliza poliza) {
+		this.poliza = poliza;
 	}
 	
-	@PostConstruct
-	public void init() {
-		loadPoliza();
-	}
 	public String calcularPoliza() {
 		try {
 			polizaON.generarPoliza(cantidadInicio, numeroCuotas, cedulaPersona);
@@ -84,20 +76,24 @@ public class PolizaBean {
 			e.printStackTrace();
 			return "mensaje-error?faces-redirect=true&texto=" + e.getMessage();
 		}
+		loadPoliza();
 		return null;//"mensaje-exito?faces-redirect=true&texto=Se ha calculado la poliza con éxito";
 	}
 	
-	public String solicitarPoliza() {
+	public String aceptarPoliza() {
 		try {
-			polizaON.solicitarPoliza(cantidadFinal, numeroCuotas, cedulaPersona);
+			polizaON.aceptarPoliza(cantidadInicio, numeroCuotas, cedulaPersona);
+			System.out.println("acepar Poliza");
 		} catch (Exception e) {
 			e.printStackTrace();
 			return "mensaje-error?faces-redirect=true&texto=" + e.getMessage();
 		}
+		
 		return "mensaje-exito?faces-redirect=true&texto=Se ha generado la poliza con éxito";
 	}
-	
+		
 	public void loadPoliza() {
+		System.out.println("**********");
 		if(idPoliza == 0)
 			return;
 		Poliza poli = polizaON.getPoliza(idPoliza);

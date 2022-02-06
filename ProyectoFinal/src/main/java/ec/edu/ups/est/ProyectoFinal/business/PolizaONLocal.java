@@ -6,9 +6,9 @@ import ec.edu.ups.est.ProyectoFinal.model.Poliza;
 
 public interface PolizaONLocal {
 	public void generarPoliza(double cantidad, int numeroCuotas, String cedulaPersona) throws Exception;
-	public void solicitarPoliza(double cantidad, int numeroCuotas, String cedulaPersona) throws Exception;
+	public void aceptarPoliza(double cantidad, int numeroCuotas, String cedulaPersona) throws Exception;
 	//public List<Amortizacion> cargarAmortizaciones(int idCredito);
-	public void aprobarPoliza(int idPoliza);
+	public void aceptarPoliza2(int idPoliza);
 	public List<Poliza> getPolizas();
 	public Poliza getPoliza(int id);
 }
