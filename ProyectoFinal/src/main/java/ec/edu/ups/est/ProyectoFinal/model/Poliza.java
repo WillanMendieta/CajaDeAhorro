@@ -30,6 +30,9 @@ public class Poliza implements Serializable {
 	@Column(name = "poli_interes")
 	private double interes;
 	
+	@Column(name = "poli_monto_inicio")
+	private double montoInicio;
+	
 	@Column(name = "poli_monto_cobrar")
 	private double montoCobrar;
 	
@@ -82,12 +85,20 @@ public class Poliza implements Serializable {
 	public void setInteres(double interes) {
 		this.interes = interes;
 	}
+	
+	public double getMontoInicio() {
+		return montoInicio;
+	}
+
+	public void setMontoInicio(double montoInicio) {
+		this.montoInicio = montoInicio;
+	}
 
 	public double getMontoCobrar() {
 		return montoCobrar;
 	}
 
-	public void setMontoSolicitado(double montoCobrar) {
+	public void setMontoCobrar(double montoCobrar) {
 		this.montoCobrar = montoCobrar;
 	}
 

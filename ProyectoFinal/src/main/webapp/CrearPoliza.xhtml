@@ -4,7 +4,14 @@
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:h="http://java.sun.com/jsf/html"> 
 
-<h:head></h:head> 
+<h:head>
+<!--	<f:metadata>
+    	<f:viewParam name="id" value="#{polizaBean.idPoliza}"></f:viewParam>
+    	<f:viewAction action="#{polizaBean.calcularPoliza()}"/>
+    	<f:viewAction action="#{polizaBean.solicitarPoliza()}"/>
+    	<f:viewAction action="#{polizaBean.verificarBotonCalcular()}"/>
+   	</f:metadata>-->
+</h:head> 
 
 <ui:composition template="template/plantilla.xhtml">
     <ui:define name="title">
@@ -27,7 +34,7 @@
 			                    
 			                    <div class="form-group">
 			                      <label for="txtMontoPoliza">Monto inicial:</label>
-			                      <h:inputText class="form-control" id="txtMontoPoliza" value="#{polizaBean.cedulaPersona}" requiredMessage="Este campo es requerido">
+			                      <h:inputText class="form-control" id="txtMontoPoliza" value="#{polizaBean.cantidadInicio}" requiredMessage="Este campo es requerido">
 			                      	<f:validateRequired />
 			                      </h:inputText>
 			                      <h:message for="txtMontoPoliza" style="color:red; margin-top: 0.5rem; display: block" />
@@ -49,20 +56,33 @@
 								</div>
 							
 								<div class="form-group d-flex">
-									<h:commandButton id="boton-retirar" action="#{polizaBean.solicitarPoliza()}"
+									<h:commandButton id="boton-calcular" action="#{polizaBean.calcularPoliza()}"
 										value="Calcular" style="flex-grow: 1;" class="btn btn-success px-5" />
 								</div>
 								
 								<div class="form-group">
-			                      <label for="txtMontoPoliza">Monto a cobrar:</label>
-			                      <h:inputText class="form-control" id="txtMontoCobrarPoliza" value="#{polizaBean.cantidadPoliza}" requiredMessage="Este campo es requerido">
+			                      <label for="txtMontoCobrarPoliza">Monto a cobrar:</label>
+			                      <h:inputText class="form-control" id="txtMontoCobrarPoliza" value="#{polizaBean.cantidadFinal}" requiredMessage="Este campo es requerido">
 			                      	<f:validateRequired />
+			                      	
 			                      </h:inputText>
 			                      <h:message for="txtMontoCobrarPoliza" style="color:red; margin-top: 0.5rem; display: block" />
 			                    </div>
+			                    
+								<div class="form-group">
+						    		
+						    		<!-- <h:outputText  value="#{loginBean.usuario.nombre}" />  -->
+						    		
+						    		<h:column>
+											<f:facet name="header">Nombre</f:facet>
+											#{polizaBean.cantidadFinal}
+											
+									</h:column>
+							 	</div>
+								
 								
 								<div class="form-group d-flex">
-									<h:commandButton id="boton-calcular" action="#{polizaBean.solicitarPoliza()}"
+									<h:commandButton id="boton-solicitar" action="#{polizaBean.solicitarPoliza()}"
 										value="Aceptar" style="flex-grow: 1;" class="btn btn-success px-5" />
 								</div>
 								
