@@ -19,7 +19,7 @@
 							<h:form>
 								<div class="form-group">
 			                      <label for="txtCedulaUser">Cédula del usuario:</label>
-			                      <h:inputText class="form-control" id="txtCedulaUser" value="#{creditoBean.cedulaPersona}" requiredMessage="Este campo es requerido">
+			                      <h:inputText class="form-control" id="txtCedulaUser" value="#{polizaBean.cedulaPersona}" requiredMessage="Este campo es requerido">
 			                      	<f:validateRequired />
 			                      </h:inputText>
 			                      <h:message for="txtCedulaUser" style="color:red; margin-top: 0.5rem; display: block" />
@@ -27,7 +27,7 @@
 			                    
 			                    <div class="form-group">
 			                      <label for="txtMontoPoliza">Monto inicial:</label>
-			                      <h:inputText class="form-control" id="txtMontoPoliza" value="#{creditoBean.cedulaPersona}" requiredMessage="Este campo es requerido">
+			                      <h:inputText class="form-control" id="txtMontoPoliza" value="#{polizaBean.cedulaPersona}" requiredMessage="Este campo es requerido">
 			                      	<f:validateRequired />
 			                      </h:inputText>
 			                      <h:message for="txtMontoPoliza" style="color:red; margin-top: 0.5rem; display: block" />
@@ -38,9 +38,7 @@
 								    <label class="input-group-text" for="selectCuotas">Número de meses:</label>
 								  </div>
 								  
-								  	<h:selectOneMenu class="custom-select" id="selectCuotas" value="#{creditoBean.numeroCuotas}">
-										<f:selectItem itemValue="1" itemLabel="1" />
-										<f:selectItem itemValue="2" itemLabel="2" />
+								  	<h:selectOneMenu class="custom-select" id="selectCuotas" value="#{polizaBean.numeroCuotas}">
 										<f:selectItem itemValue="3" itemLabel="3" />
 										<f:selectItem itemValue="6" itemLabel="6" />
 										<f:selectItem itemValue="12" itemLabel="12" />
@@ -51,27 +49,20 @@
 								</div>
 							
 								<div class="form-group d-flex">
-									<h:commandButton id="boton-retirar" action="#{creditoBean.solicitarCredito()}"
+									<h:commandButton id="boton-retirar" action="#{polizaBean.solicitarPoliza()}"
 										value="Calcular" style="flex-grow: 1;" class="btn btn-success px-5" />
 								</div>
 								
 								<div class="form-group">
-									<label for="monto">Monto a cobrar:</label>
-									<h:inputText value="#{creditoBean.cantidadCredito}"
-										type="number"
-										class="form-control" id="monto"
-										requiredMessage="Este campo es requerido"
-										converterMessage="Solo puede ingresar números"
-										validatorMessage="El valor mínimo a solicitar es $100"
-										placeholder="Ingrese la cantidad a retirar">
-										<f:validateRequired />
-										<f:validateLongRange minimum="100" />
-									</h:inputText>
-									<h:message for="monto" style="color:red; margin-top: 0.5rem; display: block" />
-								</div>
+			                      <label for="txtMontoPoliza">Monto a cobrar:</label>
+			                      <h:inputText class="form-control" id="txtMontoCobrarPoliza" value="#{polizaBean.cantidadPoliza}" requiredMessage="Este campo es requerido">
+			                      	<f:validateRequired />
+			                      </h:inputText>
+			                      <h:message for="txtMontoCobrarPoliza" style="color:red; margin-top: 0.5rem; display: block" />
+			                    </div>
 								
 								<div class="form-group d-flex">
-									<h:commandButton id="boton-calcular" action="#{creditoBean.solicitarCredito()}"
+									<h:commandButton id="boton-calcular" action="#{polizaBean.solicitarPoliza()}"
 										value="Aceptar" style="flex-grow: 1;" class="btn btn-success px-5" />
 								</div>
 								
