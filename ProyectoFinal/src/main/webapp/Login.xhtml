@@ -22,14 +22,14 @@
 									</div>
 									<div class="form-group">
 										<label for="input-2">Contraseña</label>
-										<h:inputText value="#{loginBean.contra}"
+										<h:inputSecret value="#{loginBean.contra}"
 											class="form-control" id="input-2"
 											placeholder="Ingrese su cnotraseña" />
 									</div>
 			
 									<div class="form-group">
 										<h:commandButton action="#{loginBean.login()}"
-											value="Ingresar" class="btn btn-light px-5" />
+											value="Ingresar"  class="btn btn-light px-5" />
 										<i class="icon-key" />
 									</div>
 			

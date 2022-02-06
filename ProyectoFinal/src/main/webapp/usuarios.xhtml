@@ -30,6 +30,10 @@
 					#{usuario.correo}
 				</h:column>
 				<h:column>
+					<f:facet name="header">Saldo</f:facet>
+					#{usuario.cuenta.saldo}
+				</h:column>
+				<h:column>
 					<f:facet name="header">Creditos</f:facet>
 					<h:commandButton id="boton-retirar" action="#{usuariosBean.verUsuario(usuario.cedula)}"
 											value="Ver Detalles" style="flex-grow: 1;" class="btn btn-success px-5" />
