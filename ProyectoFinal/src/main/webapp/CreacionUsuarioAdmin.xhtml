@@ -1,36 +1,131 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
-    xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html">
- 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+
 <ui:composition template="template/plantilla.xhtml">
-    <ui:define name="title">
+	<ui:define name="title">
         Retiro
     </ui:define>
-	    <ui:define name="content">
-		<h:form>
-	
-		Cédula: <h:inputText value="#{clienteBean.newUsuario.cedula}" />
-		Nombre: <h:inputText value="#{clienteBean.newUsuario.nombre}" />
-		Apellido: <h:inputText value="#{clienteBean.newUsuario.apellido}" />
-		Direccion: <h:inputText value="#{clienteBean.newUsuario.direccion}" />
-		Teléfono: <h:inputText value="#{clienteBean.newUsuario.telefono}" />
-		Correo: <h:inputText value="#{clienteBean.newUsuario.correo}" />
-		Contraseña: <h:inputText value="#{clienteBean.newUsuario.contra}" />
-		
-		<h:outputLabel>Tipo Usuario:</h:outputLabel>
-				<h:selectOneMenu value="#{clienteBean.newUsuario.tipoUsuario}">
-					<f:selectItem itemValue="Admin" itemLabel="Admin" />
-					<f:selectItem itemValue="Usuario" itemLabel="Usuario" />
-				</h:selectOneMenu>
+	<ui:define name="content">
 
-			<h:commandButton action="#{clienteBean.guardarClienteAdmin()}"
-				value="GUARDAR" />
+		<div class="">
+			<div style="padding-top: 2rem; justify-content: center;"
+				class="d-flex">
+				<div style="width: 500px" class="card">
+					<div class="card-body">
+						<div class="card-title">Crear Usuario</div>
+						<h:form>
+							<div class="form-group">
+								<label for="cedula">Cédula:</label>
+								<h:inputText class="form-control" id="cedula"
+									value="#{clienteBean.newUsuario.cedula}"
+									requiredMessage="Este campo es requerido">
+									<f:validateRequired />
+								</h:inputText>
 
-		</h:form>
+							</div>
+
+							<div class="form-group">
+								<label for="nombre">Nombre:</label>
+								<h:inputText class="form-control" id="nombre"
+									value="#{clienteBean.newUsuario.nombre}"
+									requiredMessage="Este campo es requerido">
+									<f:validateRequired />
+								</h:inputText>
+
+							</div>
+
+							<div class="form-group">
+								<label for="apellido">Apellido:</label>
+								<h:inputText class="form-control" id="apellido"
+									value="#{clienteBean.newUsuario.apellido}"
+									requiredMessage="Este campo es requerido">
+									<f:validateRequired />
+								</h:inputText>
+
+							</div>
+
+							<div class="form-group">
+								<label for="dir">Direccion:</label>
+								<h:inputText class="form-control" id="dir"
+									value="#{clienteBean.newUsuario.direccion}"
+									requiredMessage="Este campo es requerido">
+									<f:validateRequired />
+								</h:inputText>
+
+							</div>
+
+							<div class="form-group">
+								<label for="tel">Teléfono:</label>
+								<h:inputText class="form-control" id="tel"
+									value="#{clienteBean.newUsuario.telefono}"
+									requiredMessage="Este campo es requerido">
+									<f:validateRequired />
+								</h:inputText>
+
+							</div>
+
+							<div class="form-group">
+								<label for="correo">Correo:</label>
+								<h:inputText class="form-control" id="correo"
+									value="#{clienteBean.newUsuario.correo}"
+									requiredMessage="Este campo es requerido">
+									<f:validateRequired />
+								</h:inputText>
+
+							</div>
+
+							<div class="form-group">
+								<label for="contra">Contraseña:</label>
+								<h:inputText class="form-control" id="contra"
+									value="#{clienteBean.newUsuario.contra}"
+									requiredMessage="Este campo es requerido">
+									<f:validateRequired />
+								</h:inputText>
+								<h:message for="final"
+									style="color:red; margin-top: 0.5rem; display: block" />
+							</div>
+
+
+
+
+							<div class="form-group">
+								<label for="banco">Tipo Usuario:</label>
+
+								<h:selectOneMenu class="custom-select" id="tipoUsuario"
+									value="#{clienteBean.newUsuario.tipoUsuario}">
+									<f:selectItem itemValue="" itemLabel="Seleccione el tipo de Usuario" />
+									<f:selectItem itemValue="Admin" itemLabel="Admin" />
+									<f:selectItem itemValue="Usuario" itemLabel="Usuario" />
+									<f:selectItem itemValue="Usuario" itemLabel="Cajero" />
+								</h:selectOneMenu>
+
+								<h:message for="banco"
+									style="color:red; margin-top: 0.5rem; display: block" />
+							</div>
+							
+							
+							<div class="form-group d-flex">
+								<h:commandButton id="guardar"
+									action="#{clienteBean.guardarClienteAdmin()}" value="Guardar Usuario"
+									style="flex-grow: 1;" class="btn btn-success px-5" />
+							</div>
+
+
+
+
+
+						</h:form>
+					</div>
+				</div>
+			</div>
+		</div>
 
 
 	</ui:define>
- 
+
 </ui:composition>
 </html>
