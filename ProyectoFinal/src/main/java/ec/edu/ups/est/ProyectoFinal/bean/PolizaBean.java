@@ -60,7 +60,7 @@ public class PolizaBean {
 		this.amortizaciones = amortizaciones;
 	}
 	
-	public String solicitarCredito() {
+	public String solicitarPoliza() {
 		try {
 			polizaON.solicitarPoliza(cantidadPoliza, numeroCuotas, cedulaPersona);
 		} catch (Exception e) {
