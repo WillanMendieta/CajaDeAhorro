@@ -1,0 +1,144 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"> 
+
+<ui:composition template="/template/plantillaUsuario.xhtml">
+	<ui:define name="title">
+        Giros
+    </ui:define>
+	<ui:define name="content">
+
+
+		<div class="">
+			<div style="padding-top: 2rem; justify-content: center;"
+				class="d-flex">
+				<div style="width: 500px" class="card">
+					<div class="card-body">
+						<div class="card-title">Realizar Giros</div>
+						<h:form>
+							<div class="form-group">
+								<label for="cuenta">Cuenta:</label>
+								<h:inputText class="form-control" id="cuenta"
+									value="#{giroBean.newgiro.cuenta.numeroCuenta}"
+									requiredMessage="Este campo es requerido">
+									<f:validateRequired />
+								</h:inputText>
+								<h:message for="txtCedulaUser"
+									style="color:red; margin-top: 0.5rem; display: block" />
+							</div>
+
+							<div class="form-group">
+								<label for="monto">Monto:</label>
+								<h:inputText class="form-control" id="monto"
+									value="#{giroBean.newgiro.valor}"
+									requiredMessage="Este campo es requerido">
+									<f:validateRequired />
+								</h:inputText>
+								<h:message for="txtCedulaUser"
+									style="color:red; margin-top: 0.5rem; display: block" />
+							</div>
+
+							<div class="form-group">
+								<label for="banco">Banco Destino:</label>
+
+								<h:selectOneMenu class="custom-select" id="BancoSelec"
+									value="#{giroBean.newgiro.banco}">
+									<f:selectItem itemValue="" itemLabel="Seleccione el Banco" />
+									<f:selectItem itemValue="Banco Mi Pichincha" itemLabel="Banco Mi Pichincha" />
+									<f:selectItem itemValue="Banco del Austro" itemLabel="Banco del Austro" />
+									<f:selectItem itemValue="JEP" itemLabel="JEP" />
+									<f:selectItem itemValue="CHASE" itemLabel="CHASE" />
+									<f:selectItem itemValue="CITIBANK" itemLabel="CITIBANK" />
+									<f:selectItem itemValue="BanColombia" itemLabel="BanColombia" />
+									<f:selectItem itemValue="BCRA" itemLabel="BCRA" />
+									<f:selectItem itemValue="MiBanco" itemLabel="MiBanco" />
+								</h:selectOneMenu>
+								
+								<h:message for="banco"
+									style="color:red; margin-top: 0.5rem; display: block" />
+							</div>
+
+							<div class="form-group">
+								<label for="ciudad">Ciudad Destino:</label>
+
+
+								<h:selectOneMenu class="custom-select" id="selectCiudad"
+									value="#{giroBean.newgiro.ciudad.id}">
+									<f:selectItem itemValue="" itemLabel="Seleccione la ciudad" />
+									<f:selectItem itemValue="1" itemLabel="QUITO(EC)" />
+									<f:selectItem itemValue="2" itemLabel="CUENCA(EC)" />
+									<f:selectItem itemValue="3" itemLabel="GUAYAQUIL(EC)" />
+									<f:selectItem itemValue="4" itemLabel="MANTA(EC)" />
+
+									<f:selectItem itemValue="5" itemLabel="CALI(CO)" />
+									<f:selectItem itemValue="6" itemLabel="MEDELLIN(CO)" />
+									<f:selectItem itemValue="7" itemLabel="BOGOTA(CO)" />
+									<f:selectItem itemValue="8" itemLabel="CARTAGENA(CO)" />
+
+									<f:selectItem itemValue="9" itemLabel="LIMA(PER)" />
+									<f:selectItem itemValue="10" itemLabel="CUSCO(PER)" />
+									<f:selectItem itemValue="11" itemLabel="TRUJILLO(PER)" />
+									<f:selectItem itemValue="12" itemLabel="PIURA(PER)" />
+
+									<f:selectItem itemValue="13" itemLabel="BUENOS AIRES(ARG)" />
+									<f:selectItem itemValue="14" itemLabel="MAR DE PLATA(ARG)" />
+									<f:selectItem itemValue="15" itemLabel="SALTA(ARG)" />
+									<f:selectItem itemValue="16" itemLabel="SANTA FE(ARG)" />
+
+									<f:selectItem itemValue="17" itemLabel="NEW YORK(USA)" />
+									<f:selectItem itemValue="18" itemLabel="CHICAGO(USA)" />
+									<f:selectItem itemValue="19" itemLabel="SAN FRANCISCO(USA)" />
+									<f:selectItem itemValue="20" itemLabel="LOS ANGELES(USA)" />
+
+
+									<f:ajax execute="@this" listener="#{giroBean.cargarCiudad()}"
+										render="interes final" event="blur" />
+								</h:selectOneMenu>
+
+
+								<h:message for="txtCedulaUser"
+									style="color:red; margin-top: 0.5rem; display: block" />
+							</div>
+
+							<div class="form-group">
+								<label for="interes">Interes por Envio:</label>
+								<h:inputText class="form-control" id="interes"
+									value="#{giroBean.interes}"
+									requiredMessage="Este campo es requerido">
+									<f:validateRequired />
+								</h:inputText>
+								<h:message for="txtCedulaUser"
+									style="color:red; margin-top: 0.5rem; display: block" />
+							</div>
+
+							<div class="form-group">
+								<label for="final">Monto Final a Debitar:</label>
+								<h:inputText class="form-control" id="final"
+									value="#{giroBean.newgiro.montoFinal}"
+									requiredMessage="Este campo es requerido">
+									<f:validateRequired />
+								</h:inputText>
+								<h:message for="final"
+									style="color:red; margin-top: 0.5rem; display: block" />
+							</div>
+
+
+
+							<div class="form-group d-flex">
+								<h:commandButton id="btnGiro"
+									action="#{giroBean.guardarGiro()}" value="Realizar Giro"
+									style="flex-grow: 1;" class="btn btn-success px-5" />
+							</div>
+						</h:form>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+	</ui:define>
+
+</ui:composition>
+</html>
