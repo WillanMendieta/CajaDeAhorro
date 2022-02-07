@@ -28,7 +28,6 @@ public class LoginBean implements Serializable {
 	}
 
 	public void setCedula(String cedula) {
-		System.out.println("cedula"+ this.cedula);
 		this.cedula = cedula;
 	}
 
@@ -37,7 +36,6 @@ public class LoginBean implements Serializable {
 	}
 
 	public void setContra(String contra) {
-		System.out.println("contra"+ this.contra);
 		this.contra = contra;
 	}
 	
@@ -52,28 +50,32 @@ public class LoginBean implements Serializable {
 	public String login() {
 		if(contra.equals("admin")) {
 			HttpSession session = SessionUtils.getSession();
-			session.setAttribute("username", "Eduardo");
+			session.setAttribute("cedula", "0106073331");
 			return "index?faces-redirect=true";
 		}
-		System.out.println("Continua" + "!!!!!!!!!");
-		this.usuario=usuarioON.validarSesion(cedula, contra);
-		if(this.usuario !=  null && this.usuario.getTipoUsuario().equalsIgnoreCase("Admin")) {
-			HttpSession session = SessionUtils.getSession();
-			session.setAttribute("username", "Eduardo");
-			return "index?faces-redirect=true";
-		}
-		if(this.usuario != null & this.usuario.getTipoUsuario().equalsIgnoreCase("Usuario")) {
-			return "indexUsuario?faces-redirect=true&cedula=" + cedula;
-		}else {
+		this.usuario = usuarioON.getUsuario(cedula);
+		if (usuario == null || !usuario.getContra().equals(contra)) {
 			return "Login?faces-redirect=true";
 		}
+		
+		HttpSession session = SessionUtils.getSession();
+		session.setAttribute("cedula", cedula);
+		
+		if(this.usuario.getTipoUsuario().equalsIgnoreCase("Admin")) {
+			return "index?faces-redirect=true";
+		}
+		if(this.usuario.getTipoUsuario().equalsIgnoreCase("Usuario")) {
+			return "indexUsuario?faces-redirect=true";
+		}
+		System.out.println("No hay rol");
+		return "Login?faces-redirect=true";
 	}
 	
 	public String logout() {
 		System.out.println("Logout");
 		HttpSession session = SessionUtils.getSession();
 		session.invalidate();
-		return "Login?faces-redirect=true";
+		return "/Login?faces-redirect=true";
 	}
 	
 	public void loadUsuario() {

@@ -28,10 +28,8 @@ public class UsuarioDAO {
 	}
 	
 	public Usuario read(String cedula) {
-
 		Usuario op = em.find(Usuario.class, cedula);
 		return op;
-
 	}
 
 	
@@ -46,21 +44,5 @@ public class UsuarioDAO {
 		
 		
 		return listado;
-	}
-	
-	
-	public Usuario getSesion(String cedula, String contrasena) {
-		List<Usuario> usuarios= new ArrayList<Usuario>();
-		
-		String jpql="SELECT op FROM Usuario op WHERE cedula=?1 AND contra=?2";
-		Query query = em.createQuery(jpql, Usuario.class);
-		query.setParameter(1, cedula);
-		query.setParameter(2, contrasena);
-		usuarios = query.getResultList();
-		Usuario user= new Usuario();
-		for(Usuario elemento: usuarios) {
-			user=elemento;
-		}
-		return user;
 	}
 }
