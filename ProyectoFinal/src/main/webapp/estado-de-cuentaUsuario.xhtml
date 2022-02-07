@@ -13,11 +13,11 @@
 
 <ui:composition template="template/plantillaUsuario.xhtml">
     <ui:define name="title">
-        Cuenta #{movimientosBean.numeroCuenta}
+        Cuenta #{loginBean.cargarUsuario().cuenta.numeroCuenta}
     </ui:define>
     <ui:define name="content">
     	<h:form>
-	        <h:dataTable var="mov" class="table table-striped" value="#{movimientosBean.movimientos}">
+	        <h:dataTable var="mov" class="table table-striped" value="#{movimientosBean.loadMovimientosPorSesion()}">
 				<h:column>
 					<f:facet name="header">ID Movimiento</f:facet>
 					#{mov.idMovimiento}
@@ -38,7 +38,7 @@
 		</h:form>
 		<p style="padding-left: 1rem; padding-top: 1rem; font-size: 1.2rem;">
 			El saldo actual de la cuenta es: 	
-			$#{cuentasBean.getCuenta(movimientosBean.numeroCuenta).saldo}
+			$#{loginBean.cargarUsuario().cuenta.saldo}
 		</p>
     </ui:define>
 </ui:composition>

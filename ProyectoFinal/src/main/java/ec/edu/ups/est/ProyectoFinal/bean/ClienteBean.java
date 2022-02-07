@@ -7,7 +7,7 @@ import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
-import ec.edu.ups.est.ProyectoFinal.business.UsuarioON;
+import ec.edu.ups.est.ProyectoFinal.business.UsuarioONLocal;
 import ec.edu.ups.est.ProyectoFinal.model.Usuario;
 
 @Named
@@ -26,7 +26,7 @@ public class ClienteBean {
 	}
 	
 	@Inject
-	private UsuarioON usuarioON;
+	private UsuarioONLocal usuarioON;
 	
 	@PostConstruct
 	public void init() {

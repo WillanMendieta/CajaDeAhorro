@@ -8,7 +8,9 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import ec.edu.ups.est.ProyectoFinal.business.MovimientoONLocal;
+import ec.edu.ups.est.ProyectoFinal.business.UsuarioONLocal;
 import ec.edu.ups.est.ProyectoFinal.model.Movimiento;
+import ec.edu.ups.est.ProyectoFinal.util.SessionUtils;
 
 @Named
 @RequestScoped
@@ -16,6 +18,9 @@ public class MovimientosBean {
 	
 	@Inject
 	private MovimientoONLocal movimientoON;
+	
+	@Inject
+	private UsuarioONLocal usuarioON;
 	
 	private List<Movimiento> movimientos;
 	private String numeroCuenta;
@@ -29,6 +34,12 @@ public class MovimientosBean {
 		if(this.numeroCuenta == null)
 			return;
 		this.movimientos = movimientoON.getMovimientosPorCuenta(this.numeroCuenta);
+	}
+	
+	public List<Movimiento> loadMovimientosPorSesion() {
+		String cedulaUsuario = SessionUtils.getUserCedula();
+		String numeroCuenta = usuarioON.getUsuario(cedulaUsuario).getCuenta().getNumeroCuenta();
+		return movimientoON.getMovimientosPorCuenta(numeroCuenta);
 	}
 	
 	public List<Movimiento> getMovimientos() {

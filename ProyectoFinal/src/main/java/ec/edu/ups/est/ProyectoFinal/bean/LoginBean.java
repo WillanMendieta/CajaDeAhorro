@@ -6,6 +6,7 @@ import javax.inject.Named;
 import javax.servlet.http.HttpSession;
 
 import ec.edu.ups.est.ProyectoFinal.business.UsuarioON;
+import ec.edu.ups.est.ProyectoFinal.business.UsuarioONLocal;
 import ec.edu.ups.est.ProyectoFinal.model.Usuario;
 import ec.edu.ups.est.ProyectoFinal.util.SessionUtils;
 
@@ -21,7 +22,7 @@ public class LoginBean implements Serializable {
 	private String cedula;
 	
 	@Inject
-	private UsuarioON usuarioON;
+	private UsuarioONLocal usuarioON;
 	
 	public String getCedula() {
 		return cedula;

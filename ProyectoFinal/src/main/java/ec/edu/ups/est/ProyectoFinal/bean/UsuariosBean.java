@@ -8,13 +8,14 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import ec.edu.ups.est.ProyectoFinal.business.UsuarioON;
+import ec.edu.ups.est.ProyectoFinal.business.UsuarioONLocal;
 import ec.edu.ups.est.ProyectoFinal.model.Usuario;
 
 @Named
 @RequestScoped
 public class UsuariosBean {
 	@Inject
-	private UsuarioON usuarioON;
+	private UsuarioONLocal usuarioON;
 	
 	private List<Usuario> usuarios;
 	

@@ -7,6 +7,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import ec.edu.ups.est.ProyectoFinal.business.UsuarioON;
+import ec.edu.ups.est.ProyectoFinal.business.UsuarioONLocal;
 import ec.edu.ups.est.ProyectoFinal.model.Credito;
 import ec.edu.ups.est.ProyectoFinal.model.PagoServicio;
 
@@ -15,7 +16,7 @@ import ec.edu.ups.est.ProyectoFinal.model.PagoServicio;
 public class UsuarioBean {
 	
 	@Inject
-	private UsuarioON usuarioON;
+	private UsuarioONLocal usuarioON;
 	
 	private String cedula;
 	private List<Credito> creditos;

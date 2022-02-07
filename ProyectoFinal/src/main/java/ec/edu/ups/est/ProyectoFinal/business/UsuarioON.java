@@ -6,10 +6,11 @@ import javax.ejb.Stateless;
 import javax.inject.Inject;
 
 import ec.edu.ups.est.ProyectoFinal.dao.UsuarioDAO;
+import ec.edu.ups.est.ProyectoFinal.model.TipoUsuario;
 import ec.edu.ups.est.ProyectoFinal.model.Usuario;
 
 @Stateless
-public class UsuarioON {
+public class UsuarioON implements UsuarioONLocal {
 
 	@Inject
 	private UsuarioDAO usuarioDAO;
