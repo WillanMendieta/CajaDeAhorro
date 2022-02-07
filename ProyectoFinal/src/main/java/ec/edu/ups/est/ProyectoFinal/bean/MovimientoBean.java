@@ -9,8 +9,10 @@ import javax.inject.Named;
 
 import ec.edu.ups.est.ProyectoFinal.business.CuentasONLocal;
 import ec.edu.ups.est.ProyectoFinal.business.MovimientoONLocal;
+import ec.edu.ups.est.ProyectoFinal.business.UsuarioONLocal;
 import ec.edu.ups.est.ProyectoFinal.model.Cuenta;
 import ec.edu.ups.est.ProyectoFinal.model.Movimiento;
+import ec.edu.ups.est.ProyectoFinal.util.SessionUtils;
 
 
 @Named
@@ -21,6 +23,9 @@ public class MovimientoBean {
 	
 	@Inject
 	private CuentasONLocal cuentaON;
+	
+	@Inject
+	private UsuarioONLocal usuarioON;
 	
 	private String numeroCuenta;
 	private String numeroCuentaDestino;
@@ -54,8 +59,6 @@ public class MovimientoBean {
 	public void setNumeroCuenta(String numeroCuenta) {
 		this.numeroCuenta = numeroCuenta;
 	}
-	
-	
 	
 	//Retiro
 
@@ -108,6 +111,23 @@ public class MovimientoBean {
 			e.printStackTrace();
 		}
 		return "estado-de-cuenta?faces-redirect=true&numero-cuenta=" + numeroCuenta;
+	}
+	
+	public String retirarFondosConSesion() {
+		String cedulaUsuario = SessionUtils.getUserCedula();
+		String numeroCuenta = usuarioON.getUsuario(cedulaUsuario).getCuenta().getNumeroCuenta();
+		Cuenta cuenta = cuentaON.getCuenta(numeroCuenta);
+		Movimiento movimiento = new Movimiento();
+		movimiento.setCuenta(cuenta);
+		movimiento.setFecha(new Date());
+		movimiento.setMonto(cantidadRetirada);
+		movimiento.setTipoMovimiento("Retiro");
+		try {
+			movimientoON.retiro(movimiento);
+		} catch (Exception e) {
+			return "mensaje-error-usuario?faces-redirect=true&texto=" + e.getMessage();
+		}
+		return "mensaje-exito-usuario?faces-redirect=true&texto=Se ha retirado el dinero con éxito";
 	}
 	
 	public String depositarFondos() {

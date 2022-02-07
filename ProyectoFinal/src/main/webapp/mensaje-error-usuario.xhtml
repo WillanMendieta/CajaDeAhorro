@@ -1,0 +1,33 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"> 
+
+<h:head>
+   	<f:metadata>
+    	<f:viewParam name="texto" value="#{exitoErrorBean.mensaje}"></f:viewParam>
+   	</f:metadata>
+</h:head>
+
+<ui:composition template="template/plantillaUsuario.xhtml">
+    <ui:define name="title">
+        Error
+    </ui:define>
+    <ui:define name="content">
+	    <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 4rem 0;">
+		    <div>
+		    	<div style="display: flex; justify-content: center;">
+			    	<svg xmlns="http://www.w3.org/2000/svg" class="text-danger" style="height: 12rem;" viewBox="0 0 20 20" fill="currentColor">
+					  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd" />
+					</svg>
+		    	</div>
+		    </div>
+	    	<p style="font-size: 1.5rem">
+	    		#{exitoErrorBean.mensajeParseado}
+	    	</p>
+	    </div>
+	</ui:define>
+</ui:composition>
+
+</html>
