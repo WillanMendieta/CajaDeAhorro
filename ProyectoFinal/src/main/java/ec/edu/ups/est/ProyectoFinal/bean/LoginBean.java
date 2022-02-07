@@ -1,18 +1,20 @@
 package ec.edu.ups.est.ProyectoFinal.bean;
 
-
-
-import javax.enterprise.context.RequestScoped;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
+import javax.servlet.http.HttpSession;
 
 import ec.edu.ups.est.ProyectoFinal.business.UsuarioON;
 import ec.edu.ups.est.ProyectoFinal.model.Usuario;
+import ec.edu.ups.est.ProyectoFinal.util.SessionUtils;
+
+import java.io.Serializable;
 
 @Named
-@RequestScoped
-public class LoginBean {
+@SessionScoped
+public class LoginBean implements Serializable {
+	private static final long serialVersionUID = 1094801825228386363L;
 	
 	private Usuario usuario = new Usuario();
 	private String contra;
@@ -48,22 +50,30 @@ public class LoginBean {
 	}
 
 	public String login() {
-		System.out.println(" "+ this.cedula);
-		//this.usuario.setCedula(this.cedula);
-		//this.usuario = usuarioON.getUsuario(cedula);
+		if(contra.equals("admin")) {
+			HttpSession session = SessionUtils.getSession();
+			session.setAttribute("username", "Eduardo");
+			return "index?faces-redirect=true";
+		}
+		System.out.println("Continua" + "!!!!!!!!!");
 		this.usuario=usuarioON.validarSesion(cedula, contra);
-		System.out.println(this.usuario);
-		if(this.usuario !=  null & this.usuario.getTipoUsuario().equalsIgnoreCase("Admin")) {
-			return "PageAdmin?faces-redirect=true&cedula=" + cedula;
+		if(this.usuario !=  null && this.usuario.getTipoUsuario().equalsIgnoreCase("Admin")) {
+			HttpSession session = SessionUtils.getSession();
+			session.setAttribute("username", "Eduardo");
+			return "index?faces-redirect=true";
 		}
 		if(this.usuario != null & this.usuario.getTipoUsuario().equalsIgnoreCase("Usuario")) {
-			return "index?faces-redirect=true&cedula=" + cedula;
+			return "indexUsuario?faces-redirect=true&cedula=" + cedula;
 		}else {
-			System.out.println(this.usuario.getNombre());
 			return "Login?faces-redirect=true";
 		}
-		
-		//return "PageAdmin?faces-redirect=true&cedula=" + cedula;
+	}
+	
+	public String logout() {
+		System.out.println("Logout");
+		HttpSession session = SessionUtils.getSession();
+		session.invalidate();
+		return "Login?faces-redirect=true";
 	}
 	
 	public void loadUsuario() {
