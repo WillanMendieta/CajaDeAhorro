@@ -31,9 +31,6 @@ public class UsuarioDAO {
 		Usuario op = em.find(Usuario.class, cedula);
 		return op;
 	}
-
-	
-	
 	
 	public List<Usuario> getList(){
 		List<Usuario> listado = new ArrayList<Usuario>();

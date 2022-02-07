@@ -78,11 +78,8 @@ public class LoginBean implements Serializable {
 		return "/Login?faces-redirect=true";
 	}
 	
-	public void loadUsuario() {
-		if(cedula ==null)
-			return;
-		Usuario usu = usuarioON.getUsuario(cedula);
-		usuario = usu;
-		System.out.println(usuario.getNombre());
+	public Usuario cargarUsuario() {
+		String cedulaUsuario = SessionUtils.getUserCedula();
+		return usuarioON.getUsuario(cedulaUsuario);
 	}
 }

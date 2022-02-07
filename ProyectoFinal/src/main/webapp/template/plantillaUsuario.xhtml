@@ -40,7 +40,7 @@
    <div id="sidebar-wrapper" data-simplebar="" data-simplebar-auto-hide="true">
      <div class="brand-logo">
       <a href="indexUsuario.xhtml">
-       <img src="/template/assets/images/logo-icon.png" class="logo-icon" alt="logo icon"/>
+       <img src="template/assets/images/logo-icon.png" class="logo-icon" alt="logo icon"/>
        <h5 class="logo-text">
        <ui:insert name="title" />
        </h5>
@@ -104,8 +104,11 @@
      </a>
     </li>
   </ul>
-     
-
+  
+  <h:form>
+  	<h:commandButton id="boton-logout" action="#{loginBean.logout()}"
+											value="Logout" class="btn btn-warning px-2" />
+  </h:form>
 </nav>
 </header>
 <!--End topbar header-->

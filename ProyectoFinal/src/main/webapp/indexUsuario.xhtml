@@ -11,12 +11,23 @@
         Inicio
     </ui:define>
     		<ui:define name="content">
-    		Inicio
-    		
-    			<aside>
-                <img src=".././template/Imagenes/3.gif"  />
-                
-                </aside>
+    			<div style="padding: 2rem 0;">
+    				<h2>
+    				Inicio
+	    			</h2>
+	    			<div style="font-size: 1.5rem">
+	    				<p>
+	    					Bienvenido/a #{loginBean.cargarUsuario().nombre} #{loginBean.cargarUsuario().apellido}
+	    				</p>
+	    				<p>
+		    				Numero de cuenta: #{loginBean.cargarUsuario().cuenta.numeroCuenta}
+		    			</p>
+		    			<p>
+		    				Su saldo es: $#{loginBean.cargarUsuario().cuenta.saldo}
+		    			</p>
+	    			</div>
+    			</div>
+    			
 
     		</ui:define>
 </ui:composition>
