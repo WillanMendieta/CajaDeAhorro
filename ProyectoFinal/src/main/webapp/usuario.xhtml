@@ -17,56 +17,84 @@
         Usuario #{usuarioBean.cedula}
     </ui:define>
     <ui:define name="content">
-   		<h4 style="padding: 1rem 0 0;">
-   			Créditos del usuario:
-   		</h4>
-        <h:dataTable var="credito" class="table table-striped" value="#{usuarioBean.creditos}">
-        	<h:column>
-				<f:facet name="header">id</f:facet>
-				#{credito.id}
-			</h:column>
-			<h:column>
-				<f:facet name="header">Fecha</f:facet>
-				#{credito.fecha}
-			</h:column>
-			<h:column>
-				<f:facet name="header">Interés</f:facet>
-				#{credito.interes}
-			</h:column>
-			<h:column>
-				<f:facet name="header">Monto solicitado</f:facet>
-				#{credito.montoSolicitado}
-			</h:column>
-			<h:column>
-				<f:facet name="header">Plazos</f:facet>
-				#{credito.plazosCredito}
-			</h:column>
-			<h:column>
-				<f:facet name="header">Estado</f:facet>
-				<span jsf:rendered="#{credito.estaAprobado == false}">
-					No aprobado
-					<i class="zmdi zmdi-minus-circle text-danger"></i>
-				</span>
-				<span jsf:rendered="#{credito.estaAprobado == true}">
-					#{credito.estaPagado ? 'Pagado' : 'Por pagar'}
-					<span jsf:rendered="#{credito.estaPagado == true}">
-						<i class="zmdi zmdi-check-circle text-success"></i>
+    	<div style="padding: 1.5rem 0 2rem;">
+    		<h4 style="padding: 1rem 0 0;">
+	   			Créditos del usuario:
+	   		</h4>
+	        <h:dataTable var="credito" class="table table-striped" value="#{usuarioBean.creditos}">
+	        	<h:column>
+					<f:facet name="header">id</f:facet>
+					#{credito.id}
+				</h:column>
+				<h:column>
+					<f:facet name="header">Fecha</f:facet>
+					#{credito.fecha}
+				</h:column>
+				<h:column>
+					<f:facet name="header">Interés</f:facet>
+					#{credito.interes}
+				</h:column>
+				<h:column>
+					<f:facet name="header">Monto solicitado</f:facet>
+					#{credito.montoSolicitado}
+				</h:column>
+				<h:column>
+					<f:facet name="header">Plazos</f:facet>
+					#{credito.plazosCredito}
+				</h:column>
+				<h:column>
+					<f:facet name="header">Estado</f:facet>
+					<span jsf:rendered="#{credito.estaAprobado == false}">
+						No aprobado
+						<i class="zmdi zmdi-minus-circle text-danger"></i>
 					</span>
-					<span jsf:rendered="#{credito.estaPagado == false}">
-						<i class="zmdi zmdi-minus-circle text-warning"></i>
+					<span jsf:rendered="#{credito.estaAprobado == true}">
+						#{credito.estaPagado ? 'Pagado' : 'Por pagar'}
+						<span jsf:rendered="#{credito.estaPagado == true}">
+							<i class="zmdi zmdi-check-circle text-success"></i>
+						</span>
+						<span jsf:rendered="#{credito.estaPagado == false}">
+							<i class="zmdi zmdi-minus-circle text-warning"></i>
+						</span>
 					</span>
-				</span>
-			</h:column>
-			<h:column>
-				<f:facet name="header">Ver más</f:facet>
-				<a style="flex-grow: 1; visibility: #{credito.estaAprobado == false ? 'hidden' : 'visible'}" class="btn btn-success px-5" href="/ProyectoFinal/credito.xhtml?id=#{credito.id}">
-					Ver más
-				</a>
-			</h:column>
-		</h:dataTable>
-		<h4 style="padding: 1rem 0 0;">
-   			Otra información:
-   		</h4>
+				</h:column>
+				<h:column>
+					<f:facet name="header">Ver más</f:facet>
+					<a style="flex-grow: 1; visibility: #{credito.estaAprobado == false ? 'hidden' : 'visible'}" class="btn btn-success px-5" href="/ProyectoFinal/credito.xhtml?id=#{credito.id}">
+						Ver más
+					</a>
+				</h:column>
+			</h:dataTable>
+			
+			<h4 style="padding: 1rem 0 0;">
+				Transferencias:
+			</h4>
+	  		<h:form>
+		        <h:dataTable var="mov" class="table table-striped" value="#{usuarioBean.movimientosCuentaDeUsuario}">
+					<h:column>
+						<f:facet name="header">ID Movimiento</f:facet>
+						#{mov.idMovimiento}
+					</h:column>
+					<h:column>
+						<f:facet name="header">Fecha</f:facet>
+						#{mov.fecha}
+					</h:column>
+					<h:column>
+						<f:facet name="header">Monto</f:facet>
+						#{mov.monto}
+					</h:column>
+					<h:column>
+						<f:facet name="header">Tipo Movimiento</f:facet>
+						#{mov.tipoMovimiento}
+					</h:column>
+				</h:dataTable>
+			</h:form>
+			<p style="padding-left: 1rem; padding-top: 1rem; font-size: 1.2rem;">
+				El saldo actual de la cuenta es: 	
+				$#{usuarioBean.saldoCuentaDeUsuario}
+			</p>
+    	</div>
+  		
     </ui:define>
 </ui:composition>
 

@@ -6,9 +6,11 @@ import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
+import ec.edu.ups.est.ProyectoFinal.business.MovimientoONLocal;
 import ec.edu.ups.est.ProyectoFinal.business.UsuarioON;
 import ec.edu.ups.est.ProyectoFinal.business.UsuarioONLocal;
 import ec.edu.ups.est.ProyectoFinal.model.Credito;
+import ec.edu.ups.est.ProyectoFinal.model.Movimiento;
 import ec.edu.ups.est.ProyectoFinal.model.PagoServicio;
 
 @Named
@@ -17,6 +19,9 @@ public class UsuarioBean {
 	
 	@Inject
 	private UsuarioONLocal usuarioON;
+	
+	@Inject
+	private MovimientoONLocal movimientoON;
 	
 	private String cedula;
 	private List<Credito> creditos;
@@ -53,5 +58,13 @@ public class UsuarioBean {
 	public void loadServicios() {
 		servicios = usuarioON.getUsuario(cedula).getPagoServicios();
 	}
-
+	
+	public List<Movimiento> getMovimientosCuentaDeUsuario() {
+		String numeroCuenta = usuarioON.getUsuario(cedula).getCuenta().getNumeroCuenta();
+		return movimientoON.getMovimientosPorCuenta(numeroCuenta);
+	}
+	
+	public double getSaldoCuentaDeUsuario() {
+		return usuarioON.getUsuario(cedula).getCuenta().getSaldo();
+	}
 }

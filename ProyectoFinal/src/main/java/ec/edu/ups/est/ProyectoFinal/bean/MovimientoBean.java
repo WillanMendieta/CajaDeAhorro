@@ -101,6 +101,9 @@ public class MovimientoBean {
 	public String retirarFondos() {
 		try {
 			Cuenta cuenta = cuentaON.getCuenta(numeroCuenta);
+			if (cuenta == null) {
+				return "mensaje-error?faces-redirect=true&texto=La cuenta no existe";
+			}
 			Movimiento movimiento = new Movimiento();
 			movimiento.setCuenta(cuenta);
 			movimiento.setFecha(new Date());
@@ -108,15 +111,18 @@ public class MovimientoBean {
 			movimiento.setTipoMovimiento("Retiro");
 			movimientoON.retiro(movimiento);
 		} catch (Exception e) {
-			e.printStackTrace();
+			return "mensaje-error?faces-redirect=true&texto=" + e.getMessage();
 		}
-		return "estado-de-cuenta?faces-redirect=true&numero-cuenta=" + numeroCuenta;
+		return "mensaje-exito?faces-redirect=true&texto=Se ha retirado el dinero con éxito";
 	}
 	
 	public String retirarFondosConSesion() {
 		String cedulaUsuario = SessionUtils.getUserCedula();
 		String numeroCuenta = usuarioON.getUsuario(cedulaUsuario).getCuenta().getNumeroCuenta();
 		Cuenta cuenta = cuentaON.getCuenta(numeroCuenta);
+		if (cuenta == null) {
+			return "mensaje-error?faces-redirect=true&texto=La cuenta no existe";
+		}
 		Movimiento movimiento = new Movimiento();
 		movimiento.setCuenta(cuenta);
 		movimiento.setFecha(new Date());

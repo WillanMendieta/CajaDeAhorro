@@ -27,7 +27,7 @@
 				</h:column>
 				<h:column>
 					<f:facet name="header">Monto pagado</f:facet>
-					#{amortizacion.montoPagado}
+					#{creditoBean.getDoubleFormatted(amortizacion.montoPagado)}
 				</h:column>
 			</h:dataTable>
 			<h:commandButton id="boton-pagar" action="#{creditoBean.realizarPago()}" disabled="#{creditoBean.buttonDisabled}"

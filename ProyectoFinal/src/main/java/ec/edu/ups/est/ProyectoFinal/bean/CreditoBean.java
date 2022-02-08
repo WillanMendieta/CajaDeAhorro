@@ -1,5 +1,6 @@
 package ec.edu.ups.est.ProyectoFinal.bean;
 
+import java.text.DecimalFormat;
 import java.util.List;
 
 import javax.enterprise.context.RequestScoped;
@@ -56,8 +57,14 @@ public class CreditoBean {
 	public List<Amortizacion> getAmortizaciones() {
 		return amortizaciones;
 	}
+	
 	public void setAmortizaciones(List<Amortizacion> amortizaciones) {
 		this.amortizaciones = amortizaciones;
+	}
+	
+	public String getDoubleFormatted(double amortizacion) {
+		DecimalFormat df = new DecimalFormat("0.00");
+		return df.format(amortizacion);
 	}
 	
 	public String solicitarCredito() {

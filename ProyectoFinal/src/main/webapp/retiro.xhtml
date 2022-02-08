@@ -42,8 +42,10 @@
 											class="form-control" id="monto"
 											requiredMessage="Este campo es requerido"
 											converterMessage="Solo puede ingresar números"
+											validatorMessage="El valor mínimo a retirar es $5"
 											placeholder="Ingrese la cantidad a retirar">
 											<f:validateRequired />
+											<f:validateLongRange minimum="5" />
 										</h:inputText>
 										<h:message for="monto" style="color:red; margin-top: 0.5rem; display: block" />
 									</div>
