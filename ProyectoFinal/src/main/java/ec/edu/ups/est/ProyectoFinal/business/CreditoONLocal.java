@@ -12,4 +12,5 @@ public interface CreditoONLocal {
 	public void aprobarCredito(int idCredito);
 	public List<Credito> getCreditos();
 	public Credito getCredito(int id);
+	public double calcularInteresCredito(Credito credito);
 }

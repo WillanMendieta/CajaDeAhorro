@@ -1,6 +1,7 @@
 package ec.edu.ups.est.ProyectoFinal.bean;
 
 import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -14,6 +15,7 @@ import javax.inject.Named;
 
 import ec.edu.ups.est.ProyectoFinal.business.CreditoONLocal;
 import ec.edu.ups.est.ProyectoFinal.model.Amortizacion;
+import ec.edu.ups.est.ProyectoFinal.model.Credito;
 
 @Named
 @RequestScoped
@@ -27,7 +29,15 @@ public class CreditoBean {
 	private int idCredito;
 	private List<Map<String, String>> amortizaciones;
 	private boolean isButtonDisabled = false;
+	private String montoPagar;
 	
+	
+	public String getMontoPagar() {
+		return montoPagar;
+	}
+	public void setMontoPagar(String montoPagar) {
+		this.montoPagar = montoPagar;
+	}
 	public boolean isButtonDisabled() {
 		return isButtonDisabled;
 	}
@@ -92,21 +102,37 @@ public class CreditoBean {
 	public void cargarAmortizaciones() {
 		List<Map<String, String>> amortizacionesMapeadas = new ArrayList<Map<String,String>>();
 		List<Amortizacion> amortizaciones = creditoON.cargarAmortizaciones(idCredito);
-		int mesesParaSumar = 1;
-		for (Amortizacion amortizacion : amortizaciones) {
-			DecimalFormat df = new DecimalFormat("0.00");
+		Credito credito = creditoON.getCredito(idCredito);
+		for (int i = 0; i < credito.getPlazosCredito(); i++) {
+			int mesesParaSumar = i + 1;
 			Map<String, String> amortizacionMapeada = new HashMap<String, String>();
-			amortizacionMapeada.put("fechaPago", amortizacion.getFechaPago().toString());
-			amortizacionMapeada.put("montoPagado", df.format(amortizacion.getMontoPagado()));
-			amortizacionMapeada.put("fechaDebePagar", sumarMeses(amortizacion.getFechaPago(), mesesParaSumar).toString());
+			amortizacionMapeada.put("fechaDebePagar", new SimpleDateFormat("dd-MM-yyyy").format(sumarMeses(credito.getFecha(), mesesParaSumar)));
+			
+			DecimalFormat df = new DecimalFormat("0.00");
+			
+			if (i < amortizaciones.size()) {
+				Amortizacion amortizacion = amortizaciones.get(i);
+				amortizacionMapeada.put("fechaPago", new SimpleDateFormat("dd-MM-yyyy").format(amortizacion.getFechaPago()));
+				amortizacionMapeada.put("montoPagado", df.format(amortizacion.getMontoPagado()));
+			} else {
+				amortizacionMapeada.put("fechaPago", "");
+				amortizacionMapeada.put("montoPagado", "");
+			}
+
 			amortizacionesMapeadas.add(amortizacionMapeada);
-			mesesParaSumar++;
 		}
 		this.amortizaciones = amortizacionesMapeadas;
 	}
 	
 	public void verificarBotonPago() {
 		this.isButtonDisabled = creditoON.getCredito(idCredito).isEstaPagado();
+	}
+	
+	public void cargarMontoPagar() {
+		Credito credito = creditoON.getCredito(idCredito);
+		double montoPagar = creditoON.calcularInteresCredito(credito);
+		DecimalFormat df = new DecimalFormat("0.00");
+		this.montoPagar = df.format(montoPagar);
 	}
 	
 	private Date sumarMeses(Date fecha, int meses) {

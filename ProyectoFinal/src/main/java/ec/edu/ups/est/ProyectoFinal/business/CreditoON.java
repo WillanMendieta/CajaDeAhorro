@@ -55,6 +55,12 @@ public class CreditoON implements CreditoONLocal {
 		return creditoDAO.getList();
 	}
 	
+	public double calcularInteresCredito(Credito credito) {
+		double montoInteres = credito.getMontoSolicitado() * (credito.getInteres() / (double)credito.getPlazosCredito());
+		double montoMensual = credito.getMontoSolicitado() / (double)credito.getPlazosCredito();
+		return montoInteres + montoMensual;
+	}
+	
 	public void pagarCredito(int idCredito) throws Exception {
 		Credito creditoGuardado = creditoDAO.read(idCredito);
 		System.out.println("CREDITO GUARDADO ES:  !!!!   " + creditoGuardado.getMontoSolicitado());
@@ -62,9 +68,7 @@ public class CreditoON implements CreditoONLocal {
 			List<Amortizacion> amortizacionesCredito = creditoGuardado.getAmortizaciones();
 			Amortizacion nuevaAmortizacion = new Amortizacion();
 			nuevaAmortizacion.setFechaPago(new Date());
-			double montoInteres = creditoGuardado.getMontoSolicitado() * (creditoGuardado.getInteres() / (double)creditoGuardado.getPlazosCredito());
-			double montoMensual = creditoGuardado.getMontoSolicitado() / (double)creditoGuardado.getPlazosCredito();
-			nuevaAmortizacion.setMontoPagado(montoInteres + montoMensual);
+			nuevaAmortizacion.setMontoPagado(calcularInteresCredito(creditoGuardado));
 			amortizacionesCredito.add(nuevaAmortizacion);
 			creditoGuardado.setAmortizaciones(amortizacionesCredito);
 			if (amortizacionesCredito.size() == creditoGuardado.getPlazosCredito()) {
