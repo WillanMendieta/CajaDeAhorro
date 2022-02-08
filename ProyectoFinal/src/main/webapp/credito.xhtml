@@ -21,13 +21,17 @@
     			Amortizaciones del crédito:
     		</h4>
 	        <h:dataTable var="amortizacion" class="table table-striped" value="#{creditoBean.amortizaciones}">
+	        	<h:column>
+					<f:facet name="header">Fecha límite</f:facet>
+					#{amortizacion["fechaDebePagar"]}
+				</h:column>
 				<h:column>
-					<f:facet name="header">Fecha</f:facet>
-					#{amortizacion.fechaPago}
+					<f:facet name="header">Fecha en la que pagó</f:facet>
+					#{amortizacion["fechaPago"]}
 				</h:column>
 				<h:column>
 					<f:facet name="header">Monto pagado</f:facet>
-					#{creditoBean.getDoubleFormatted(amortizacion.montoPagado)}
+					#{amortizacion["montoPagado"]}
 				</h:column>
 			</h:dataTable>
 			<h:commandButton id="boton-pagar" action="#{creditoBean.realizarPago()}" disabled="#{creditoBean.buttonDisabled}"

@@ -1,7 +1,12 @@
 package ec.edu.ups.est.ProyectoFinal.bean;
 
 import java.text.DecimalFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
@@ -20,7 +25,7 @@ public class CreditoBean {
 	private double cantidadCredito;
 	private String cedulaPersona;
 	private int idCredito;
-	private List<Amortizacion> amortizaciones;
+	private List<Map<String, String>> amortizaciones;
 	private boolean isButtonDisabled = false;
 	
 	public boolean isButtonDisabled() {
@@ -54,14 +59,12 @@ public class CreditoBean {
 		this.cedulaPersona = cedulaPersona;
 	}
 	
-	public List<Amortizacion> getAmortizaciones() {
+	public List<Map<String, String>> getAmortizaciones() {
 		return amortizaciones;
 	}
-	
-	public void setAmortizaciones(List<Amortizacion> amortizaciones) {
+	public void setAmortizaciones(List<Map<String, String>> amortizaciones) {
 		this.amortizaciones = amortizaciones;
 	}
-	
 	public String getDoubleFormatted(double amortizacion) {
 		DecimalFormat df = new DecimalFormat("0.00");
 		return df.format(amortizacion);
@@ -87,10 +90,29 @@ public class CreditoBean {
 	}
 	
 	public void cargarAmortizaciones() {
-		amortizaciones = creditoON.cargarAmortizaciones(idCredito);
+		List<Map<String, String>> amortizacionesMapeadas = new ArrayList<Map<String,String>>();
+		List<Amortizacion> amortizaciones = creditoON.cargarAmortizaciones(idCredito);
+		int mesesParaSumar = 1;
+		for (Amortizacion amortizacion : amortizaciones) {
+			DecimalFormat df = new DecimalFormat("0.00");
+			Map<String, String> amortizacionMapeada = new HashMap<String, String>();
+			amortizacionMapeada.put("fechaPago", amortizacion.getFechaPago().toString());
+			amortizacionMapeada.put("montoPagado", df.format(amortizacion.getMontoPagado()));
+			amortizacionMapeada.put("fechaDebePagar", sumarMeses(amortizacion.getFechaPago(), mesesParaSumar).toString());
+			amortizacionesMapeadas.add(amortizacionMapeada);
+			mesesParaSumar++;
+		}
+		this.amortizaciones = amortizacionesMapeadas;
 	}
 	
 	public void verificarBotonPago() {
 		this.isButtonDisabled = creditoON.getCredito(idCredito).isEstaPagado();
+	}
+	
+	private Date sumarMeses(Date fecha, int meses) {
+		Calendar calendar = Calendar.getInstance();
+		calendar.setTime(fecha);
+		calendar.add(Calendar.MONTH, meses);
+		return calendar.getTime();
 	}
 }
