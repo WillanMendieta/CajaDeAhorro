@@ -17,6 +17,7 @@
 									<div class="form-group">
 										<label for="txtNumeroCuenta">Número de cuenta Destino:</label>
 										<h:inputText requiredMessage="Este campo es requerido" 
+												value="#{movimientoBean.numeroCuentaDestino}"
 											class="form-control" id="txtNumeroCuenta" placeholder="Ingrese la Cuenta" >
 											<f:ajax execute="txtNumeroCuenta" render="txtCedulaUser txtNombreUser" 
 												listener="#{movimientoBean.cargarDatosDeCuentaDestino()}" />
@@ -35,12 +36,6 @@
 				                    </div>
 				                    
 				                    
-				                    <div class="form-group">
-										<label for="input-1">Cuenta Origen</label>
-										<h:inputText value="#{movimientoBean.numeroCuenta}"
-											class="form-control" id="input-1"
-											placeholder="Ingrese la Cuenta" />
-									</div>
 									
 									<div class="form-group">
 										<label for="monto">Monto a Transferir</label>
@@ -57,7 +52,7 @@
 									
 									<div class="form-group">
 										
-										<h:commandButton id="boton-retirar" action="#{movimientoBean.transferenciasDeCuentas()}"
+										<h:commandButton id="boton-retirar" action="#{movimientoBean.transferenciasDeCuentasSesion()}"
 											value="Realizar tranferencia" style="flex-grow: 1;" class="btn btn-success px-5" />
 									</div>
 								</h:form>
