@@ -1,5 +1,6 @@
 package ec.edu.ups.est.ProyectoFinal.bean;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -37,7 +38,13 @@ public class CreditoRest {
 			credito.setUsuario(null);
 			credito.setAmortizaciones(null);
 		}
-		return creditos;
+		List<Credito> creditosPorAprobar = new ArrayList<Credito>();
+		for(Credito credito : creditos) {
+			if (credito.isEstaAprobado() == false) {
+				creditosPorAprobar.add(credito);
+			}
+		}
+		return creditosPorAprobar;
 	}
 	
 }
