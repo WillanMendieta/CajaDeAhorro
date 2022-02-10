@@ -7,7 +7,9 @@ import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
+import ec.edu.ups.est.ProyectoFinal.business.CajeroONLocal;
 import ec.edu.ups.est.ProyectoFinal.business.UsuarioONLocal;
+import ec.edu.ups.est.ProyectoFinal.model.Cajero;
 import ec.edu.ups.est.ProyectoFinal.model.Usuario;
 
 @Named
@@ -27,6 +29,9 @@ public class ClienteBean {
 	
 	@Inject
 	private UsuarioONLocal usuarioON;
+	
+	@Inject
+	private CajeroONLocal cajeroON;
 	
 	@PostConstruct
 	public void init() {
@@ -50,12 +55,38 @@ public class ClienteBean {
 	public String guardarClienteAdmin() {
 		try {
 			usuarioON.insertarUsuario(newusuario);
+
+			
+			String cajerotxt = newusuario.getTipoUsuario();
+			
+			String cajeroBase = new String ("Cajero");
+			
+			
+			if (cajerotxt.equals(cajeroBase)) {
+				System.out.println("Entra al if ");
+				Cajero cajero = new Cajero();
+				cajero.setCedula(newusuario.getCedula());
+				cajero.setEstado("Pendiente");
+				try {
+					cajeroON.guardar(cajero);
+					//cuentasON.insertarCuenta(newcuenta);
+					System.out.println("Se guardo correctamente");
+					
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+					System.out.println("no se guardo");
+				}
+				
+			}
+			
+			
 		}
 		catch(Exception e){
 			e.printStackTrace();
 		}
 		
-		return "lista-usuarios?faces-redirect=true";
+		return "mensaje-exito?faces-redirect=true&texto=Usuario Creado con exito";
 	}
 
 	
