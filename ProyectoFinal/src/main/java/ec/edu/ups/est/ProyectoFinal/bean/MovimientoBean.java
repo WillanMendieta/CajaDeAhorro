@@ -97,7 +97,7 @@ public class MovimientoBean {
 	}
 	
 	//Metodos
-
+	//RetirarConAdmi
 	public String retirarFondos() {
 		try {
 			Cuenta cuenta = cuentaON.getCuenta(numeroCuenta);
@@ -115,13 +115,13 @@ public class MovimientoBean {
 		}
 		return "mensaje-exito?faces-redirect=true&texto=Se ha retirado el dinero con éxito";
 	}
-	
+	//RetirarUsuario
 	public String retirarFondosConSesion() {
 		String cedulaUsuario = SessionUtils.getUserCedula();
 		String numeroCuenta = usuarioON.getUsuario(cedulaUsuario).getCuenta().getNumeroCuenta();
 		Cuenta cuenta = cuentaON.getCuenta(numeroCuenta);
 		if (cuenta == null) {
-			return "mensaje-error?faces-redirect=true&texto=La cuenta no existe";
+			return "mensaje-error-usuario?faces-redirect=true&texto=La cuenta no existe";
 		}
 		Movimiento movimiento = new Movimiento();
 		movimiento.setCuenta(cuenta);
@@ -136,6 +136,7 @@ public class MovimientoBean {
 		return "mensaje-exito-usuario?faces-redirect=true&texto=Se ha retirado el dinero con éxito";
 	}
 	
+	//DepositoConAdmi
 	public String depositarFondos() {
 		try {
 			Cuenta cuenta = cuentaON.getCuenta(numeroCuenta);
@@ -151,12 +152,13 @@ public class MovimientoBean {
 		return "mensaje-exito?faces-redirect=true&texto=Se ha depositado el dinero con éxito";
 	}
 	
+	//RetirarUsuario
 	public String depositarFondosConSesion() {
 		try {
 			String cedulaUsuario = SessionUtils.getUserCedula();
 			String numeroCuenta = usuarioON.getUsuario(cedulaUsuario).getCuenta().getNumeroCuenta();
-			
 			Cuenta cuenta = cuentaON.getCuenta(numeroCuenta);
+			System.out.println("veamos q llega de cuenta" + cuenta);
 			Movimiento movimiento = new Movimiento();
 			movimiento.setCuenta(cuenta);
 			movimiento.setFecha(new Date());
@@ -165,13 +167,12 @@ public class MovimientoBean {
 			movimientoON.deposito(movimiento);
 		} catch (Exception e) {
 			e.printStackTrace();
-			return "mensaje-error-usuario?faces-redirect=true&texto=" + e.getMessage();
 		}
 		return "mensaje-exito-usuario?faces-redirect=true&texto=Se ha depositado el dinero con éxito";
 	}
 	
 	
-	
+	//TranferenciaAdmi
 	public String transferenciasDeCuentas () {
 			System.out.println("llega al inicio del metodo");
 			//Retiro
@@ -187,7 +188,7 @@ public class MovimientoBean {
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-				return "mensaje-error-usuario?faces-redirect=true&texto=" + e.getMessage();
+				return "mensaje-error?faces-redirect=true&texto=" + e.getMessage();
 			}
 			
 			System.out.println("Ya retiro");
@@ -204,12 +205,12 @@ public class MovimientoBean {
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-				return "mensaje-error-usuario?faces-redirect=true&texto=" + e.getMessage();
+				return "mensaje-error?faces-redirect=true&texto=" + e.getMessage();
 			}
 
 		 return "mensaje-exito?faces-redirect=true&texto=Se ha realizado la tranferencia del dinero con éxito";
 	}
-	
+	//TranferenciaUsuario
 	public String transferenciasDeCuentasSesion () {
 		System.out.println("llega al inicio del metodo");
 		//Retiro
