@@ -16,6 +16,7 @@ import javax.inject.Named;
 import ec.edu.ups.est.ProyectoFinal.business.CreditoONLocal;
 import ec.edu.ups.est.ProyectoFinal.model.Amortizacion;
 import ec.edu.ups.est.ProyectoFinal.model.Credito;
+import ec.edu.ups.est.ProyectoFinal.util.SessionUtils;
 
 @Named
 @RequestScoped
@@ -88,6 +89,17 @@ public class CreditoBean {
 			return "mensaje-error?faces-redirect=true&texto=" + e.getMessage();
 		}
 		return "mensaje-exito?faces-redirect=true&texto=Se ha solicitado el crédito con éxito";
+	}
+	
+	public String solicitarCreditoSession() {
+		try {
+			String cedulaUsuarioSesion = SessionUtils.getUserCedula();
+			creditoON.solicitarCredito(cantidadCredito, numeroCuotas, cedulaUsuarioSesion);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return "mensaje-error-usuario?faces-redirect=true&texto=" + e.getMessage();
+		}
+		return "mensaje-exito-usuario?faces-redirect=true&texto=Se ha solicitado el crédito con éxito";
 	}
 	
 	public String realizarPago() {

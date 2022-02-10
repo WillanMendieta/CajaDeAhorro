@@ -17,14 +17,6 @@
 						<div class="card-body">
 							<div class="card-title">Solicitar Crédito</div>
 							<h:form>
-								<div class="form-group">
-			                      <label for="txtCedulaUser">Cédula del usuario:</label>
-			                      <h:inputText class="form-control" id="txtCedulaUser" value="#{creditoBean.cedulaPersona}" requiredMessage="Este campo es requerido">
-			                      	<f:validateRequired />
-			                      </h:inputText>
-			                      <h:message for="txtCedulaUser" style="color:red; margin-top: 0.5rem; display: block" />
-			                    </div>
-			                    
 			                    <div class="input-group mb-3">
 								  <div class="input-group-prepend">
 								    <label class="input-group-text" for="selectCuotas">Número de cuotas:</label>
@@ -59,7 +51,7 @@
 								</div>
 								
 								<div class="form-group d-flex">
-									<h:commandButton id="boton-retirar" action="#{creditoBean.solicitarCredito()}"
+									<h:commandButton id="boton-retirar" action="#{creditoBean.solicitarCreditoSession()}"
 										value="Solicitar Crédito" style="flex-grow: 1;" class="btn btn-success px-5" />
 								</div>
 							</h:form>
