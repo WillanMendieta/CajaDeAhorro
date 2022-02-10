@@ -32,7 +32,12 @@ public class CreditoRest {
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	public List<Credito> listarCreditos() {
-		return creditoON.getCreditos();
+		List<Credito> creditos = creditoON.getCreditos();
+		for(Credito credito : creditos) {
+			credito.setUsuario(null);
+			credito.setAmortizaciones(null);
+		}
+		return creditos;
 	}
 	
 }
