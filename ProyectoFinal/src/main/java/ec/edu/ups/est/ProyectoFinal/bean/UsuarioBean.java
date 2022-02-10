@@ -12,6 +12,7 @@ import ec.edu.ups.est.ProyectoFinal.business.UsuarioONLocal;
 import ec.edu.ups.est.ProyectoFinal.model.Credito;
 import ec.edu.ups.est.ProyectoFinal.model.Movimiento;
 import ec.edu.ups.est.ProyectoFinal.model.PagoServicio;
+import ec.edu.ups.est.ProyectoFinal.util.SessionUtils;
 
 @Named
 @RequestScoped
@@ -24,6 +25,7 @@ public class UsuarioBean {
 	private MovimientoONLocal movimientoON;
 	
 	private String cedula;
+	private String cedulaSesion=SessionUtils.getUserCedula();
 	private List<Credito> creditos;
 	private List<PagoServicio> servicios;
 
@@ -58,6 +60,9 @@ public class UsuarioBean {
 	public void loadServicios() {
 		servicios = usuarioON.getUsuario(cedula).getPagoServicios();
 	}
+	public void loadServiciosSesion() {
+		servicios = usuarioON.getUsuario(cedulaSesion).getPagoServicios();
+	}
 	
 	public List<Movimiento> getMovimientosCuentaDeUsuario() {
 		String numeroCuenta = usuarioON.getUsuario(cedula).getCuenta().getNumeroCuenta();
@@ -67,4 +72,12 @@ public class UsuarioBean {
 	public double getSaldoCuentaDeUsuario() {
 		return usuarioON.getUsuario(cedula).getCuenta().getSaldo();
 	}
+
+	public String getCedulaSesion() {
+		return cedulaSesion;
+	}
+
+
+
+	
 }

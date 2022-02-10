@@ -86,6 +86,14 @@ public class PagoServicioBean {
 		}
 		return "mensaje-exito?faces-redirect=true&texto=Se ha realizado el pago del Servicio";
 	}
+	public String realizarPagoUsuario() {
+		try {
+			pagoServicioON.pagarServicio(idPago);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return "mensaje-exito-usuario?faces-redirect=true&texto=Se ha realizado el pago del Servicio";
+	}
 	public PagoServicio cargarPago(){
 		PagoServicio ps=pagoServicioON.getPagoServicio(idPago);
 		return ps;
