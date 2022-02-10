@@ -16,11 +16,13 @@ public interface CajeroONLocal {
 	
 	public void guardar(Cajero p) throws Exception ;
 	
-	public List<Cajero> getClientes() ;
+	public void aprobarCajero(int idCajero);
+	public void negarCajero(int idCajero);
+	
+	public List<Cajero> getCajeros() ;
 	
 	
-	public Cajero getCliente(int Codigo);
+	public Cajero getCajeroId(int Codigo);
 	
-	public void guardarCuenta(Cuenta cue) throws Exception;
-
+	//public void guardarCuenta(Cuenta cue) throws Exception;
 }
