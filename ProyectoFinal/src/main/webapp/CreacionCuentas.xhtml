@@ -7,7 +7,7 @@
 
 <ui:composition template="template/plantilla.xhtml">
 	<ui:define name="title">
-        Retiro
+        Creacion de cuentas
     </ui:define>
 	<ui:define name="content">
 
@@ -21,47 +21,90 @@
 							<div class="form-group">
 								<label for="cedula">Cédula:</label>
 								<h:inputText class="form-control" id="cedula"
-									value="#{cuentaBean.cedulaUsuario}"
+									value="#{clienteBean.newUsuario.cedula}"
 									requiredMessage="Este campo es requerido">
 									<f:validateRequired />
 								</h:inputText>
-								<h:message for="txtCedulaUser"
-									style="color:red; margin-top: 0.5rem; display: block" />
+
 							</div>
 
 							<div class="form-group">
-								<label for="nombre">Saldo:</label>
+								<label for="nombre">Nombre:</label>
 								<h:inputText class="form-control" id="nombre"
-									value="#{cuentaBean.newCuenta.saldo}"
+									value="#{clienteBean.newUsuario.nombre}"
 									requiredMessage="Este campo es requerido">
 									<f:validateRequired />
 								</h:inputText>
-								<h:message for="txtCedulaUser"
-									style="color:red; margin-top: 0.5rem; display: block" />
+
 							</div>
 
 							<div class="form-group">
-								<label for="apellido">N° Cuenta::</label>
+								<label for="apellido">Apellido:</label>
 								<h:inputText class="form-control" id="apellido"
-									value="#{cuentaBean.newCuenta.numeroCuenta}"
+									value="#{clienteBean.newUsuario.apellido}"
+									requiredMessage="Este campo es requerido">
+									<f:validateRequired />
+								</h:inputText>
+
+							</div>
+
+							<div class="form-group">
+								<label for="dir">Direccion:</label>
+								<h:inputText class="form-control" id="dir"
+									value="#{clienteBean.newUsuario.direccion}"
+									requiredMessage="Este campo es requerido">
+									<f:validateRequired />
+								</h:inputText>
+
+							</div>
+
+							<div class="form-group">
+								<label for="tel">Teléfono:</label>
+								<h:inputText class="form-control" id="tel"
+									value="#{clienteBean.newUsuario.telefono}"
+									requiredMessage="Este campo es requerido">
+									<f:validateRequired />
+								</h:inputText>
+
+							</div>
+
+							<div class="form-group">
+								<label for="correo">Correo:</label>
+								<h:inputText class="form-control" id="correo"
+									value="#{clienteBean.newUsuario.correo}"
+									requiredMessage="Este campo es requerido">
+									<f:validateRequired />
+								</h:inputText>
+
+							</div>
+
+							<div class="form-group">
+								<label for="contra">Contraseña:</label>
+								<h:inputText class="form-control" id="contra"
+									value="#{clienteBean.newUsuario.contra}"
+									requiredMessage="Este campo es requerido">
+									<f:validateRequired />
+								</h:inputText>
+								<h:message for="final"
+									style="color:red; margin-top: 0.5rem; display: block" />
+							</div>
+
+
+							<div class="form-group">
+								<label for="Saldo">Saldo:</label>
+								<h:inputText class="form-control" id="Saldo"
+									value="#{clienteBean.saldo}"
 									requiredMessage="Este campo es requerido">
 									<f:validateRequired />
 								</h:inputText>
 								<h:message for="txtCedulaUser"
 									style="color:red; margin-top: 0.5rem; display: block" />
 							</div>
-
-							<div class="form-group d-flex">
-								<h:commandButton id="btnGenerar"
-									action="#{cuentaBean.generarNumCuenta()}" value="Generar"
-									style="flex-grow: 1;" class="btn btn-success px-5" />
-							</div>
-
 							<div class="form-group">
 								<label for="cuenta">Tipo de cuenta:</label>
 
-								<h:selectOneMenu class="custom-select" id="cuentaSelec"
-									value="#{giroBean.newgiro.banco}">
+								<h:selectOneMenu class="custom-select" id="tipocuenta"
+									value="#{clienteBean.tipoCuenta}">
 									<f:selectItem itemValue=""
 										itemLabel="Seleccione el tipo de cuenta" />
 									<f:selectItem itemValue="Ahorros" itemLabel="Ahorros" />
@@ -75,16 +118,21 @@
 
 
 
+
+
+
 							<div class="form-group d-flex">
 								<h:commandButton id="btnGuardar"
-									action="#{cuentaBean.guardarCuenta()}" value="CREAR"
+									action="#{clienteBean.guardarCliente()}" value="CREAR"
 									style="flex-grow: 1;" class="btn btn-success px-5" />
 							</div>
 						</h:form>
+
 					</div>
 				</div>
 			</div>
 		</div>
+
 
 
 	</ui:define>
