@@ -7,6 +7,7 @@ import javax.inject.Named;
 
 import ec.edu.ups.est.ProyectoFinal.business.PagoServicioONLocal;
 import ec.edu.ups.est.ProyectoFinal.model.PagoServicio;
+import ec.edu.ups.est.ProyectoFinal.util.SessionUtils;
 
 @Named
 @RequestScoped
@@ -65,6 +66,16 @@ public class PagoServicioBean {
 			return "mensaje-error?faces-redirect=true&texto=" + e.getMessage();
 		}
 		return "mensaje-exito?faces-redirect=true&texto=Se ha agregado el Servicio con Exito";
+	}
+	public  String AgregarPagoSesion() {
+		try {
+			String cedulaUsuarioSesion = SessionUtils.getUserCedula();
+			pagoServicioON.guardarPago(monto, servicio, cedulaUsuarioSesion);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return "mensaje-error?faces-redirect=true&texto=" + e.getMessage();
+		}
+		return "mensaje-exito-usuario?faces-redirect=true&texto=Se ha Agregado Servicio con éxito";
 	}
 	
 	public String realizarPago() {
