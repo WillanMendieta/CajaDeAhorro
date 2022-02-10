@@ -207,7 +207,7 @@ public class MovimientoBean {
 				return "mensaje-error-usuario?faces-redirect=true&texto=" + e.getMessage();
 			}
 
-		 return "mensaje-exito-usuario?faces-redirect=true&texto=Se ha realizado la tranferencia del dinero con éxito";
+		 return "mensaje-exito?faces-redirect=true&texto=Se ha realizado la tranferencia del dinero con éxito";
 	}
 	
 	public String transferenciasDeCuentasSesion () {
