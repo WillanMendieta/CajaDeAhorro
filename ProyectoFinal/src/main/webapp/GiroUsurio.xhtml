@@ -113,19 +113,7 @@
 									style="color:red; margin-top: 0.5rem; display: block" />
 							</div>
 
-							<div class="form-group">
-								<label for="final">Monto Final a Debitar:</label>
-								<h:inputText class="form-control" id="final"
-									value="#{giroBean.newgiro.montoFinal}"
-									requiredMessage="Este campo es requerido">
-									<f:validateRequired />
-								</h:inputText>
-								<h:message for="final"
-									style="color:red; margin-top: 0.5rem; display: block" />
-							</div>
-
-
-
+							
 							<div class="form-group d-flex">
 								<h:commandButton id="btnGiro"
 									action="#{giroBean.guardarGiro()}" value="Realizar Giro"
