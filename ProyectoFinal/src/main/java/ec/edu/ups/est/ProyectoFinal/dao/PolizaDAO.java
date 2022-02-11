@@ -33,7 +33,7 @@ public class PolizaDAO {
 	public List<Poliza> getList(){
 		List<Poliza> listado = new ArrayList<Poliza>();
 		
-		String jpql="SELECT op FROM Giro op";
+		String jpql="SELECT op FROM Poliza op";
 		Query query = em.createQuery(jpql, Poliza.class);
 		listado = query.getResultList();
 		
