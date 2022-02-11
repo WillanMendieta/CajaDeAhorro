@@ -83,7 +83,7 @@ public class PolizaBean {
 	public void setPoliza(Poliza poliza) {
 		this.poliza = poliza;
 	}
-	
+
 	@PostConstruct
 	public void init() {
 		polizas = polizaON.getPolizas();
@@ -104,16 +104,33 @@ public class PolizaBean {
 	public String aceptarPoliza() {
 		poliza.setInteres(0.05);
 		try {
-			poliza.setMontoCobrar(cantidadInicio* poliza.getInteres()+ cantidadInicio);
+			poliza.setMontoCobrar(cantidadInicio * poliza.getInteres() + cantidadInicio);
 			polizaON.aceptarPoliza(cantidadInicio, numeroCuotas, cedulaPersona);
-			
+
 			System.out.println("acepar Poliza");
 		} catch (Exception e) {
 			e.printStackTrace();
 			return "mensaje-error?faces-redirect=true&texto=" + e.getMessage();
 		}
 
-		return "mensaje-exito?faces-redirect=true&texto=Se ha generado la poliza con éxito usted recibira: " + poliza.getMontoCobrar();
+		return "mensaje-exito?faces-redirect=true&texto=Se ha generado la poliza con éxito usted recibira: "
+				+ poliza.getMontoCobrar();
+	}
+
+	public String aceptarPolizaUsuario() {
+		poliza.setInteres(0.05);
+		try {
+			poliza.setMontoCobrar(cantidadInicio * poliza.getInteres() + cantidadInicio);
+			polizaON.aceptarPoliza(cantidadInicio, numeroCuotas, cedulaPersona);
+
+			System.out.println("acepar Poliza");
+		} catch (Exception e) {
+			e.printStackTrace();
+			return "mensaje-error?faces-redirect=true&texto=" + e.getMessage();
+		}
+
+		return "mensaje-exito-usuario?faces-redirect=true&texto=Se ha generado la poliza con éxito usted recibira: "
+				+ poliza.getMontoCobrar();
 	}
 
 	public void loadPoliza() {
