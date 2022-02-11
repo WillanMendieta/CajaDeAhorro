@@ -38,5 +38,10 @@ public class CiudadDAO {
 		return ciudad;
 
 	}
+	
+	
+	public void update(Ciudad op) {
+		em.merge(op);
+	}
 
 }

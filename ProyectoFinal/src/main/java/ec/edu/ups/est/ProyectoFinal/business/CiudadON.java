@@ -12,8 +12,21 @@ public class CiudadON {
 	@Inject
 	private CiudadDAO ciudadDAO;
 	
+	
+
 	public Ciudad getUsuario(int codigo) {
 		return ciudadDAO.read(codigo);
+	}
+
+	
+	public void guardarCiudad(int codigoCiudad ,  double interes) {
+		Ciudad ciudad = ciudadDAO.read(codigoCiudad);
+		System.out.println(codigoCiudad);
+		System.out.println(interes);
+		ciudad.setInteres(interes);		
+		ciudadDAO.update(ciudad);
+		
+		
 	}
 	
 }
