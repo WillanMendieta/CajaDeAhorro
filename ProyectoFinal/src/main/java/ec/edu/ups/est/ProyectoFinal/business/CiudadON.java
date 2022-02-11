@@ -20,9 +20,9 @@ public class CiudadON {
 
 	
 	public void guardarCiudad(int codigoCiudad ,  double interes) {
+		
 		Ciudad ciudad = ciudadDAO.read(codigoCiudad);
-		System.out.println(codigoCiudad);
-		System.out.println(interes);
+		ciudad.setId(codigoCiudad);
 		ciudad.setInteres(interes);		
 		ciudadDAO.update(ciudad);
 		
