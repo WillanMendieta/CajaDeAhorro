@@ -1,44 +1,51 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
-    xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html">
- 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+
 <ui:composition template="template/plantillaUsuario.xhtml">
-    <ui:define name="title">
+	<ui:define name="title">
         Deposito #{movimientosBean.numeroCuenta}
     </ui:define>
-			    <ui:define name="content">
-					<div class="col-lg-6">
-						<div class="card">
-							<div class="card-body">
-								<div class="card-title">Depositos Cuenta</div>
-			
-								<h:form>
-									
-			
-									<div class="form-group">
-										<label for="input-2">Monto</label>
-										<h:inputText value="#{movimientoBean.cantidadDepositada}"
-											class="form-control" id="input-2"
-											placeholder="Ingrese la cantidad a retirar" />
-									</div>
-			
-									<div class="form-group">
-			
-										
-										<h:commandButton id="boton-retirar" action="#{movimientoBean.depositarFondosConSesion()}"
-											value="Realizar Deposito" style="flex-grow: 1;" class="btn btn-success px-5" />
-										
-									</div>
-			
-								</h:form>
-			
+	<ui:define name="content">
+
+		<div class="">
+			<div style="padding-top: 2rem; justify-content: center;"
+				class="d-flex">
+				<div style="width: 500px" class="card">
+					<div class="card-body">
+						<div class="card-title">Depositos Cuenta</div>
+
+						<h:form>
+
+
+							<div class="form-group">
+								<label for="input-2">Monto</label>
+								<h:inputText value="#{movimientoBean.cantidadDepositada}"
+									class="form-control" id="input-2"
+									placeholder="Ingrese la cantidad a retirar" />
 							</div>
-						</div>
+
+							<div class="form-group">
+
+
+								<h:commandButton id="boton-retirar"
+									action="#{movimientoBean.depositarFondosConSesion()}"
+									value="Realizar Deposito" style="flex-grow: 1;"
+									class="btn btn-success px-5" />
+
+							</div>
+
+						</h:form>
+
 					</div>
-			
-				</ui:define>
- 
+				</div>
+			</div>
+			</div>
+	</ui:define>
+
 </ui:composition>
 </html>
 
