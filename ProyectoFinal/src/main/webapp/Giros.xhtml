@@ -47,8 +47,10 @@
 								<h:selectOneMenu class="custom-select" id="BancoSelec"
 									value="#{giroBean.newgiro.banco}">
 									<f:selectItem itemValue="" itemLabel="Seleccione el Banco" />
-									<f:selectItem itemValue="Banco Mi Pichincha" itemLabel="Banco Mi Pichincha" />
-									<f:selectItem itemValue="Banco del Austro" itemLabel="Banco del Austro" />
+									<f:selectItem itemValue="Banco Mi Pichincha"
+										itemLabel="Banco Mi Pichincha" />
+									<f:selectItem itemValue="Banco del Austro"
+										itemLabel="Banco del Austro" />
 									<f:selectItem itemValue="JEP" itemLabel="JEP" />
 									<f:selectItem itemValue="CHASE" itemLabel="CHASE" />
 									<f:selectItem itemValue="CITIBANK" itemLabel="CITIBANK" />
@@ -56,7 +58,7 @@
 									<f:selectItem itemValue="BCRA" itemLabel="BCRA" />
 									<f:selectItem itemValue="MiBanco" itemLabel="MiBanco" />
 								</h:selectOneMenu>
-								
+
 								<h:message for="banco"
 									style="color:red; margin-top: 0.5rem; display: block" />
 							</div>
@@ -117,9 +119,9 @@
 
 
 							<div class="form-group d-flex">
-								<h:commandButton id="btnGiro"
-									action="#{giroBean.guardarGiro()}" value="Realizar Giro"
-									style="flex-grow: 1;" class="btn btn-success px-5" />
+								<h:commandButton id="btnGiro" action="#{giroBean.guardarGiro()}"
+									value="Realizar Giro" style="flex-grow: 1;"
+									class="btn btn-success px-5" />
 							</div>
 						</h:form>
 					</div>
