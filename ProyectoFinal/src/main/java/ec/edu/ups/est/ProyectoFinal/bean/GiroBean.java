@@ -53,6 +53,20 @@ public class GiroBean {
 
 		return null;
 	}
+	
+	public String guardarGiroUsuario() {
+		newgiro.setInteres(interes);
+		try {
+			newgiro.setMontoFinal((interes * newgiro.getValor())+newgiro.getValor());
+			giroON.insertarGiro(newgiro);
+			return "mensaje-exito-usuario?faces-redirect=true&texto=Se ha generado su giro! Su debito será de : "+ newgiro.getMontoFinal();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+
+		return null;
+	}
 
 	public List<Giro> getGiros() {
 		return giros;
