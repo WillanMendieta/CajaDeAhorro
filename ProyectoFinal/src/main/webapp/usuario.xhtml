@@ -28,7 +28,9 @@
 				</h:column>
 				<h:column>
 					<f:facet name="header">Fecha</f:facet>
-					#{credito.fecha}
+					<h:outputText value="#{credito.fecha}">
+						<f:convertDateTime pattern = "dd-MM-yyyy" />
+					</h:outputText>
 				</h:column>
 				<h:column>
 					<f:facet name="header">Interés</f:facet>
@@ -36,7 +38,7 @@
 				</h:column>
 				<h:column>
 					<f:facet name="header">Monto solicitado</f:facet>
-					#{credito.montoSolicitado}
+					$#{credito.montoSolicitado}
 				</h:column>
 				<h:column>
 					<f:facet name="header">Plazos</f:facet>
@@ -77,7 +79,9 @@
 					</h:column>
 					<h:column>
 						<f:facet name="header">Fecha</f:facet>
-						#{mov.fecha}
+						<h:outputText value="#{mov.fecha}">
+							<f:convertDateTime pattern = "dd-MM-yyyy" />
+						</h:outputText>
 					</h:column>
 					<h:column>
 						<f:facet name="header">Monto</f:facet>

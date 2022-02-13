@@ -125,7 +125,7 @@ public class CreditoBean {
 			if (i < amortizaciones.size()) {
 				Amortizacion amortizacion = amortizaciones.get(i);
 				amortizacionMapeada.put("fechaPago", new SimpleDateFormat("dd-MM-yyyy").format(amortizacion.getFechaPago()));
-				amortizacionMapeada.put("montoPagado", df.format(amortizacion.getMontoPagado()));
+				amortizacionMapeada.put("montoPagado", "$" + df.format(amortizacion.getMontoPagado()));
 			} else {
 				amortizacionMapeada.put("fechaPago", "");
 				amortizacionMapeada.put("montoPagado", "");
