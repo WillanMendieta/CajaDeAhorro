@@ -1,5 +1,7 @@
 package ec.edu.ups.est.ProyectoFinal.business;
 
+import java.util.List;
+
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 
@@ -20,13 +22,14 @@ public class CiudadON {
 
 	
 	public void guardarCiudad(int codigoCiudad ,  double interes) {
-		
 		Ciudad ciudad = ciudadDAO.read(codigoCiudad);
 		ciudad.setId(codigoCiudad);
 		ciudad.setInteres(interes);		
 		ciudadDAO.update(ciudad);
-		
-		
+	}
+	
+	public List<Ciudad> listarCiudades() {
+		return ciudadDAO.getList();
 	}
 	
 }
