@@ -2,6 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:jsf="http://xmlns.jcp.org/jsf"
       xmlns:h="http://java.sun.com/jsf/html"> 
 
 <h:head></h:head> 
@@ -42,13 +43,18 @@
 					
 					<h:column>
 						<f:facet name="header">Creditos y estado de cuenta</f:facet>
-						<h:commandButton id="boton-retirar" action="#{usuariosBean.verUsuario(usuario.cedula)}"
+						
+						<span jsf:rendered="#{usuario.cuenta != null}">
+							<h:commandButton id="boton-retirar" action="#{usuariosBean.verUsuario(usuario.cedula)}"
 												value="Ver créditos y e. de cuenta" style="flex-grow: 1;" class="btn btn-success px-3" />
+						</span>
 					</h:column>
 					<h:column>
 						<f:facet name="header">Servicios</f:facet>
-						<h:commandButton id="boton-retirarl" action="#{usuariosBean.verServicio(usuario.cedula)}"
+						<span jsf:rendered="#{usuario.cuenta != null}">
+							<h:commandButton id="boton-retirarl" action="#{usuariosBean.verServicio(usuario.cedula)}"
 												value="Ver Servicios" style="flex-grow: 1;" class="btn btn-success px-3" />
+						</span>
 					</h:column>
 				</h:dataTable>
 			</h:form>
