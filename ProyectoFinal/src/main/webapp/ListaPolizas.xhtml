@@ -1,0 +1,48 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:jsf="http://xmlns.jcp.org/jsf"
+	xmlns:h="http://java.sun.com/jsf/html">
+
+<h:head></h:head>
+<ui:composition template="template/plantilla.xhtml">
+	<ui:define name="title">
+        Lista Polizas
+    </ui:define>
+	<ui:define name="content">
+		<div style="padding: 2rem 0;">
+			<h:form>
+				<h:dataTable var="poliza" class="table table-striped"
+					value="#{PolizaBean}">
+					<h:column>
+						<f:facet name="header">Cedula</f:facet>
+						#{poliza.}
+					</h:column>
+					<h:column>
+						<f:facet name="header">Fecha</f:facet>
+						#{usuario.nombre}
+					</h:column>
+					<h:column>
+						<f:facet name="header">Interes</f:facet>
+						#{usuario.apellido}
+					</h:column>
+					<h:column>
+						<f:facet name="header">Monto Inicial</f:facet>
+						#{usuario.correo}
+					</h:column>
+					<h:column>
+						<f:facet name="header">Meses Plazo</f:facet>
+						#{usuario.cuenta.numeroCuenta}
+					</h:column>
+					<h:column>
+						<f:facet name="header">Monto A Cobrar</f:facet>
+						#{usuario.cuenta.saldo}
+					</h:column>
+				</h:dataTable>
+			</h:form>
+		</div>
+	</ui:define>
+</ui:composition>
+
+</html>
