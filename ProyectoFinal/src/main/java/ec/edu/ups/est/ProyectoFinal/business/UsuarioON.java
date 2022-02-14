@@ -15,7 +15,6 @@ public class UsuarioON implements UsuarioONLocal {
 	@Inject
 	private UsuarioDAO usuarioDAO;
 
-
 	public void insertarUsuario(Usuario u) throws Exception {
 		if (!this.validaCedula(u.getCedula()))
 			throw new Exception("Cedula Incorrecta");
@@ -27,10 +26,20 @@ public class UsuarioON implements UsuarioONLocal {
 			throw new Exception("Contraseña Incorrecta Debe Contener ( @ * - )");
 		if (!this.validarTelefono(u.getTelefono()))
 			throw new Exception("Teléfono Incorrecto Son 10 Números");
+		if(!this.validarCedulaRepetida(u.getCedula()))
+			throw new Exception("Cedula Repetida");
 		
 		usuarioDAO.insert(u);
 	}
 
+	public boolean validarCedulaRepetida(String cedula) {
+		Usuario usuario = usuarioDAO.read(cedula);
+		if (usuario == null) {
+			return true;
+		}
+		return false;
+	}
+	
 	public List<Usuario> getUsuarios() {
 		return usuarioDAO.getList();
 	}
