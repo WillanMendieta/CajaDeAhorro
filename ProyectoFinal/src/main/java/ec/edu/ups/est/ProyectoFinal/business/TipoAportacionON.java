@@ -9,6 +9,12 @@ public class TipoAportacionON {
 	@Inject
 	private TipoAportacionDAO tipoAportacionDAO;
 	
+	/*
+	 * El metodo crear tiene como parametros de ingreso un objeto tipoAportacion, realiza 
+	 * verificacion si el tipo de aportacion existe si no es el caso ingresa 
+	 * 
+	 */
+	
 	public void crear(TipoAportacion tipoAportacion)  throws Exception {
 		TipoAportacion tipoAportacionSearched = tipoAportacionDAO.read(tipoAportacion.getId());
 		if (tipoAportacionSearched == null) {
@@ -19,6 +25,10 @@ public class TipoAportacionON {
 		}
 	}
 	
+	/*
+	 * El metodo Buscar, busca en la base de datos un tipo de aportacion y devuelve 
+	 * un objeto tipoAportacion.
+	 */
 	public TipoAportacion buscar(int id) {
 		return tipoAportacionDAO.read(id);
 	}
