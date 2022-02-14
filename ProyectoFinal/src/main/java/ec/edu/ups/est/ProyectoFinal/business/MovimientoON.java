@@ -21,9 +21,19 @@ public class MovimientoON implements MovimientoONLocal {
 	@Inject
 	private CuentaDAO cuentaDAO;
 	
+	/*
+	 * El metodo insertarMovimiento recibe como parametros un objeto movimiento he inserta en la base de datos.
+	 */
+	
 	public void insertarMovimientos(Movimiento m) {
 		daoMovimiento.insert(m);
 	}
+	
+	/*
+	 * El metodo retiro recibew como parametros un ubjeto de tipo movimiento el cual inserta a la tabla un movimiento de tipo retiro,
+	 * antes de eso verificando que tenga saldo la cuenta.
+	 * 
+	 */
 	
 	public void retiro(Movimiento movimiento)  throws Exception {
 		Cuenta cuenta = movimiento.getCuenta();
@@ -39,6 +49,11 @@ public class MovimientoON implements MovimientoONLocal {
 		}
 	}
 	
+	/*
+	 * El metodo deposito recibe como parametros un objeto de tipo movimiento el cual inserta a la tabla movimiento de tipo de deposito
+	 * 
+	 */
+	
 	public void deposito(Movimiento movimiento)  throws Exception {
 		Cuenta cuenta = movimiento.getCuenta();
 		Double saldoCuenta = cuenta.getSaldo();
@@ -49,10 +64,19 @@ public class MovimientoON implements MovimientoONLocal {
 			cuentaDAO.upgrade(cuenta);
 		
 	}
-
+	
+	/*
+	 * El metodo getMovimiento obtiene una lista de los movimentos de la base de datos.
+	 * 
+	 */
+	
 	public List<Movimiento> getMovimientos() {
 		return daoMovimiento.getList();
 	}
+	
+	/*
+	 * El metodo getMovimientoPorCuenta obtiene una lista de los movimientos pero buscad por el numero de cuenta 
+	 */
 	
 	public List<Movimiento> getMovimientosPorCuenta(String numeroCuenta) {
 		return daoMovimiento.getListPorCuenta(numeroCuenta);
