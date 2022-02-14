@@ -24,18 +24,10 @@ public class PolizaBean {
 	private String cedulaPersona;
 	private int idPoliza;
 	// private List<Amortizacion> amortizaciones;
-	private boolean isButtonDisabled = false;
 	private List<Poliza> polizas;
 	private Poliza poliza = new Poliza();
 
-	public boolean isButtonDisabled() {
-		return isButtonDisabled;
-	}
-
-	public void setButtonDisabled(boolean isButtonDisabled) {
-		this.isButtonDisabled = isButtonDisabled;
-	}
-
+	
 	public int getNumeroCuotas() {
 		return numeroCuotas;
 	}
@@ -93,7 +85,7 @@ public class PolizaBean {
 	}
 	
 	public void loadPolizas() {
-		this.polizas = polizas;
+		this.polizas = polizaON.getPolizas();
 	}
 	
 	public String verPolizas(String cedula) {
@@ -153,7 +145,4 @@ public class PolizaBean {
 		this.polizas = polizaON.getPolizas();
 	}
 
-	public void verificarBotonCalcular() {
-		this.isButtonDisabled = polizaON.getPoliza(idPoliza).isEstaAprobado();
-	}
 }
