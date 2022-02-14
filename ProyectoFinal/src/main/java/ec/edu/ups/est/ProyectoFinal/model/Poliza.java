@@ -49,6 +49,8 @@ public class Poliza implements Serializable {
 	@JoinColumn(name = "usu_ced")
 	private Usuario usuario;
 	
+	
+	
 	/*@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@JoinColumn(name="poli_id")
 	private List<Amortizacion> amortizaciones;

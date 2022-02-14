@@ -1,0 +1,56 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:jsf="http://xmlns.jcp.org/jsf"
+	xmlns:h="http://java.sun.com/jsf/html">
+
+<h:head>
+	<f:metadata>
+		<f:viewParam name="numero-cuenta"
+			value="#{polizaUsuarioBean.numeroCuenta}"></f:viewParam>
+		<f:viewAction action="#{polizaUsuarioBean.loadDataPorCuenta()}" />
+	</f:metadata>
+</h:head>
+<ui:composition template="template/plantillaUsuario.xhtml">
+	<ui:define name="title">
+        Cuenta #{loginBean.cargarUsuario().cuenta.numeroCuenta}
+    </ui:define>
+	<ui:define name="content">
+		<div style="padding: 2rem 0;">
+			<h:form>
+				<h:dataTable var="poliza" class="table table-striped"
+					value="#{polizaUsuarioBean.cargarMovimientosUsuario()}">
+					<h:column>
+						<f:facet name="header">Cedula</f:facet>
+						#{poliza.usuario.cedula}
+					</h:column>
+					<h:column>
+						<f:facet name="header">Fecha</f:facet>
+						<h:outputText value="#{poliza.fecha}">
+							<f:convertDateTime pattern="dd-MM-yyyy" />
+						</h:outputText>
+					</h:column>
+					<h:column>
+						<f:facet name="header">Interes</f:facet>
+						#{poliza.interes}
+					</h:column>
+					<h:column>
+						<f:facet name="header">Monto Inicial</f:facet>
+						#{poliza.montoInicio}
+					</h:column>
+					<h:column>
+						<f:facet name="header">Meses Plazo</f:facet>
+						#{poliza.plazosPoliza}
+					</h:column>
+					<h:column>
+						<f:facet name="header">Monto A Cobrar</f:facet>
+						#{poliza.montoCobrar}
+					</h:column>
+				</h:dataTable>
+			</h:form>
+		</div>
+	</ui:define>
+</ui:composition>
+
+</html>

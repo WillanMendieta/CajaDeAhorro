@@ -40,5 +40,15 @@ public class PolizaDAO {
 		return listado;
 	}
 	
+	public List<Poliza> getListPorCuenta(String numeroCuenta){
+		List<Poliza> listado = new ArrayList<Poliza>();
+		String jpql = "SELECT op FROM Poliza op WHERE op.usuario.cuenta.numeroCuenta = ?1";
+		Query query = em.createQuery(jpql, Poliza.class);
+		query.setParameter(1, numeroCuenta);
+		listado = query.getResultList();
+		//System.out.println("LISTADOO!!!!! 0:      " + listado.get(0).getCuenta().getNumeroCuenta());
+		return listado;
+	}
+	
 	
 }

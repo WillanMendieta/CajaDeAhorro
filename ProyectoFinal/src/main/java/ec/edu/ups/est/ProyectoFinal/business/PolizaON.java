@@ -74,4 +74,9 @@ public class PolizaON implements PolizaONLocal {
 	public Poliza getPoliza(int id) {
 		return polizaDAO.read(id);
 	}
+	
+	public List<Poliza> getPolizasUsuario(String numeroCuenta){
+		return polizaDAO.getListPorCuenta(numeroCuenta);
+	}
+	
 }

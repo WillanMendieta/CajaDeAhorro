@@ -10,5 +10,6 @@ public interface PolizaONLocal {
 	//public List<Amortizacion> cargarAmortizaciones(int idCredito);
 	public void aceptarPoliza2(int idPoliza);
 	public List<Poliza> getPolizas();
+	public List<Poliza> getPolizasUsuario(String numeroCuenta);
 	public Poliza getPoliza(int id);
 }
