@@ -27,7 +27,11 @@ public class PolizaBean {
 	private List<Poliza> polizas;
 	private Poliza poliza = new Poliza();
 
-	
+	@PostConstruct
+	public void init() {
+		this.loadPoliza();
+	}
+
 	public int getNumeroCuotas() {
 		return numeroCuotas;
 	}
@@ -68,14 +72,6 @@ public class PolizaBean {
 		this.idPoliza = idPoliza;
 	}
 
-	public Poliza getPoliza() {
-		return poliza;
-	}
-
-	public void setPoliza(Poliza poliza) {
-		this.poliza = poliza;
-	}
-	
 	public List<Poliza> getPolizas() {
 		return polizas;
 	}
@@ -83,18 +79,13 @@ public class PolizaBean {
 	public void setPolizas(List<Poliza> polizas) {
 		this.polizas = polizas;
 	}
-	
+
 	public void loadPolizas() {
 		this.polizas = polizaON.getPolizas();
 	}
-	
+
 	public String verPolizas(String cedula) {
 		return "ListaPolizas?faces-redirect=true&cedula=" + cedula;
-	}
-
-	@PostConstruct
-	public void init() {
-		this.loadPoliza();
 	}
 
 	public String calcularPoliza() {
