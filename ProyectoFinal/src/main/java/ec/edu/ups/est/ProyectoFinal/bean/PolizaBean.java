@@ -102,7 +102,7 @@ public class PolizaBean {
 
 	@PostConstruct
 	public void init() {
-		polizas = polizaON.getPolizas();
+		this.loadPoliza();
 	}
 
 	public String calcularPoliza() {
@@ -150,12 +150,7 @@ public class PolizaBean {
 	}
 
 	public void loadPoliza() {
-		System.out.println("**********");
-		if (idPoliza == 0)
-			return;
-		Poliza poli = polizaON.getPoliza(idPoliza);
-		poliza = poli;
-		System.out.println(poliza.getMontoCobrar());
+		this.polizas = polizaON.getPolizas();
 	}
 
 	public void verificarBotonCalcular() {
