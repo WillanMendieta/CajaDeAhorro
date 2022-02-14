@@ -24,6 +24,12 @@ public class PolizaON implements PolizaONLocal {
 	@Inject
 	private CuentaDAO cuentaDAO;
 	
+	/*
+	 * El metodo generarPoliza recibe como parametros el monto inicio, el numero de cuotas y la cedula del cliente
+	 * realiza las verificaciones si existe el usuario. 
+	 * si existe el usuario se inserta en la base de datos.
+	 */
+	
 	public void generarPoliza(double montoInicio, int numeroCuotas, String cedulaPersona) throws Exception {
 		Poliza poliza = new Poliza();
 		poliza.setInteres(0.05);
@@ -39,6 +45,12 @@ public class PolizaON implements PolizaONLocal {
 		poliza.setUsuario(usuario);
 		polizaDAO.insert(poliza);
 	}
+	
+	/*
+	 * El metodo aceptarPoliza recibe como parametros monto de incio, numero de cuotas y la cedula de la persona
+	 * realiza la verificacion del usuarui. Si supera la verificacion se inserta la poliza
+	 * 
+	 */
 	
 	public void aceptarPoliza(double montoInicio, int numeroCuotas, String cedulaPersona) throws Exception {
 		Poliza poliza = new Poliza();
@@ -57,6 +69,9 @@ public class PolizaON implements PolizaONLocal {
 		//aceptarPoliza2(poliza.getId());
 	}
 	
+	/*
+	 * El metodo aceptarPoliza recibe como parametro el id y actualiza el estado de la poliza
+	 */
 	public void aceptarPoliza2(int idPoliza) {
 		Poliza polizaGuardado = polizaDAO.read(idPoliza);
 		polizaGuardado.setEstaAprobado(true);
@@ -66,15 +81,25 @@ public class PolizaON implements PolizaONLocal {
 		polizaDAO.upgrade(polizaGuardado);
 		cuentaDAO.upgrade(cuentaUsuario);
 	}
+	/*
+	 * El metodo getPolizas obtiene lodas las polizas que se encuentran en la base de datos.
+	 */
 	
 	public List<Poliza> getPolizas() {
 		return polizaDAO.getList();
 	}
+	/*
+	 * El metodo getPoliza obtiene la poliza especificando el id de la poliza
+	 * 
+	 */
 	
 	public Poliza getPoliza(int id) {
 		return polizaDAO.read(id);
 	}
 	
+	/*
+	 * El metodo getPolizasUsuario obtiene la lista de las polizas que estan asociado a un usuario especifico. 
+	 */
 	public List<Poliza> getPolizasUsuario(String numeroCuenta){
 		return polizaDAO.getListPorCuenta(numeroCuenta);
 	}

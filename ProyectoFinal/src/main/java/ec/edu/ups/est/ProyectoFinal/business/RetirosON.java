@@ -16,6 +16,10 @@ public class RetirosON implements RetirosONLocal {
 	@Inject
 	private CuentaDAO cuentaDAO;
 	
+	/*
+	 * El metodo retido, recibe como parametro un objeto de tipo movimiento
+	 * antes de insertar a la tabla movimiento realiza la verificacionsi tiene o no saldo 
+	 */
 	public void retiro(Movimiento movimiento)  throws Exception {
 		Cuenta cuenta = movimiento.getCuenta();
 		Double saldoCuenta = cuenta.getSaldo();
