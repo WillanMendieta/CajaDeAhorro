@@ -83,6 +83,22 @@ public class PolizaBean {
 	public void setPoliza(Poliza poliza) {
 		this.poliza = poliza;
 	}
+	
+	public List<Poliza> getPolizas() {
+		return polizas;
+	}
+
+	public void setPolizas(List<Poliza> polizas) {
+		this.polizas = polizas;
+	}
+	
+	public void loadPolizas() {
+		this.polizas = polizas;
+	}
+	
+	public String verPolizas(String cedula) {
+		return "ListaPolizas?faces-redirect=true&cedula=" + cedula;
+	}
 
 	@PostConstruct
 	public void init() {

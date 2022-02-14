@@ -13,31 +13,31 @@
 	<ui:define name="content">
 		<div style="padding: 2rem 0;">
 			<h:form>
-				<h:dataTable var="poliza" class="table table-striped"
-					value="#{PolizaBean}">
+				<h:dataTable var="Poliza" class="table table-striped"
+					value="#{polizaBean.polizas}">
 					<h:column>
 						<f:facet name="header">Cedula</f:facet>
-						#{poliza.}
+						#{Poliza.usuario.cedula}
 					</h:column>
 					<h:column>
 						<f:facet name="header">Fecha</f:facet>
-						#{usuario.nombre}
+						#{Poliza.fecha}
 					</h:column>
 					<h:column>
 						<f:facet name="header">Interes</f:facet>
-						#{usuario.apellido}
+						#{Poliza.interes}
 					</h:column>
 					<h:column>
 						<f:facet name="header">Monto Inicial</f:facet>
-						#{usuario.correo}
+						#{Poliza.montoInicio}
 					</h:column>
 					<h:column>
 						<f:facet name="header">Meses Plazo</f:facet>
-						#{usuario.cuenta.numeroCuenta}
+						#{Poliza.plazosPoliza}
 					</h:column>
 					<h:column>
 						<f:facet name="header">Monto A Cobrar</f:facet>
-						#{usuario.cuenta.saldo}
+						#{Poliza.montoCobrar}
 					</h:column>
 				</h:dataTable>
 			</h:form>
