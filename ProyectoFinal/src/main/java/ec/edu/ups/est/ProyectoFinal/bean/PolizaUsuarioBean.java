@@ -64,12 +64,5 @@ public class PolizaUsuarioBean {
 		this.numeroCuenta = numeroCuenta;
 	}
 
-	
-	
-
-
-	
-
-	
 
 }
