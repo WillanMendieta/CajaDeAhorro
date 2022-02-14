@@ -146,6 +146,10 @@ public class PolizaBean {
 		this.polizas = polizaON.getPolizas();
 	}
 	
+	/**
+	 * 
+	 * @return Poliza para crear
+	 */
 	public String generarPolizaSesion() {
 		String cedulaUsuario = SessionUtils.getUserCedula();
 		String numerCuenta = usuarioON.getUsuario(cedulaUsuario).getCuenta().getNumeroCuenta();
