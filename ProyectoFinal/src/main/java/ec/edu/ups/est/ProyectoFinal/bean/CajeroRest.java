@@ -23,6 +23,7 @@ public class CajeroRest {
 	@Inject
 	private CajeroONLocal cajeroON;
 	
+
 	@GET
 	@Path("aprobarCajero")
 	@Produces(MediaType.APPLICATION_JSON)
