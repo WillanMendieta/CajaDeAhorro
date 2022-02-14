@@ -18,7 +18,9 @@
 				</h:column>
 				<h:column>
 					<f:facet name="header">Fecha</f:facet>
-					#{mov.fecha}
+					<h:outputText value="#{mov.fecha}">
+						<f:convertDateTime pattern = "dd-MM-yyyy" />
+					</h:outputText>					
 				</h:column>
 				<h:column>
 					<f:facet name="header">Monto</f:facet>
